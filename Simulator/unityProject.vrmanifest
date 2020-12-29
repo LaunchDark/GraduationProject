@@ -5,10 +5,10 @@
       "app_key": "application.generated.unity.newunityproject.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\132\\Desktop\\毕设\\初\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\132\\Desktop\\GraduationProject\\Simulator\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
-          "name": "New Unity Project [Testing]"
+          "name": "LaunchDark [Testing]"
         }
       }
     }
