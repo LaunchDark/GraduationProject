@@ -307,6 +307,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1058070293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 144230, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1774846115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058070294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058070293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10993fea8ff307418d18bcc23150721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdInstrument: {fileID: 0}
+  selectedInstrument: {fileID: 0}
+  mState: 0
 --- !u!1 &1329157647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9,
@@ -336,23 +357,9 @@ MonoBehaviour:
   telepory:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
---- !u!114 &1329157651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329157647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355e0c6076fb4f047aadbce28c201f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  rightHand: {fileID: 0}
-  holdInstrument: {fileID: 0}
-  selectedInstrument: {fileID: 0}
-  mState: 0
+  TouchPad:
+    actionPath: /actions/default/in/TouchPad
+    needsReinit: 0
 --- !u!1001 &1774846115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -410,3 +417,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+--- !u!1 &2076549591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 160596, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1774846115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2076549592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076549591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81852ecadda51b242ac3b529b084acee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdInstrument: {fileID: 0}
+  selectedInstrument: {fileID: 0}
+  mState: 0

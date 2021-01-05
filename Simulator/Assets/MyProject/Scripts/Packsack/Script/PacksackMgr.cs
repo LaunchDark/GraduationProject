@@ -98,7 +98,7 @@ public class PacksackMgr : MonoBehaviour
             item.groupInstrumentList = null;
             data.num--;
             UpdateGroupInstrumentPacksackItemData();
-            Player.Instance.SetHoldInstrument(item);
+            RightHand.Instance.SetHoldInstrument(item);
         }
         else
         {
@@ -166,7 +166,7 @@ public class PacksackMgr : MonoBehaviour
             {
                 instrument.SetState(Instrument.State.life);
                 instrument.isHasR = false;
-                Player.Instance.holdInstrument = null;
+                RightHand.Instance.holdInstrument = null;
                 instrumentList.Add(instrument);
             }
             else

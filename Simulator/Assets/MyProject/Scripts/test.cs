@@ -34,47 +34,30 @@ public class test : MonoBehaviour
     void Update()
     {
 
-        //if (T[SteamVR_Input_Sources.LeftHand].changed)
-        //{
-        //    Debug.Log("T输入：" + T[SteamVR_Input_Sources.LeftHand].axis);
-        //}
-        //if (D[SteamVR_Input_Sources.LeftHand].changed)
-        //{
-        //    Debug.Log("D输入：" + D[SteamVR_Input_Sources.LeftHand].axis);
-        //}
-        //if (L[SteamVR_Input_Sources.LeftHand].changed)
-        //{
-        //    Debug.Log("L输入：" + L[SteamVR_Input_Sources.LeftHand].axis);
-        //}
-        //if (R[SteamVR_Input_Sources.LeftHand].changed)
-        //{
-        //    Debug.Log("R输入：" + R[SteamVR_Input_Sources.LeftHand].axis);
-        //}
-
         if (TouchPad[SteamVR_Input_Sources.LeftHand].changed)
         {
-            Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
+            //Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
         }
         if (TouchPad[SteamVR_Input_Sources.RightHand].changed)
         {
-            Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
+            //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
         }
 
 
 
 
 
-        if (left.GetGrabStarting() != GrabTypes.None)
+        if (right.GetGrabStarting() != GrabTypes.None)
         {
-            print("左手输入类型：" + left.GetGrabStarting());
+            print("右手输入类型：" + right.GetGrabStarting());
 
-            if(left.GetGrabStarting() == GrabTypes.Grip)
+            if(right.GetGrabStarting() == GrabTypes.Grip)
             {
                 Debug.Log("生成方块");
                 //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
                 PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
             }
-            if (left.GetGrabStarting() == GrabTypes.Pinch)
+            if (right.GetGrabStarting() == GrabTypes.Pinch)
             {
                 Debug.Log("生成小球");
                 //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);

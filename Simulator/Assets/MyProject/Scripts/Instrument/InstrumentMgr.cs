@@ -30,8 +30,7 @@ public class InstrumentMgr : MonoBehaviour
 
     private void Awake()
     {
-        //Messenger.AddListener<Instrument>(GlobalEvent.Instrument_State_Change, SceneInstrumentStorageInfoChange);
-        //StorageMgr.Instance.RegisterGetNetworkJsonCallback("scene_instrument_info", GetStorageSceneInstrumentInfoCallback);
+
     }
 
     public GameObject CreateInstrument(InstrumentEnum instrumentEnum,bool isPool = true)
@@ -167,111 +166,4 @@ public class InstrumentMgr : MonoBehaviour
         }
     }
 
-    //初始化场景上次退出时的保存的仪器
-    //public void InitSceneInstrument()
-    //{
-    //    StorageMgr.Instance.GetNetworkJson("scene_instrument_info");
-    //}
-
-    //JsonData mSceneInstrumentInfo = new JsonData();
-    //private void GetStorageSceneInstrumentInfoCallback(JsonData json)
-    //{
-    //    try
-    //    {
-    //        Messenger.RemoveListener<Instrument>(GlobalEvent.Instrument_State_Change, SceneInstrumentStorageInfoChange);
-    //        Dictionary<string, Instrument> tempInstrumentDic = new Dictionary<string, Instrument>();
-    //        List<Instrument> tempInstrumentList = new List<Instrument>();
-    //        mSceneInstrumentInfo = json;
-    //        foreach (string key in ((IDictionary)mSceneInstrumentInfo).Keys)
-    //        {
-    //            JsonData jsonData = mSceneInstrumentInfo[key];
-    //            GameObject go = PacksackMgr.Instance.CreatePlayerHoldInstrument((InstrumentEnum)(int)jsonData["type"]);
-    //            if (go == null)
-    //                continue;
-    //            go.transform.parent = null;
-    //            Player.Instance.holdInstrument = null;
-    //            Player.Instance.SetState(Player.State.normal);
-    //            go.name = jsonData["name"].ToString();
-    //            string[] posStr = jsonData["position"].ToString().Split(',');
-    //            Vector3 pos = new Vector3(float.Parse(posStr[0]), float.Parse(posStr[1]), float.Parse(posStr[2]));
-    //            go.transform.position = pos;
-    //            string[] eulerStr = jsonData["eulerAngles"].ToString().Split(',');
-    //            Vector3 euler = new Vector3(float.Parse(eulerStr[0]), float.Parse(eulerStr[1]), float.Parse(eulerStr[2]));
-    //            go.transform.eulerAngles = euler;
-    //            Instrument instrument = go.GetComponent<Instrument>();
-    //            instrument.storageKey = key;
-
-    //            if (string.IsNullOrEmpty(jsonData["curAdsorbInstrument"].ToString()) == false)
-    //                tempInstrumentDic.Add(jsonData["curAdsorbInstrument"].ToString(), instrument);
-    //            else
-    //                tempInstrumentList.Add(instrument);
-    //        }
-    //        for (int i = 0; i < tempInstrumentList.Count; i++)
-    //        {
-    //            tempInstrumentList[i].SetState(Instrument.State.drop);
-    //        }
-    //        foreach (var item in tempInstrumentDic)
-    //        {
-    //            Instrument tempInstrument = null;
-    //            for (int i = 0; i < tempInstrumentList.Count; i++)
-    //            {
-    //                if (tempInstrumentList[i].storageKey == item.Key)
-    //                    tempInstrument = tempInstrumentList[i];
-    //            }
-    //            item.Value.curAdsorbInstrument = tempInstrument;
-    //            item.Value.SetState(Instrument.State.drop);
-    //        }
-    //        Messenger.AddListener<Instrument>(GlobalEvent.Instrument_State_Change, SceneInstrumentStorageInfoChange);
-    //    }
-    //    catch (Exception e)
-    //    {
-    //        UIRoot.Instance.ClearCache();
-    //        UITool.ExitAPP(true);
-    //    }
-    //}
-
-    ////仪器存档变化
-    //private void SceneInstrumentStorageInfoChange(Instrument instrument)
-    //{
-    //    InstrumentEnum type = InstrumentEnum.None;
-    //    //放下仪器
-    //    if (instrument.mLastState == Instrument.State.drop && instrument.mState == Instrument.State.life)
-    //    {
-    //        if (instrument.IsGroupInstrument())
-    //            type = instrument.groupInstrumentType;
-    //        else
-    //            type = instrument.type;
-    //        if (string.IsNullOrEmpty(instrument.storageKey) == false)
-    //        {
-    //            DeleteSceneInstrumentStorageInfo(instrument);
-    //        }
-    //        //需要给仪器生成个唯一存档key
-    //        string key = (int)type + "_" + (int)(1000 * instrument.transform.position.x) + "_" + (int)(1000 * instrument.transform.position.z);
-    //        JsonData jsonData = new JsonData();
-    //        jsonData["name"] = instrument.gameObject.name;
-    //        jsonData["type"] = (int)type;
-    //        jsonData["curAdsorbInstrument"] = instrument.curAdsorbInstrument != null ? instrument.curAdsorbInstrument.storageKey : "";
-    //        jsonData["position"] = string.Format("{0},{1},{2}", instrument.transform.position.x, instrument.transform.position.y, instrument.transform.position.z);
-    //        jsonData["eulerAngles"] = string.Format("{0},{1},{2}", instrument.transform.eulerAngles.x, instrument.transform.eulerAngles.y, instrument.transform.eulerAngles.z);
-    //        mSceneInstrumentInfo[key] = jsonData;
-    //        instrument.storageKey = key;
-    //        StorageMgr.Instance.SetNetworkJson("scene_instrument_info", mSceneInstrumentInfo);
-    //    }
-    //    //拿起仪器
-    //    if (instrument.mLastState == Instrument.State.life && instrument.mState == Instrument.State.held)
-    //    {
-    //        DeleteSceneInstrumentStorageInfo(instrument);
-    //    }
-    //}
-
-    ////删除场景仪器存档
-    //public void DeleteSceneInstrumentStorageInfo(Instrument instrument)
-    //{
-    //    if (string.IsNullOrEmpty(instrument.storageKey) == false)
-    //    {
-    //        Utility.DeleteJsonKey(mSceneInstrumentInfo, instrument.storageKey);
-    //        instrument.storageKey = "";
-    //        StorageMgr.Instance.SetNetworkJson("scene_instrument_info", mSceneInstrumentInfo);
-    //    }
-    //}
 }
