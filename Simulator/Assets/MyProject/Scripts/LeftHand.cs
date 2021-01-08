@@ -26,35 +26,51 @@ public class LeftHand : HandBase
 
     protected override void Update()
     {
+        #region 按键输入
         if (TouchPad[SteamVR_Input_Sources.LeftHand].changed)
         {
-            Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
+            InputTouchPad();
         }
 
         if (hand.GetGrabStarting() != GrabTypes.None)
         {
-            print("左手输入类型：" + hand.GetGrabStarting());
-
-            //if (hand.GetGrabStarting() == GrabTypes.Grip)
-            //{
-            //    Debug.Log("生成方块");
-            //    //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-            //    PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
-            //}
-            //if (hand.GetGrabStarting() == GrabTypes.Pinch)
-            //{
-            //    Debug.Log("生成小球");
-            //    //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-            //    PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
-            //}
+            if (hand.GetGrabStarting() == GrabTypes.Grip)
+            {
+                InputGrip();
+            }
+            if (hand.GetGrabStarting() == GrabTypes.Pinch)
+            {
+                InputTrigger();
+            }
         }
 
         if (telepory.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            print("左手点击触摸板:");
+            InputTeleport();
         }
+        #endregion
 
     }
 
+    protected override void InputTouchPad()
+    {
+        Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
+
+    }
+
+    protected override void InputGrip()
+    {
+        print("左手输入类型：" + hand.GetGrabStarting());
+    }
+
+    protected override void InputTrigger()
+    {
+        print("左手输入类型：" + hand.GetGrabStarting());
+    }
+
+    protected override void InputTeleport()
+    {
+        print("左手点击触摸板:");
+    }
 
 }

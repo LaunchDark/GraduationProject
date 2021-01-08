@@ -57,6 +57,39 @@ public class HandBase : MonoBehaviour
     }
 
 	/// <summary>
+	/// 触摸板事件
+	/// </summary>
+	protected virtual void InputTouchPad()
+    {
+
+    }
+
+	/// <summary>
+	/// 点击Trigger事件
+	/// </summary>
+	protected virtual void InputTrigger()
+    {
+
+    }
+
+	/// <summary>
+	/// 点击握持键数据
+	/// </summary>
+	protected virtual void InputGrip()
+    {
+
+    }
+
+	/// <summary>
+	/// 点击触摸板事件
+	/// </summary>
+	protected virtual void InputTeleport()
+    {
+
+    }
+
+
+	/// <summary>
 	/// 获取手部状态
 	/// </summary>
 	public virtual State GetState()

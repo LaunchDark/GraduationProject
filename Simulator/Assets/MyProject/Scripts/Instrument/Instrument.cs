@@ -109,14 +109,14 @@ public class Instrument : MonoBehaviour
     private void EnterUI()
     {
         //if (mState == State.enter && mInputKeyInterface != null) 
-            //InputKeyMgr.Instance.Remove(mInputKeyInterface);
+        //InputKeyMgr.Instance.Remove(mInputKeyInterface);
     }
     private void ExitUI()
     {
         //if (mState == State.enter && mInputKeyInterface != null)
-            //InputKeyMgr.Instance.Register(mInputKeyInterface);
+        //InputKeyMgr.Instance.Register(mInputKeyInterface);
     }
-    
+
     virtual public void AwakeLater() { }
 
     private void LateUpdate()
@@ -139,23 +139,27 @@ public class Instrument : MonoBehaviour
                 RaycastHit hitInfo;
                 Debug.DrawRay(transform.position, transform.up * -1f * canDropDis, Color.red);
                 if (Physics.Raycast(ray, out hitInfo, canDropDis, LayerMask.GetMask("Ground")))
-                    SetRenderer(HeldState.green);
-                else
-                    SetRenderer(HeldState.red);
-            }
-            //持有仪器并且没有碰到别的物体时,屏幕中间发送射线,检测碰撞,判断是否有障碍物档在中间
-            if (mHeldState == HeldState.green && !isHeldCollision)
-            {
-                Ray ray = new Ray(HeldingHand.transform.position,HeldingHand.transform.forward);
-                RaycastHit hitInfo;
-                //float distance = Vector3.Distance(HeldingHand.transform.position, transform.position);
-                if (Physics.Raycast(ray, out hitInfo, 2))
                 {
-                    Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
-                    if (hitInfo.collider.GetComponentInParent<Instrument>() != this)
-                        SetRenderer(HeldState.red);
+                    SetRenderer(HeldState.green);
+                }
+                else
+                {
+                    SetRenderer(HeldState.red);
                 }
             }
+            //持有仪器并且没有碰到别的物体时,屏幕中间发送射线,检测碰撞,判断是否有障碍物档在中间
+            //if (mHeldState == HeldState.green && !isHeldCollision)
+            //{
+            //    Ray ray = new Ray(HeldingHand.transform.position, HeldingHand.transform.forward);
+            //    RaycastHit hitInfo;
+            //    //float distance = Vector3.Distance(HeldingHand.transform.position, transform.position);
+            //    if (Physics.Raycast(ray, out hitInfo, 2))
+            //    {
+            //        Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
+            //        if (hitInfo.collider.GetComponentInParent<Instrument>() != this)
+            //            SetRenderer(HeldState.red);
+            //    }
+            //}
         }
         else
         {
@@ -163,8 +167,12 @@ public class Instrument : MonoBehaviour
         }
     }
 
-    //设置仪器状态
-    public void SetState(State state,GameObject hand = null)
+    /// <summary>
+    ///设置仪器状态
+    /// </summary>
+    /// <param name="state">状态</param>
+    /// <param name="hand">设置握持手</param>
+    public void SetState(State state, GameObject hand = null)
     {
         HeldingHand = hand;
         if (rig == null)
@@ -233,16 +241,23 @@ public class Instrument : MonoBehaviour
 
 
 
-    //子类重写仪器被拿起时的回调
-    virtual public void HeldCallBack(GameObject hand) 
+    /// <summary>
+    ///子类重写仪器被拿起时的回调
+    /// </summary>
+    /// <param name="hand"></param>
+    virtual public void HeldCallBack(GameObject hand)
     {
-        HeldingHand = hand;    
+        HeldingHand = hand;
     }
 
-    //子类重写仪器放下状态完成后的回调
+    /// <summary>
+    ///子类重写仪器放下状态完成后的回调
+    /// </summary>
     virtual public void LifeCallBack() { }
 
-    //子类重写仪器吸附的回调
+    /// <summary>
+    ///子类重写仪器吸附的回调
+    /// </summary>
     virtual public void AdsorbCallBack() { }
 
     /// <summary>
@@ -250,7 +265,10 @@ public class Instrument : MonoBehaviour
     /// </summary>
     virtual public void FallCourse() { }
 
-    //仪器在地图上被玩家选中时
+    /// <summary>
+    ///仪器在场景中被玩家选中时
+    /// </summary>
+    /// <param name="collider"></param>
     private void LifeSelected(Collider collider)
     {
         if (mState == State.life)
@@ -269,7 +287,10 @@ public class Instrument : MonoBehaviour
     }
 
 
-    //设置描边
+    /// <summary>
+    ///设置描边
+    /// </summary>
+    /// <param name="b"></param>
     private void SetOutLine(bool b)
     {
         if (curOutLine == b)
@@ -286,13 +307,19 @@ public class Instrument : MonoBehaviour
         return offsetZ;
     }
 
-    //返回被持有时的颜色状态
+    /// <summary>
+    ///返回被持有时的颜色状态
+    /// </summary>
+    /// <returns></returns>
     public HeldState GetHeldState()
     {
         return mHeldState;
     }
 
-    //设置被持有时Z坐标偏移量
+    /// <summary>
+    ///设置被持有时Z坐标偏移量
+    /// </summary>
+    /// <param name="f"></param>
     public void SetOffsetZChange(float f)
     {
         offsetZ += f;
@@ -313,7 +340,10 @@ public class Instrument : MonoBehaviour
         return groupInstrumentList != null && groupInstrumentList.Count > 0;
     }
 
-    //仪器颜色
+    /// <summary>
+    /// 仪器颜色
+    /// </summary>
+    /// <param name="heldState"></param>
     public void SetRenderer(HeldState heldState)
     {
         mHeldState = heldState;
@@ -346,10 +376,16 @@ public class Instrument : MonoBehaviour
     {
         if (mState == State.held /*&& player*/)
         {
+            Debug.Log("碰撞到的物体" + other.gameObject.name);
             Instrument adsorbInstrument = other.gameObject.GetComponentInParent<Instrument>();
+            Debug.Log(adsorbInstrument);
             //碰到的对象不是仪器,变红
             if (adsorbInstrument == null)
             {
+                if(other.gameObject.layer == 12)
+                {
+                    return;
+                }
                 SetRenderer(HeldState.red);
                 isHeldCollision = true;
             }

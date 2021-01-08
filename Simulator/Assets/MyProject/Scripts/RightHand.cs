@@ -26,34 +26,73 @@ public class RightHand : HandBase
 
     protected override void Update()
     {
+        #region 按键输入
         if (TouchPad[SteamVR_Input_Sources.RightHand].changed)
         {
-            Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
+            InputTouchPad();
         }
 
         if (hand.GetGrabStarting() != GrabTypes.None)
         {
-            print("右手输入类型：" + hand.GetGrabStarting());
-
             if (hand.GetGrabStarting() == GrabTypes.Grip)
             {
-                Debug.Log("生成方块");
-                //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-                PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
+                InputGrip();
             }
             if (hand.GetGrabStarting() == GrabTypes.Pinch)
             {
-                Debug.Log("生成小球");
-                //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-                PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
+                InputTrigger();
             }
         }
 
         if (telepory.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
-            print("右手点击触摸板:");
+            InputTeleport();
         }
+        #endregion
 
+    }
+
+    protected override void InputTouchPad()
+    {
+        Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
+
+    }
+
+    protected override void InputGrip()
+    {
+        print("右手输入类型：" + hand.GetGrabStarting());
+
+        Debug.Log("生成方块");
+        //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
+        PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
+
+    }
+
+    protected override void InputTrigger()
+    {
+        print("右手输入类型：" + hand.GetGrabStarting());
+
+        Debug.Log(holdInstrument);
+        if (holdInstrument)
+        {
+            if (holdInstrument.GetHeldState() == Instrument.HeldState.green)
+            {
+                holdInstrument.transform.parent = null;
+                holdInstrument.SetState(Instrument.State.drop);
+                holdInstrument = null;
+            }
+        }
+        else
+        {
+            Debug.Log("生成小球");
+            //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
+            PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
+        }
+    }
+
+    protected override void InputTeleport()
+    {
+        print("右手点击触摸板:");
     }
 
 }
