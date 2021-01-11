@@ -23,7 +23,7 @@ public class HandBase : MonoBehaviour
 	/// <summary>
 	/// 选中的仪器对象
 	/// </summary>
-	[SerializeField] protected GameObject selectedInstrument;
+	[SerializeField] public GameObject selectedInstrument;
 
 	//当前状态
 	[SerializeField] protected State mState = State.normal;
@@ -40,6 +40,13 @@ public class HandBase : MonoBehaviour
 	/// Teleprot
 	/// </summary>
 	[SerializeField] protected SteamVR_Action_Boolean telepory = SteamVR_Input.GetBooleanAction("Teleport");
+	/// <summary>
+	/// 控制器位置
+	/// </summary>
+	[SerializeField] protected SteamVR_Behaviour_Pose controllerPos;
+
+
+
 	#endregion
 	protected virtual void Awake()
     {
@@ -47,9 +54,9 @@ public class HandBase : MonoBehaviour
     }
 
 	protected virtual void Start()
-    {
-
-    }
+	{
+		controllerPos = transform.GetComponent<SteamVR_Behaviour_Pose>();
+	}
 
 	protected virtual void Update()
     {
@@ -112,13 +119,6 @@ public class HandBase : MonoBehaviour
 				gameObject.SetActive(true);
 
 			this.enabled = true;
-		}
-		//仪器内部状态
-		if (mState == State.Instrument)
-		{
-			//gameObject.SetActive(false);
-
-			Messenger.Broadcast<Collider>(GlobalEvent.Player_Selected_Instrument, null);
 		}
 	}
 
@@ -192,7 +192,9 @@ public class HandBase : MonoBehaviour
 		holdInstrument = instrument;
 		instrument.gameObject.SetActive(true);
 		instrument.SetState(Instrument.State.held,gameObject);
-		holdInstrument.transform.SetParent(transform);
+		holdInstrument.transform.SetParent(transform.GetChild(1).transform);
+		holdInstrument.transform.localPosition = Vector3.zero;
+		holdInstrument.transform.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 
 	/// <summary>

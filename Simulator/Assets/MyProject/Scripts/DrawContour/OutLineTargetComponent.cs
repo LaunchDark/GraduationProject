@@ -49,8 +49,12 @@ public class OutLineTargetComponent : MonoBehaviour
     }
 
     public void SetColor(Color color)
-    {       
+    {
+        //Debug.Log("SetColor: " + color);
+        //Debug.Log(material);
         if (material != null)
+        {
             material.SetColor("_OutLineColor", color);
+        }
     }
 }

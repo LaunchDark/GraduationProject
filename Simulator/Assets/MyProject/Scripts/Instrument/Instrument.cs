@@ -67,7 +67,12 @@ public class Instrument : MonoBehaviour
     [HideInInspector] public int selfSortIndex;//背包定位排序值
     [HideInInspector] static int sortMaxIndex;//背包定位排序值
 
-    [HideInInspector] protected GameObject HeldingHand;
+    protected GameObject HeldingHand;
+    /// <summary>
+    /// 是否在被选中
+    /// </summary>
+    protected bool isSelecting;
+
 
     private void Awake()
     {
@@ -100,7 +105,7 @@ public class Instrument : MonoBehaviour
             colliders.Remove(adsorbCollider);
         }
         SetState(State.normal);
-        Messenger.AddListener<Collider>(GlobalEvent.Player_Selected_Instrument, LifeSelected);
+        Messenger.AddListener<Collider>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
         lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
         Messenger.AddListener(GlobalEvent.Enter_UI, EnterUI);
         Messenger.AddListener(GlobalEvent.Exit_UI, ExitUI);
@@ -269,16 +274,23 @@ public class Instrument : MonoBehaviour
     ///仪器在场景中被玩家选中时
     /// </summary>
     /// <param name="collider"></param>
-    private void LifeSelected(Collider collider)
+    private void SelectedInsturment(Collider collider)
     {
+        //Debug.Log("选中: " + transform.name);
         if (mState == State.life)
         {
             if (collider == null)
+            {
                 SetOutLine(false);
+            }
             else if (collider.transform.GetComponentInParent<Instrument>() == this)
+            {
                 SetOutLine(true);
+            }
             else
+            {
                 SetOutLine(false);
+            }
         }
         else
         {
@@ -376,9 +388,9 @@ public class Instrument : MonoBehaviour
     {
         if (mState == State.held /*&& player*/)
         {
-            Debug.Log("碰撞到的物体" + other.gameObject.name);
+            //Debug.Log("碰撞到的物体" + other.gameObject.name);
             Instrument adsorbInstrument = other.gameObject.GetComponentInParent<Instrument>();
-            Debug.Log(adsorbInstrument);
+            //Debug.Log(adsorbInstrument);
             //碰到的对象不是仪器,变红
             if (adsorbInstrument == null)
             {
