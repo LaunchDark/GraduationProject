@@ -7,9 +7,6 @@ using Valve.VR.InteractionSystem;
 public class RightHand : HandBase
 {
     #region Variable
-    public GameObject laserprefab;
-    public GameObject laser;
-    public Transform HandDirection;
 
     #endregion
 
@@ -31,8 +28,6 @@ public class RightHand : HandBase
     protected override void Start()
     {
         base.Start();
-        laser = Instantiate(laserprefab);
-        hand = transform.GetComponent<Hand>();
     }
 
     protected override void Update()
@@ -109,37 +104,42 @@ public class RightHand : HandBase
     {
         print("右手输入类型：" + hand.GetGrabStarting());
 
-        Debug.Log("生成方块");
-        //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-        PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
-
+        if (holdInstrument)
+        {
+            DeleteHoldInstrument();
+        }
+        else
+        {
+            Debug.Log("生成方块");
+            PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
+        }
     }
 
     protected override void InputTrigger()
     {
         print("右手输入类型：" + hand.GetGrabStarting());
 
-        Debug.Log(holdInstrument);
-        if (holdInstrument)
+
+        if (selectedInstrument)
+        {
+            InputHeld();
+        }
+        else if (holdInstrument)
         {
             if(holdInstrument.GetHeldState() == Instrument.HeldState.green)
             {
                 holdInstrument.transform.parent = null;
                 holdInstrument.SetState(Instrument.State.drop);
                 holdInstrument = null;
+                SetState(State.normal);
             }
         }
         else
         {
             Debug.Log("生成小球");
-            //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
             PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
         }
 
-        if (selectedInstrument)
-        {
-            InputHeld();
-        }
 
     }
 

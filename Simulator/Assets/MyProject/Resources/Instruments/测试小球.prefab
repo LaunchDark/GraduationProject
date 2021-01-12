@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2806280615292134717}
   - component: {fileID: 7425836275216826497}
   - component: {fileID: 283152764553687063}
-  - component: {fileID: 8714967936496471172}
+  - component: {fileID: -3168405129025509899}
   m_Layer: 11
   m_Name: "\u6D4B\u8BD5\u5C0F\u7403"
   m_TagString: Untagged
@@ -107,8 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d769332c90f19448b66d41780e5ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preoutlineShader: {fileID: 4800000, guid: c11a86bbe6bf38e4ab966482cd5a0f81, type: 3}
---- !u!114 &8714967936496471172
+--- !u!114 &-3168405129025509899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2371822500773949368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e22f144397ef7f4092fce70b481e089, type: 3}
+  m_Script: {fileID: 11500000, guid: a33b52fdaf104d8469f28e04e769767e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0

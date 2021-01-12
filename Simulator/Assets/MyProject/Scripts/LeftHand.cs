@@ -8,9 +8,6 @@ public class LeftHand : HandBase
 {
     #region Variable
 
-    public GameObject laserprefab;
-    public GameObject laser;
-    public Transform HandDirection;
 
     #endregion
 
@@ -31,8 +28,6 @@ public class LeftHand : HandBase
     protected override void Start()
     {
         base.Start();
-        laser = Instantiate(laserprefab);
-        hand = transform.GetComponent<Hand>();
     }
 
     protected override void Update()
@@ -108,25 +103,31 @@ public class LeftHand : HandBase
     protected override void InputGrip()
     {
         print("左手输入类型：" + hand.GetGrabStarting());
+        if (holdInstrument)
+        {
+            DeleteHoldInstrument();
+        }
     }
 
     protected override void InputTrigger()
     {
         print("左手输入类型：" + hand.GetGrabStarting());
-        if (holdInstrument)
+
+        if (selectedInstrument)
+        {
+            InputHeld();
+        }
+        else if (holdInstrument)
         {
             if (holdInstrument.GetHeldState() == Instrument.HeldState.green)
             {
                 holdInstrument.transform.parent = null;
                 holdInstrument.SetState(Instrument.State.drop);
                 holdInstrument = null;
+                SetState(State.normal);
             }
         }
 
-        if (selectedInstrument)
-        {
-            InputHeld();
-        }
     }
 
     protected override void InputTeleport()

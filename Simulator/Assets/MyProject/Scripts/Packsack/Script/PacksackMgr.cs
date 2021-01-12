@@ -33,7 +33,6 @@ public class PacksackMgr : MonoBehaviour
             {
                 itemData.num++;
                 UpdateGroupInstrumentPacksackItemData();
-                //Debug.Log(itemData.name+":"+ itemData.num);
                 Messenger.Broadcast(GlobalEvent.Packsack_Item_Change);
             }
         });

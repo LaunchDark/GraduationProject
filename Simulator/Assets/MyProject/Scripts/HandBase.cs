@@ -45,6 +45,10 @@ public class HandBase : MonoBehaviour
 	/// </summary>
 	[SerializeField] protected SteamVR_Behaviour_Pose controllerPos;
 
+	public GameObject laserprefab;
+	public GameObject laser;
+	public Transform HandDirection;
+
 
 
 	#endregion
@@ -56,6 +60,8 @@ public class HandBase : MonoBehaviour
 	protected virtual void Start()
 	{
 		controllerPos = transform.GetComponent<SteamVR_Behaviour_Pose>();
+		laser = Instantiate(laserprefab);
+		hand = transform.GetComponent<Hand>();
 	}
 
 	protected virtual void Update()
@@ -115,11 +121,12 @@ public class HandBase : MonoBehaviour
 		//正常状态
 		if (mState == State.normal)
 		{
-			if (!gameObject.activeSelf)
-				gameObject.SetActive(true);
 
-			this.enabled = true;
 		}
+		if(mState == State.Instrument)
+        {
+
+        }
 	}
 
 	/// <summary>
@@ -195,6 +202,7 @@ public class HandBase : MonoBehaviour
 		holdInstrument.transform.SetParent(transform.GetChild(1).transform);
 		holdInstrument.transform.localPosition = Vector3.zero;
 		holdInstrument.transform.localRotation = Quaternion.Euler(Vector3.zero);
+		SetState(State.Instrument);
 	}
 
 	/// <summary>
@@ -203,7 +211,7 @@ public class HandBase : MonoBehaviour
 	public virtual void DeleteHoldInstrument()
 	{
 		InstrumentMgr.Instance.DeleteInstrument(holdInstrument);
-		holdInstrument.transform.SetParent(null);
+        holdInstrument.transform.SetParent(null);
 
 		holdInstrument = null;
 		SetState(State.normal);
