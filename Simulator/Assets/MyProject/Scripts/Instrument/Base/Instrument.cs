@@ -361,19 +361,19 @@ public class Instrument : MonoBehaviour
         mHeldState = heldState;
         if (heldState == HeldState.normal)
         {
-            Debug.Log("默认材质");
+            //Debug.Log("默认材质");
             for (int i = 0; i < renderers.Length; i++)
                 renderers[i].materials = materials[i];
         }
         if (heldState == HeldState.green)
         {
-            Debug.Log("绿色材质");
+            //Debug.Log("绿色材质");
             for (int i = 0; i < renderers.Length; i++)
                 renderers[i].material = greenMaterial;
         }
         if (heldState == HeldState.red)
         {
-            Debug.Log("红色材质");
+            //Debug.Log("红色材质");
             for (int i = 0; i < renderers.Length; i++)
                 renderers[i].material = redMaterial;
         }

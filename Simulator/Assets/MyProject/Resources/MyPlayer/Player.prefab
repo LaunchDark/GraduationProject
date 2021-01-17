@@ -529,14 +529,21 @@ MonoBehaviour:
   TouchPad:
     actionPath: /actions/default/in/TouchPad
     needsReinit: 0
-  telepory:
+  teleport:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
   controllerPos: {fileID: 0}
+  HeadTransform: {fileID: 6588996240849000330}
   laserprefab: {fileID: 3197887813345888533, guid: 2851c8127f2c21a439efe6430a95954a,
     type: 3}
   laser: {fileID: 0}
   HandDirection: {fileID: 138112762}
+  TeleportLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  TeleportPanelPrefab: {fileID: 9164949745810918896, guid: 927f039e16bac6947ba496cb7f70ec0b,
+    type: 3}
+  TeleportPanel: {fileID: 0}
 --- !u!1 &6588996240849292078
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,14 +885,21 @@ MonoBehaviour:
   TouchPad:
     actionPath: /actions/default/in/TouchPad
     needsReinit: 0
-  telepory:
+  teleport:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
   controllerPos: {fileID: 0}
+  HeadTransform: {fileID: 6588996240849000330}
   laserprefab: {fileID: 3197887813345888533, guid: 2851c8127f2c21a439efe6430a95954a,
     type: 3}
   laser: {fileID: 0}
   HandDirection: {fileID: 8510814126888869153}
+  TeleportLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  TeleportPanelPrefab: {fileID: 9164949745810918896, guid: 927f039e16bac6947ba496cb7f70ec0b,
+    type: 3}
+  TeleportPanel: {fileID: 0}
 --- !u!1 &6588996240849437374
 GameObject:
   m_ObjectHideFlags: 0

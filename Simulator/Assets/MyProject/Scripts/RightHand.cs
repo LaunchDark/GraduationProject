@@ -50,9 +50,13 @@ public class RightHand : HandBase
             }
         }
 
-        if (telepory.GetStateDown(SteamVR_Input_Sources.RightHand))
+        if (teleport.GetState(SteamVR_Input_Sources.RightHand))
         {
             InputTeleport();
+        }
+        if (teleport.GetStateUp(SteamVR_Input_Sources.RightHand))
+        {
+            Teleport();
         }
         #endregion
 
@@ -64,7 +68,7 @@ public class RightHand : HandBase
             RaycastHit hitInfo;
             int layerMask = 1 << 12;
             layerMask = ~layerMask; //忽略player层
-            if (Physics.SphereCast(HandDirection.position,0.1f, HandDirection.forward, out hitInfo, 3f, layerMask))
+            if (Physics.SphereCast(HandDirection.position, 0.1f, HandDirection.forward, out hitInfo, 3f, layerMask))
             {
                 //Debug.Log(hitInfo.collider.name);
                 if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Instrument"))
@@ -91,18 +95,19 @@ public class RightHand : HandBase
         {
             Messenger.Broadcast<Collider>(GlobalEvent.Player_Selected_Instrument, collider);
         }
+
         #endregion
     }
 
     protected override void InputTouchPad()
     {
-        Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
+        //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
 
     }
 
     protected override void InputGrip()
     {
-        print("右手输入类型：" + hand.GetGrabStarting());
+        //print("右手输入类型：" + hand.GetGrabStarting());
 
         if (holdInstrument)
         {
@@ -110,7 +115,7 @@ public class RightHand : HandBase
         }
         else
         {
-            Debug.Log("生成方块");
+            //Debug.Log("生成方块");
             PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
         }
     }
@@ -145,20 +150,9 @@ public class RightHand : HandBase
 
     protected override void InputTeleport()
     {
-        print("右手点击触摸板:");
+        base.InputTeleport();
     }
 
-    /// <summary>
-    /// 显示射线
-    /// </summary>
-    /// <param name="hit"></param>
-    protected void ShowLaser(RaycastHit hit)
-    {
-        laser.SetActive(true);
-        laser.transform.position = Vector3.Lerp(HandDirection.position, hit.point,0.5f);
-        laser.transform.LookAt(hit.point);
-        laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance);
-    }
 
 
 }

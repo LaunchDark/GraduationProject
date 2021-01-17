@@ -39,19 +39,32 @@ public class HandBase : MonoBehaviour
 	/// <summary>
 	/// Teleprot
 	/// </summary>
-	[SerializeField] protected SteamVR_Action_Boolean telepory = SteamVR_Input.GetBooleanAction("Teleport");
+	[SerializeField] protected SteamVR_Action_Boolean teleport = SteamVR_Input.GetBooleanAction("Teleport");
 	/// <summary>
 	/// 控制器位置
 	/// </summary>
 	[SerializeField] protected SteamVR_Behaviour_Pose controllerPos;
+	/// <summary>
+	/// VR摄像头
+	/// </summary>
+	[SerializeField] protected Transform HeadTransform;
 
 	public GameObject laserprefab;
 	public GameObject laser;
 	public Transform HandDirection;
 
+	/// <summary>
+	/// 传送射线检测层级
+	/// </summary>
+	public LayerMask TeleportLayerMask;
+	public GameObject TeleportPanelPrefab;
+	public GameObject TeleportPanel;
+	protected Vector3 teleportPoint;
+	protected bool shouldTeleport = false;
 
 
 	#endregion
+
 	protected virtual void Awake()
     {
 
@@ -60,8 +73,14 @@ public class HandBase : MonoBehaviour
 	protected virtual void Start()
 	{
 		controllerPos = transform.GetComponent<SteamVR_Behaviour_Pose>();
+
 		laser = Instantiate(laserprefab);
+		TeleportPanel = Instantiate(TeleportPanelPrefab);
+		laser.SetActive(false);
+		TeleportPanel.SetActive(false);
+
 		hand = transform.GetComponent<Hand>();
+
 	}
 
 	protected virtual void Update()
@@ -98,9 +117,34 @@ public class HandBase : MonoBehaviour
 	/// </summary>
 	protected virtual void InputTeleport()
     {
+		if (mState == State.normal && holdInstrument == null)
+		{			
+			RaycastHit hitInfo;
+			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 10f, TeleportLayerMask))
+			{
+				teleportPoint = hitInfo.point;
+				ShowLaser(hitInfo);
+				TeleportPanel.SetActive(true);
+				TeleportPanel.transform.position = hitInfo.point + new Vector3(0, 0.01f, 0);//深度缓冲问题
+				shouldTeleport = true;
+			}
+			else
+			{
+				laser.SetActive(false);
+				TeleportPanel.SetActive(false);
+				Debug.DrawLine(HandDirection.position, HandDirection.forward * 3f, Color.red);
+			}
+		}
+	}
 
+	protected virtual void Teleport()
+    {
+		shouldTeleport = false;
+		TeleportPanel.SetActive(false);
+		Vector3 diff = Player.instance.transform.position - HeadTransform.position;
+		diff.y = 0;
+		Player.instance.transform.position = teleportPoint + diff;
     }
-
 
 	/// <summary>
 	/// 获取手部状态
@@ -218,4 +262,15 @@ public class HandBase : MonoBehaviour
 	}
 
 
+	/// <summary>
+	/// 显示射线
+	/// </summary>
+	/// <param name="hit"></param>
+	protected virtual void ShowLaser(RaycastHit hit)
+	{
+		laser.SetActive(true);
+		laser.transform.position = Vector3.Lerp(HandDirection.position, hit.point, 0.5f);
+		laser.transform.LookAt(hit.point);
+		laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance);
+	}
 }

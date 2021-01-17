@@ -50,9 +50,13 @@ public class LeftHand : HandBase
             }
         }
 
-        if (telepory.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        if (teleport.GetState(SteamVR_Input_Sources.LeftHand))
         {
             InputTeleport();
+        }
+        if (teleport.GetStateUp(SteamVR_Input_Sources.LeftHand))
+        {
+            Teleport();
         }
         #endregion
 
@@ -96,13 +100,13 @@ public class LeftHand : HandBase
 
     protected override void InputTouchPad()
     {
-        Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
+        //Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
 
     }
 
     protected override void InputGrip()
     {
-        print("左手输入类型：" + hand.GetGrabStarting());
+        //print("左手输入类型：" + hand.GetGrabStarting());
         if (holdInstrument)
         {
             DeleteHoldInstrument();
@@ -111,7 +115,7 @@ public class LeftHand : HandBase
 
     protected override void InputTrigger()
     {
-        print("左手输入类型：" + hand.GetGrabStarting());
+        //print("左手输入类型：" + hand.GetGrabStarting());
 
         if (selectedInstrument)
         {
@@ -132,19 +136,7 @@ public class LeftHand : HandBase
 
     protected override void InputTeleport()
     {
-        print("左手点击触摸板:");
-    }
-
-    /// <summary>
-    /// 显示射线
-    /// </summary>
-    /// <param name="hit"></param>
-    protected void ShowLaser(RaycastHit hit)
-    {
-        laser.SetActive(true);
-        laser.transform.position = Vector3.Lerp(HandDirection.position, hit.point, 0.5f);
-        laser.transform.LookAt(hit.point);
-        laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance);
+        base.InputTeleport();
     }
 
 }
