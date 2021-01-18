@@ -48,6 +48,13 @@ public class HandBase : MonoBehaviour
 	/// VR摄像头
 	/// </summary>
 	[SerializeField] protected Transform HeadTransform;
+	/// <summary>
+	/// 仪器吸附位置
+	/// </summary>
+	[SerializeField] protected Transform ObjectAttachmentPoint;
+	protected Vector3 startAttachmentPoint;
+	protected Vector3 startAttachmentRote;
+
 
 	public GameObject laserprefab;
 	public GameObject laser;
@@ -80,6 +87,9 @@ public class HandBase : MonoBehaviour
 		TeleportPanel.SetActive(false);
 
 		hand = transform.GetComponent<Hand>();
+
+		startAttachmentPoint = ObjectAttachmentPoint.position;
+		startAttachmentRote = ObjectAttachmentPoint.eulerAngles;
 
 	}
 
@@ -240,9 +250,10 @@ public class HandBase : MonoBehaviour
 		{
 			DeleteHoldInstrument();
 		}
+		//ResetAttachmentPoint();
 		holdInstrument = instrument;
 		instrument.gameObject.SetActive(true);
-		instrument.SetState(Instrument.State.held,gameObject);
+		instrument.SetState(Instrument.State.held, gameObject);
 		holdInstrument.transform.SetParent(transform.GetChild(1).transform);
 		holdInstrument.transform.localPosition = Vector3.zero;
 		holdInstrument.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -273,4 +284,13 @@ public class HandBase : MonoBehaviour
 		laser.transform.LookAt(hit.point);
 		laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, hit.distance);
 	}
+
+	/// <summary>
+	/// 重置吸附点
+	/// </summary>
+	protected virtual void ResetAttachmentPoint()
+    {
+		ObjectAttachmentPoint.position = startAttachmentPoint;
+		ObjectAttachmentPoint.eulerAngles = startAttachmentRote;
+    }
 }

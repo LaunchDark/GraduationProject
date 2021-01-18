@@ -7,6 +7,9 @@ using Valve.VR.InteractionSystem;
 public class RightHand : HandBase
 {
     #region Variable
+    protected bool teleportDown;
+    [SerializeField] protected float RotateSpeed = 1.0f;
+    [SerializeField] protected float MoveSpeed = 1.0f;
 
     #endregion
 
@@ -50,6 +53,10 @@ public class RightHand : HandBase
             }
         }
 
+        if (teleport.GetStateDown(SteamVR_Input_Sources.RightHand))
+        {
+            teleportDown = true;
+        }
         if (teleport.GetState(SteamVR_Input_Sources.RightHand))
         {
             InputTeleport();
@@ -57,6 +64,7 @@ public class RightHand : HandBase
         if (teleport.GetStateUp(SteamVR_Input_Sources.RightHand))
         {
             Teleport();
+            teleportDown = false;
         }
         #endregion
 
@@ -99,10 +107,56 @@ public class RightHand : HandBase
         #endregion
     }
 
+    private void LateUpdate()
+    {
+        //Debug.Log("ObjectAttachmentPoint.position: " + ObjectAttachmentPoint.position);
+        //Debug.Log("ObjectAttachmentPoint.localposition: " + ObjectAttachmentPoint.localPosition);
+        if(holdInstrument!= null)
+        {
+            holdInstrument.transform.rotation = Quaternion.Euler(0, holdInstrument.transform.eulerAngles.y, 0);
+        }
+    }
+
+    float offsetz = 0;
     protected override void InputTouchPad()
     {
         //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
+        if (!teleportDown)
+        {
+            if (holdInstrument != null)
+            {
+                //手持仪器旋转
+                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x > 0.3f)
+                {
+                    holdInstrument.transform.eulerAngles += new Vector3(0, -RotateSpeed, 0);
+                }
+                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x < -0.3f)
+                {
+                    holdInstrument.transform.eulerAngles += new Vector3(0, RotateSpeed, 0);
+                }
 
+                //手持仪器移动
+                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.y > 0.3)
+                {
+                    if (offsetz < holdInstrument.MaxOffsetZ)
+                    {
+                        offsetz += 0.01f;
+                    }
+                }
+                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.y < -0.3f)
+                {
+                    if (offsetz > holdInstrument.MinOffsetZ)
+                    {
+                        offsetz -= 0.01f;
+                    }
+                }
+                //holdInstrument.transform.position = ObjectAttachmentPoint.forward * offsetz;
+                //Debug.Log(ObjectAttachmentPoint.forward);
+                //Debug.Log(ObjectAttachmentPoint.position);
+                //Debug.Log(ObjectAttachmentPoint.rotation);
+                holdInstrument.transform.position = ObjectAttachmentPoint.forward;
+            }
+        }
     }
 
     protected override void InputGrip()
