@@ -114,10 +114,10 @@ public class RightHand : HandBase
         if(holdInstrument!= null)
         {
             holdInstrument.transform.rotation = Quaternion.Euler(0, holdInstrument.transform.eulerAngles.y, 0);
+            holdInstrument.transform.localPosition = new Vector3(0,0, holdInstrument.GetOffsetZ());
         }
     }
 
-    float offsetz = 0;
     protected override void InputTouchPad()
     {
         //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
@@ -138,23 +138,18 @@ public class RightHand : HandBase
                 //手持仪器移动
                 if (TouchPad[SteamVR_Input_Sources.RightHand].axis.y > 0.3)
                 {
-                    if (offsetz < holdInstrument.MaxOffsetZ)
+                    if (holdInstrument.GetOffsetZ() < holdInstrument.MaxOffsetZ)
                     {
-                        offsetz += 0.01f;
+                        holdInstrument.SetOffsetZChange(0.01f);
                     }
                 }
                 else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.y < -0.3f)
                 {
-                    if (offsetz > holdInstrument.MinOffsetZ)
+                    if (holdInstrument.GetOffsetZ() > holdInstrument.MinOffsetZ)
                     {
-                        offsetz -= 0.01f;
+                        holdInstrument.SetOffsetZChange(-0.01f);
                     }
-                }
-                //holdInstrument.transform.position = ObjectAttachmentPoint.forward * offsetz;
-                //Debug.Log(ObjectAttachmentPoint.forward);
-                //Debug.Log(ObjectAttachmentPoint.position);
-                //Debug.Log(ObjectAttachmentPoint.rotation);
-                holdInstrument.transform.position = ObjectAttachmentPoint.forward;
+                }                
             }
         }
     }

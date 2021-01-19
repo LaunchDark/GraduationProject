@@ -27,12 +27,15 @@ public class InstrumentLineRender : MonoBehaviour
     {
         Ray ray = new Ray(origin.position, transform.forward);
         RaycastHit hitInfo;
-        
-        if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
+
+        int layerMask = 1 << 12;
+        layerMask = ~layerMask; //ºöÂÔplayer²ã
+
+        if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity,layerMask))
         {
             lineRender.enabled = true;
             //sprite.enabled = true;
-            lineRenderV3.z = hitInfo.distance;
+            lineRenderV3.z = hitInfo.distance * 10;
             lineRender.SetPosition(1, lineRenderV3);
             //lineRenderV3.z -= 0.01f;
             //sprite.transform.localPosition = lineRenderV3;

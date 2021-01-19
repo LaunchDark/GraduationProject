@@ -123,9 +123,9 @@ MonoBehaviour:
   isHasR: 1
   mState: 0
   mLastState: 0
-  MaxOffsetZ: 5
-  MinOffsetZ: 1
-  canDropDis: 1
+  MaxOffsetZ: 3
+  MinOffsetZ: 0.05
+  canDropDis: 2
   adsorbCollider: {fileID: 0}
   adsorbTypeList: 
   curAdsorbInstrument: {fileID: 0}

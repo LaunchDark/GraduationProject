@@ -35,8 +35,8 @@ public class Instrument : MonoBehaviour
 
     private Rigidbody rig;
 
-    public float MaxOffsetZ = 5;
-    public float MinOffsetZ = 1;
+    public float MaxOffsetZ = 3;
+    public float MinOffsetZ = 0;
     private float offsetZ = 1;
     public float canDropDis = 1;//设置值为0时,仪器不能放在地面上
 
@@ -126,7 +126,7 @@ public class Instrument : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (mState == State.held && HeldingHand.GetComponent<HandBase>().GetState() == HandBase.State.normal)
+        if (mState == State.held && HeldingHand.GetComponent<HandBase>().GetState() == HandBase.State.Instrument)
         {
             //持有仪器时往地面画线
             lineRender.gameObject.SetActive(true);
