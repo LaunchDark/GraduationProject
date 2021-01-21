@@ -107,17 +107,6 @@ public class RightHand : HandBase
         #endregion
     }
 
-    private void LateUpdate()
-    {
-        //Debug.Log("ObjectAttachmentPoint.position: " + ObjectAttachmentPoint.position);
-        //Debug.Log("ObjectAttachmentPoint.localposition: " + ObjectAttachmentPoint.localPosition);
-        if(holdInstrument!= null)
-        {
-            holdInstrument.transform.rotation = Quaternion.Euler(0, holdInstrument.transform.eulerAngles.y, 0);
-            holdInstrument.transform.localPosition = new Vector3(0,0, holdInstrument.GetOffsetZ());
-        }
-    }
-
     protected override void InputTouchPad()
     {
         //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);

@@ -35,7 +35,7 @@ public class InstrumentLineRender : MonoBehaviour
         {
             lineRender.enabled = true;
             //sprite.enabled = true;
-            lineRenderV3.z = hitInfo.distance * 10;
+            lineRenderV3.z = hitInfo.distance;
             lineRender.SetPosition(1, lineRenderV3);
             //lineRenderV3.z -= 0.01f;
             //sprite.transform.localPosition = lineRenderV3;

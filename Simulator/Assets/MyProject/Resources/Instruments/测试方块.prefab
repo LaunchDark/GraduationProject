@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2346093752575378838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.7033623}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,8 +124,8 @@ MonoBehaviour:
   mState: 0
   mLastState: 0
   MaxOffsetZ: 3
-  MinOffsetZ: 0.05
-  canDropDis: 2
+  MinOffsetZ: 0.5
+  canDropDis: 1.5
   adsorbCollider: {fileID: 0}
   adsorbTypeList: 
   curAdsorbInstrument: {fileID: 0}
@@ -133,3 +133,6 @@ MonoBehaviour:
   groupInstrumentList: []
   groupInstrumentType: 0
   selfSortIndex: 0
+  isInWall: {fileID: 0}
+  radius: 0.5
+  test: 0.1

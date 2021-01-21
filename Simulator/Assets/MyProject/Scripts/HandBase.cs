@@ -98,10 +98,28 @@ public class HandBase : MonoBehaviour
 
     }
 
-	/// <summary>
-	/// 触摸板事件
-	/// </summary>
-	protected virtual void InputTouchPad()
+    protected virtual void LateUpdate()
+	{
+		if (holdInstrument != null)
+		{
+			if (holdInstrument.isInWall)
+			{
+				//重复移位
+				holdInstrument.transform.eulerAngles = holdInstrument.isInWall.eulerAngles;
+				holdInstrument.transform.position = holdInstrument.transform.position + (holdInstrument.isInWall.forward * (holdInstrument.radius - holdInstrument.test));
+			}
+			else
+			{
+				holdInstrument.transform.rotation = Quaternion.Euler(0, holdInstrument.transform.eulerAngles.y, 0);
+				holdInstrument.transform.localPosition = new Vector3(0, 0, holdInstrument.GetOffsetZ());
+			}
+		}
+	}
+
+    /// <summary>
+    /// 触摸板事件
+    /// </summary>
+    protected virtual void InputTouchPad()
     {
 
     }

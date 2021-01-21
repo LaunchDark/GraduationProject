@@ -69,9 +69,19 @@ public class Instrument : MonoBehaviour
 
     protected GameObject HeldingHand;
     /// <summary>
-    /// 是否在被选中
+    /// 被选中
     /// </summary>
     protected bool isSelecting;
+    /// <summary>
+    /// 在墙里
+    /// </summary>
+    public Transform isInWall;
+    /// <summary>
+    /// 半径
+    /// </summary>
+    public float radius;
+
+    public float test;
 
 
     private void Awake()
@@ -388,43 +398,50 @@ public class Instrument : MonoBehaviour
     {
         if (mState == State.held /*&& player*/)
         {
-            //Debug.Log("碰撞到的物体" + other.gameObject.name);
-            Instrument adsorbInstrument = other.gameObject.GetComponentInParent<Instrument>();
-            //Debug.Log(adsorbInstrument);
-            //碰到的对象不是仪器,变红
-            if (adsorbInstrument == null)
+            if (other.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
-                if(other.gameObject.layer == 12)
-                {
-                    return;
-                }
-                SetRenderer(HeldState.red);
-                isHeldCollision = true;
+                isInWall = other.transform;
             }
-            else
-            {//碰到的对象是仪器
-                if (groupInstrumentList != null && groupInstrumentList.Contains(adsorbInstrument))
+            else 
+            {                
+                //Debug.Log("碰撞到的物体" + other.gameObject.name);
+                Instrument adsorbInstrument = other.gameObject.GetComponentInParent<Instrument>();
+                //Debug.Log(adsorbInstrument);
+                //碰到的对象不是仪器,变红
+                if (adsorbInstrument == null)
                 {
-                    //是自己的内部仪器,什么都不做
+                    if (other.gameObject.layer == 12)
+                    {
+                        return;
+                    }
+                    SetRenderer(HeldState.red);
+                    isHeldCollision = true;
                 }
                 else
-                {
-                    isHeldCollision = true;
-                    //不是自己的内部仪器
-                    //判断是否可以吸附
-                    if (adsorbTypeList != null && adsorbInstrument.adsorbCollider == other && adsorbTypeList.Contains(adsorbInstrument.type))
+                {//碰到的对象是仪器
+                    if (groupInstrumentList != null && groupInstrumentList.Contains(adsorbInstrument))
                     {
-                        //可以吸附
-                        curAdsorbInstrument = adsorbInstrument;
-                        SetRenderer(HeldState.green);
+                        //是自己的内部仪器,什么都不做
                     }
                     else
                     {
-                        //不可以吸附
-                        SetRenderer(HeldState.red);
+                        isHeldCollision = true;
+                        //不是自己的内部仪器
+                        //判断是否可以吸附
+                        if (adsorbTypeList != null && adsorbInstrument.adsorbCollider == other && adsorbTypeList.Contains(adsorbInstrument.type))
+                        {
+                            //可以吸附
+                            curAdsorbInstrument = adsorbInstrument;
+                            SetRenderer(HeldState.green);
+                        }
+                        else
+                        {
+                            //不可以吸附
+                            SetRenderer(HeldState.red);
+                        }
                     }
                 }
-            }
+            } 
         }
     }
 
@@ -435,6 +452,7 @@ public class Instrument : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        isInWall = null;
         if (mState == State.held /*&& player*/)
         {
             isHeldCollision = false;

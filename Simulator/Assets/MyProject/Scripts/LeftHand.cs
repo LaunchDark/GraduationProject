@@ -104,14 +104,6 @@ public class LeftHand : HandBase
         }
         #endregion
     }
-    private void LateUpdate()
-    {
-        if (holdInstrument != null)
-        {
-            holdInstrument.transform.rotation = Quaternion.Euler(0, holdInstrument.transform.eulerAngles.y, 0);
-            holdInstrument.transform.localPosition = new Vector3(0, 0, holdInstrument.GetOffsetZ());
-        }
-    }
 
     protected override void InputTouchPad()
     {
