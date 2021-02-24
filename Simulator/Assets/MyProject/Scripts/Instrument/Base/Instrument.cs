@@ -77,11 +77,13 @@ public class Instrument : MonoBehaviour
     /// </summary>
     public Transform isInWall;
     /// <summary>
-    /// 半径
+    /// 宽度
     /// </summary>
-    public float radius;
-
-    public float test;
+    public float width;
+    /// <summary>
+    /// 高度
+    /// </summary>
+    public float height;
 
 
     private void Awake()

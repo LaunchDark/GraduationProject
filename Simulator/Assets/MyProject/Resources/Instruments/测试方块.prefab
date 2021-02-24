@@ -134,5 +134,5 @@ MonoBehaviour:
   groupInstrumentType: 0
   selfSortIndex: 0
   isInWall: {fileID: 0}
-  radius: 0.5
-  test: 0.1
+  width: 0.5
+  height: 0.5

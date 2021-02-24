@@ -98,15 +98,40 @@ public class HandBase : MonoBehaviour
 
     }
 
-    protected virtual void LateUpdate()
+	protected virtual void LateUpdate()
 	{
 		if (holdInstrument != null)
 		{
-			if (holdInstrument.isInWall)
+			//if (holdInstrument.isInWall)
+			//{
+			//	//墙厚0.1(10cm) 碰撞盒0.2(20cm)
+
+
+			//	// holdInstrument + 0.05 = wall
+
+			//	//重复移位
+			//	holdInstrument.transform.eulerAngles = holdInstrument.isInWall.eulerAngles;
+			//	holdInstrument.transform.localPosition = new Vector3(0, 0, holdInstrument.GetOffsetZ());
+			//	//holdInstrument.transform.position = holdInstrument.transform.position + (holdInstrument.isInWall.forward * (holdInstrument.radius - holdInstrument.test));
+			//	holdInstrument.transform.position = holdInstrument.transform.position + (holdInstrument.isInWall.forward * (0.55f - Vector3.Distance(holdInstrument.transform.position, holdInstrument.isInWall.position)));
+			//}
+
+			//手持物体时，发射射线检测，选中的墙，碰撞点向下面发射射线，然后根据物体厚度，高度，和墙的方向，调整手上物体
+			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
+			RaycastHit hitInfo;
+			//只检测墙体层(9)
+			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.width, 1 << 9))
 			{
-				//重复移位
-				holdInstrument.transform.eulerAngles = holdInstrument.isInWall.eulerAngles;
-				holdInstrument.transform.position = holdInstrument.transform.position + (holdInstrument.isInWall.forward * (holdInstrument.radius - holdInstrument.test));
+				//RaycastHit flood;
+				//if (Physics.Raycast(hitInfo.point, -hitInfo.transform.up, out flood))
+				//{
+				//	//方向等于墙体方向
+				//	holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
+				//	//位置等于检测位置正下方+物体高度+物体宽度
+				//	holdInstrument.transform.position = flood.point + new Vector3(0, holdInstrument.height, 0) + hitInfo.transform.forward * holdInstrument.width;
+				//}
+				holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
+				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.width;
 			}
 			else
 			{
