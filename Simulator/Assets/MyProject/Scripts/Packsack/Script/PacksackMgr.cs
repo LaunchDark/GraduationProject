@@ -44,6 +44,7 @@ public class PacksackMgr : MonoBehaviour
 
         packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Cube, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
         packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Sphere, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
+        packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.HangLight, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
 
         //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.wzQzy, "全站仪", "全站仪脚架", 1, "", CreatePlayerHoldGroupInstrument));//组合仪器
         //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Lj, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument));//组合仪器
@@ -76,6 +77,7 @@ public class PacksackMgr : MonoBehaviour
         {
             return CreatePlayerHoldGroupInstrument(itemData, hasTips);
         }
+        Debug.LogWarning("itemData:" + itemData);
         return null;
     }
 

@@ -75,7 +75,7 @@ public class Instrument : MonoBehaviour
     /// <summary>
     /// 在墙里
     /// </summary>
-    public Transform isInWall;
+    [HideInInspector] public Transform isInWall;
     /// <summary>
     /// 宽度
     /// </summary>
@@ -84,6 +84,10 @@ public class Instrument : MonoBehaviour
     /// 高度
     /// </summary>
     public float height;
+    /// <summary>
+    /// 悬空仪器（挂灯，壁灯等）
+    /// </summary>
+    public bool isHangInsturment = false;
 
 
     private void Awake()

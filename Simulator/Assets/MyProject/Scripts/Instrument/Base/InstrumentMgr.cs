@@ -75,6 +75,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/²âÊÔ·½¿é";
             case InstrumentEnum.Sphere:
                 return "Instruments/²âÊÔĞ¡Çò";
+            case InstrumentEnum.HangLight:
+                return "Instruments/²âÊÔµõµÆ";
 
 
 

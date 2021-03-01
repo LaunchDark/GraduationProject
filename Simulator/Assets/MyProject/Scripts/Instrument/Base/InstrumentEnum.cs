@@ -29,10 +29,10 @@ public enum InstrumentEnum
 
 
     /// <summary>
-    /// 全站仪
+    /// 吊灯
     /// </summary>
-    [Description("全站仪")]
-    wzQzy =4,
+    [Description("测试吊灯")]
+    HangLight = 4,
 
 
     /// <summary>

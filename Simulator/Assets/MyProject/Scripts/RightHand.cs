@@ -140,6 +140,17 @@ public class RightHand : HandBase
                     }
                 }                
             }
+            else
+            {
+                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x > 0.6f)
+                {
+                    FindObjectOfType<SnapTurn>().RotatePlayer(60);
+                }
+                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x < -0.6f)
+                {
+                    FindObjectOfType<SnapTurn>().RotatePlayer(-60);
+                }
+            }
         }
     }
 
@@ -154,14 +165,13 @@ public class RightHand : HandBase
         else
         {
             //Debug.Log("生成方块");
-            PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
+            PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.HangLight, true);
         }
     }
 
     protected override void InputTrigger()
     {
         print("右手输入类型：" + hand.GetGrabStarting());
-
 
         if (selectedInstrument)
         {
@@ -172,7 +182,14 @@ public class RightHand : HandBase
             if(holdInstrument.GetHeldState() == Instrument.HeldState.green)
             {
                 holdInstrument.transform.parent = null;
-                holdInstrument.SetState(Instrument.State.drop);
+                if (holdInstrument.isHangInsturment)
+                {
+                    holdInstrument.SetState(Instrument.State.life);
+                }
+                else
+                {
+                    holdInstrument.SetState(Instrument.State.drop);
+                }
                 holdInstrument = null;
                 SetState(State.normal);
             }

@@ -133,6 +133,11 @@ public class HandBase : MonoBehaviour
 				holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
 				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.width;
 			}
+			else if(Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.height, 1 << 10))
+			{
+				holdInstrument.transform.eulerAngles = Vector3.up;
+				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.height;
+			}
 			else
 			{
 				holdInstrument.transform.rotation = Quaternion.Euler(0, holdInstrument.transform.eulerAngles.y, 0);
@@ -236,7 +241,14 @@ public class HandBase : MonoBehaviour
 			if (holdInstrument.GetHeldState() == Instrument.HeldState.green)
 			{
 				holdInstrument.transform.parent = null;
-				holdInstrument.SetState(Instrument.State.drop);
+				if (holdInstrument.isHangInsturment)
+				{
+					holdInstrument.SetState(Instrument.State.life);
+				}
+				else 
+				{
+					holdInstrument.SetState(Instrument.State.drop);
+				}
 				holdInstrument = null;
 			}
 			else if (holdInstrument.GetHeldState() == Instrument.HeldState.red)

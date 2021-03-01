@@ -30,6 +30,7 @@ public class LeftHand : HandBase
     protected override void Start()
     {
         base.Start();
+        UIRoot.Instance.Init();
     }
 
     protected override void Update()
@@ -138,6 +139,17 @@ public class LeftHand : HandBase
                     }
                 }
             }
+            else
+            {
+                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x > 0.6f)
+                {
+                    FindObjectOfType<SnapTurn>().RotatePlayer(60);
+                }
+                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x < -0.6f)
+                {
+                    FindObjectOfType<SnapTurn>().RotatePlayer(-60);
+                }
+            }
         }
     }
 
@@ -163,7 +175,14 @@ public class LeftHand : HandBase
             if (holdInstrument.GetHeldState() == Instrument.HeldState.green)
             {
                 holdInstrument.transform.parent = null;
-                holdInstrument.SetState(Instrument.State.drop);
+                if (holdInstrument.isHangInsturment)
+                {
+                    holdInstrument.SetState(Instrument.State.life);
+                }
+                else
+                {
+                    holdInstrument.SetState(Instrument.State.drop);
+                }
                 holdInstrument = null;
                 SetState(State.normal);
             }
