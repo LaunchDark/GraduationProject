@@ -7,7 +7,12 @@ using Valve.VR.InteractionSystem;
 public class LeftHand : HandBase
 {
     #region Variable
-    protected bool teleportDown;
+    protected bool teleportDown = false;
+    protected bool GripDown =false;
+    protected bool IsUI = false;
+
+    protected GameObject HandObj;
+
     [SerializeField] protected float RotateSpeed = 1.0f;
     [SerializeField] protected float MoveSpeed = 1.0f;
 
@@ -41,6 +46,11 @@ public class LeftHand : HandBase
             InputTouchPad();
         }
 
+        if(hand.GetGrabEnding() == GrabTypes.Grip)
+        {
+            GripDown = false;
+        }
+
         if (hand.GetGrabStarting() != GrabTypes.None)
         {
             if (hand.GetGrabStarting() == GrabTypes.Grip)
@@ -70,7 +80,7 @@ public class LeftHand : HandBase
 
         #region 正常行走并且是在没持有仪器的情况下,发送射线检测是否选中仪器
         Collider collider = null;
-        if (mState == State.normal && holdInstrument == null)
+        if (mState == State.normal && holdInstrument == null && !IsUI)
         {
             //Ray ray = new Ray(transform.GetComponent<HandPhysics>().handCollider.transform.position, transform.GetComponent<HandPhysics>().handCollider.transform.forward);
             RaycastHit hitInfo;
@@ -160,11 +170,35 @@ public class LeftHand : HandBase
         {
             DeleteHoldInstrument();
         }
+        else
+        {
+            GripDown = true;
+        }
     }
 
     protected override void InputTrigger()
     {
         //print("左手输入类型：" + hand.GetGrabStarting());
+        if (GripDown)
+        {
+            if (IsUI)
+            {
+                UIRoot.Instance.HideUIRoot();
+                HandObj.SetActive(true);
+                IsUI = false;
+            }
+            else
+            {
+                UIRoot.Instance.ShowUIRoot();
+                if (HandObj == null)
+                {
+                    HandObj = GetComponentInChildren<SkinnedMeshRenderer>().gameObject;
+                }
+                HandObj.SetActive(false);
+                IsUI = true;
+            }
+            return;
+        }
 
         if (selectedInstrument)
         {

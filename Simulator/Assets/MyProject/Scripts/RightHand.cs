@@ -33,6 +33,7 @@ public class RightHand : HandBase
         base.Start();
     }
 
+    protected Collider SelectCollider = null;
     protected override void Update()
     {
         #region 按键输入
@@ -68,8 +69,15 @@ public class RightHand : HandBase
         }
         #endregion
 
+        #region 指在UI上
+        if (mState == State.normal && holdInstrument == null)
+        {
+
+        }
+        #endregion
+
         #region 正常行走并且是在没持有仪器的情况下,发送射线检测是否选中仪器
-        Collider collider = null;
+
         if (mState == State.normal && holdInstrument == null)
         {
             //Ray ray = new Ray(transform.GetComponent<HandPhysics>().handCollider.transform.position, transform.GetComponent<HandPhysics>().handCollider.transform.forward);
@@ -82,7 +90,7 @@ public class RightHand : HandBase
                 if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Instrument"))
                 {
                     Debug.DrawLine(HandDirection.position, hitInfo.point, Color.red);
-                    collider = hitInfo.collider;
+                    SelectCollider = hitInfo.collider;
                 }
                 ShowLaser(hitInfo);
             }
@@ -97,11 +105,11 @@ public class RightHand : HandBase
         {
             laser.SetActive(false);
         }
-        selectedInstrument = collider ? collider.gameObject : null;
+        selectedInstrument = SelectCollider ? SelectCollider.gameObject : null;
         //如果左手选中了物体，右手不发射
         if (LeftHand.Instance.selectedInstrument == null)
         {
-            Messenger.Broadcast<Collider>(GlobalEvent.Player_Selected_Instrument, collider);
+            Messenger.Broadcast<Collider>(GlobalEvent.Player_Selected_Instrument, SelectCollider);
         }
 
         #endregion

@@ -47,26 +47,36 @@ public class test : MonoBehaviour
 
 
 
-        if (right.GetGrabStarting() != GrabTypes.None)
-        {
-            print("右手输入类型：" + right.GetGrabStarting());
+        //if (right.GetGrabStarting() != GrabTypes.None)
+        //{
+        //    print("右手输入类型：" + right.GetGrabStarting());
 
-            if(right.GetGrabStarting() == GrabTypes.Grip)
+        //    if (right.GetGrabStarting() == GrabTypes.Grip)
+        //    {
+        //        Debug.Log("生成方块");
+        //        //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
+        //        PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
+        //    }
+        //    if (right.GetGrabStarting() == GrabTypes.Pinch)
+        //    {
+        //        Debug.Log("生成小球");
+        //        //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
+        //        PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
+        //    }
+        //}
+        if (left.GetGrabStarting() != GrabTypes.None)
+        {
+            if (left.GetGrabStarting() == GrabTypes.Grip)
             {
                 Debug.Log("生成方块");
-                //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-                PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Cube, true);
             }
-            if (right.GetGrabStarting() == GrabTypes.Pinch)
+            if (left.GetGrabStarting() == GrabTypes.Pinch)
             {
                 Debug.Log("生成小球");
-                //InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.Cube, false);
-                PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
             }
-
-
-
         }
+
+
         //if (right.GetGrabStarting() != GrabTypes.None)
         //{
         //    print("右手输入类型：" + right.GetGrabStarting());
