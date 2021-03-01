@@ -23,25 +23,25 @@ public class test : MonoBehaviour
 
     void Start()
     {
-        left = transform.Find("SteamVRObjects/LeftHand").GetComponent<Hand>();
-        right = transform.Find("SteamVRObjects/RightHand").GetComponent<Hand>();
+        //left = transform.Find("SteamVRObjects/LeftHand").GetComponent<Hand>();
+        //right = transform.Find("SteamVRObjects/RightHand").GetComponent<Hand>();
 
-        print("左手类型：" + left.handType);
-        print("右手类型：" + right.handType);
+        //print("左手类型：" + left.handType);
+        //print("右手类型：" + right.handType);
     }
 
 
     void Update()
     {
 
-        if (TouchPad[SteamVR_Input_Sources.LeftHand].changed)
-        {
-            //Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
-        }
-        if (TouchPad[SteamVR_Input_Sources.RightHand].changed)
-        {
-            //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
-        }
+        //if (TouchPad[SteamVR_Input_Sources.LeftHand].changed)
+        //{
+        //    //Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
+        //}
+        //if (TouchPad[SteamVR_Input_Sources.RightHand].changed)
+        //{
+        //    //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
+        //}
 
 
 
@@ -64,17 +64,17 @@ public class test : MonoBehaviour
         //        PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
         //    }
         //}
-        if (left.GetGrabStarting() != GrabTypes.None)
-        {
-            if (left.GetGrabStarting() == GrabTypes.Grip)
-            {
-                Debug.Log("生成方块");
-            }
-            if (left.GetGrabStarting() == GrabTypes.Pinch)
-            {
-                Debug.Log("生成小球");
-            }
-        }
+        //if (left.GetGrabStarting() != GrabTypes.None)
+        //{
+        //    if (left.GetGrabStarting() == GrabTypes.Grip)
+        //    {
+        //        Debug.Log("生成方块");
+        //    }
+        //    if (left.GetGrabStarting() == GrabTypes.Pinch)
+        //    {
+        //        Debug.Log("生成小球");
+        //    }
+        //}
 
 
         //if (right.GetGrabStarting() != GrabTypes.None)
@@ -109,6 +109,9 @@ public class test : MonoBehaviour
 
     }
 
-
+    public void ButtonTest()
+    {
+        Debug.Log("按键点击");
+    }
 
 }

@@ -194,6 +194,7 @@ public class LeftHand : HandBase
                 {
                     HandObj = GetComponentInChildren<SkinnedMeshRenderer>().gameObject;
                 }
+                GripDown = false;
                 HandObj.SetActive(false);
                 IsUI = true;
             }
