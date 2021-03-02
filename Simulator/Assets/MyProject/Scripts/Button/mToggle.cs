@@ -1,33 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 using Valve.VR.InteractionSystem;
 using DG.Tweening;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(Button))]
-public class mButton : UIElement
+[RequireComponent(typeof(Toggle))]
+public class mToggle : UIElement
 {
-    [HideInInspector] public Button button = null;
-
-    public UnityAction clickCallBack = null;
-    public UnityAction enterCallBack = null;
-    public UnityAction exitCallBack = null;
+    [HideInInspector] public Toggle toggle = null;
 
     private Vector3 originScale = Vector3.one;
-    //private Tweener tw = null;
     private Sequence tw = null;
     public bool isTween = true;
 
     protected float zoom = 1.1f;
     protected Ease ease = Ease.Linear;
 
+    private UnityAction<bool> m_callFun;
+    public UnityAction<bool> callFun
+    {
+        set
+        {
+            m_callFun = value;
+            m_callFun(selected);
+        }
+        get
+        {
+            return m_callFun;
+        }
+    }
+
+    public bool selected
+    {
+        set
+        {
+            toggle.isOn = value;
+        }
+        get
+        {
+            return toggle.isOn;
+        }
+    }
+
     protected override void Awake()
     {
-        button = transform.GetComponent<Button>();
-        button.onClick.AddListener(() =>
+        toggle = transform.GetComponent<Toggle>();
+        toggle.onValueChanged.AddListener((a) =>
         {
             //ButtonClick();
             OnButtonClick();
@@ -81,6 +101,7 @@ public class mButton : UIElement
         ButtonClick();
     }
 
+
     /// <summary>
     /// 进入按键动画
     /// </summary>
@@ -88,12 +109,9 @@ public class mButton : UIElement
     {
         //Debug.Log("Enter");
         if (!isTween) return;
-        if (!button.interactable) return;
+        if (!toggle.interactable) return;
         if (tw != null) tw.Kill();
         tw.Append(transform.DOScale(originScale * zoom, 0.2f).SetEase(ease));
-        //执行进入回调
-        if (enterCallBack != null)
-            enterCallBack.Invoke();
     }
 
     /// <summary>
@@ -103,12 +121,9 @@ public class mButton : UIElement
     {
         //Debug.Log("Exit");
         if (!isTween) return;
-        if (!button.interactable) return;
+        if (!toggle.interactable) return;
         if (tw != null) tw.Kill();
         tw.Append(transform.DOScale(originScale, 0.2f).SetEase(ease));
-        //执行退出回调
-        if (exitCallBack != null)
-            exitCallBack.Invoke();
     }
 
     /// <summary>
@@ -118,21 +133,16 @@ public class mButton : UIElement
     {
         //Debug.Log("Down");
         if (!isTween) return;
-        if (!button.interactable) return;
+        //if (!toggle.interactable) return;
         if (tw != null) tw.Kill();
 
         tw.Append(transform.DOScale(originScale, 0.1f).SetEase(ease));
         tw.Append(transform.DOScale(originScale * zoom, 0.1f).SetEase(ease));
-
-        //tw = transform.DOScale(originScale, 0.2f).SetEase(ease);
     }
 
     public virtual void ButtonClick()
     {
-        //Debug.Log("Click");
+        Debug.Log("ToggleClick");
         HandClickDown();
-        //执行点击回调
-        if (clickCallBack != null)
-            clickCallBack.Invoke();
     }
 }

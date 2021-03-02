@@ -11,7 +11,7 @@ public class UIRoot : MonoBehaviour
         {
             if(instance == null)
             {
-                instance = UITool.Instantiate("UI/UIRoot", LeftHand.Instance.gameObject).GetComponent<UIRoot>();
+                instance = UITool.Instantiate("UI/UIRoot").GetComponent<UIRoot>();
             }
             return instance;
         }
@@ -35,12 +35,22 @@ public class UIRoot : MonoBehaviour
 
     private void Update()
     {
-        transform.position = LeftHand.Instance.transform.position + (LeftHand.Instance.transform.position - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
         transform.LookAt(transform.position + (transform.position - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * 1.0f);
+        //Debug.Log(transform.localEulerAngles.x);
+        if (transform.localEulerAngles.x > 15 && transform.localEulerAngles.x < 180)
+        {
+            transform.localEulerAngles = new Vector3(15, transform.localEulerAngles.y, 0);
+        }
+        else if (transform.localRotation.x >180 && transform.localEulerAngles.x < 345)
+        {
+            transform.localEulerAngles = new Vector3(345, transform.localEulerAngles.y, 0);
+        }
     }
     
-    public void ShowUIRoot()
+    public void ShowUIRoot(Vector3 pos)
     {
+        //transform.position = LeftHand.Instance.transform.position + (LeftHand.Instance.transform.position - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
+        transform.position = pos + (pos - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
         gameObject.SetActive(true);
     }
 
