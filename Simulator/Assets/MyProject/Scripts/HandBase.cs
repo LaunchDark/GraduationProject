@@ -4,6 +4,9 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
+/// <summary>
+/// 手部基类
+/// </summary>
 public class HandBase : MonoBehaviour
 {
 	//状态枚举

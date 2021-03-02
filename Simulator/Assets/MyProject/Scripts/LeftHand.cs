@@ -124,24 +124,24 @@ public class LeftHand : HandBase
             if (holdInstrument != null)
             {
                 //手持仪器旋转
-                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x > 0.3f)
+                if (TouchPad[SteamVR_Input_Sources.LeftHand].axis.x > 0.3f)
                 {
                     holdInstrument.transform.eulerAngles += new Vector3(0, -RotateSpeed, 0);
                 }
-                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x < -0.3f)
+                else if (TouchPad[SteamVR_Input_Sources.LeftHand].axis.x < -0.3f)
                 {
                     holdInstrument.transform.eulerAngles += new Vector3(0, RotateSpeed, 0);
                 }
 
                 //手持仪器移动
-                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.y > 0.3)
+                if (TouchPad[SteamVR_Input_Sources.LeftHand].axis.y > 0.3)
                 {
                     if (holdInstrument.GetOffsetZ() < holdInstrument.MaxOffsetZ)
                     {
                         holdInstrument.SetOffsetZChange(0.01f);
                     }
                 }
-                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.y < -0.3f)
+                else if (TouchPad[SteamVR_Input_Sources.LeftHand].axis.y < -0.3f)
                 {
                     if (holdInstrument.GetOffsetZ() > holdInstrument.MinOffsetZ)
                     {
@@ -151,11 +151,11 @@ public class LeftHand : HandBase
             }
             else
             {
-                if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x > 0.6f)
+                if (TouchPad[SteamVR_Input_Sources.LeftHand].axis.x > 0.6f)
                 {
                     FindObjectOfType<SnapTurn>().RotatePlayer(60);
                 }
-                else if (TouchPad[SteamVR_Input_Sources.RightHand].axis.x < -0.6f)
+                else if (TouchPad[SteamVR_Input_Sources.LeftHand].axis.x < -0.6f)
                 {
                     FindObjectOfType<SnapTurn>().RotatePlayer(-60);
                 }
@@ -185,11 +185,13 @@ public class LeftHand : HandBase
             {
                 UIRoot.Instance.HideUIRoot();
                 HandObj.SetActive(true);
+                GetComponent<Hand>().enabled = true;
                 IsUI = false;
             }
             else
             {
                 UIRoot.Instance.ShowUIRoot();
+                GetComponent<Hand>().enabled = false;
                 if (HandObj == null)
                 {
                     HandObj = GetComponentInChildren<SkinnedMeshRenderer>().gameObject;

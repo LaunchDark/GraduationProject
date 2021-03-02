@@ -33,7 +33,7 @@ public class RightHand : HandBase
         base.Start();
     }
 
-    protected Collider SelectCollider = null;
+
     protected override void Update()
     {
         #region 按键输入
@@ -77,7 +77,7 @@ public class RightHand : HandBase
         #endregion
 
         #region 正常行走并且是在没持有仪器的情况下,发送射线检测是否选中仪器
-
+        Collider SelectCollider = null;
         if (mState == State.normal && holdInstrument == null)
         {
             //Ray ray = new Ray(transform.GetComponent<HandPhysics>().handCollider.transform.position, transform.GetComponent<HandPhysics>().handCollider.transform.forward);

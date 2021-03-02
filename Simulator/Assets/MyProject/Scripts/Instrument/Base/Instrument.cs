@@ -6,8 +6,14 @@ using System.Linq;
 using UnityEngine;
 //using UnityScript.Steps;
 
+/// <summary>
+/// 仪器基类
+/// </summary>
 public class Instrument : MonoBehaviour
 {
+    /// <summary>
+    /// 仪器状态
+    /// </summary>
     public enum State
     {
         normal,//正常
@@ -17,6 +23,9 @@ public class Instrument : MonoBehaviour
         enter,//进入仪器操作
     }
 
+    /// <summary>
+    /// 仪器当前颜色
+    /// </summary>
     public enum HeldState
     {
         normal,//正常
@@ -35,6 +44,7 @@ public class Instrument : MonoBehaviour
 
     private Rigidbody rig;
 
+    //设置仪器可操控范围
     public float MaxOffsetZ = 3;
     public float MinOffsetZ = 0;
     private float offsetZ = 1;

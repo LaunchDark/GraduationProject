@@ -23,6 +23,8 @@ public class test : MonoBehaviour
 
     void Start()
     {
+        transform.GetComponent<mButton>().clickCallBack = () => { Debug.Log("aaaaaa"); };
+
         //left = transform.Find("SteamVRObjects/LeftHand").GetComponent<Hand>();
         //right = transform.Find("SteamVRObjects/RightHand").GetComponent<Hand>();
 
