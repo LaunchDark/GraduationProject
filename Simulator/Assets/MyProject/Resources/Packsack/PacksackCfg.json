@@ -1,0 +1,83 @@
+﻿[
+  {
+    "InstrumentEnum": "Cube",
+    "Name": "测试方块",
+    "Icon": "棱镜",
+    "Amount": 2,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "Sphere",
+    "Name": "测试小球",
+    "Icon": "三脚架",
+    "Amount": 2,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "HangLight",
+    "Name": "测试吊灯",
+    "Icon": "碳纤杆",
+    "Amount": 2,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  }
+  //,
+  //{
+  //  "InstrumentEnum": "RTK_GalaxyOne_Plus",
+  //  "Name": "银河",
+  //  "Icon": "银河",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "BottomAntenna",
+  //  "Name": "天线",
+  //  "Icon": "天线",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "Bracket",
+  //  "Name": "托架",
+  //  "Icon": "托架",
+  //  "Amount": 1,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "HeightPiece",
+  //  "Name": "测高片",
+  //  "Icon": "测高片",
+  //  "Amount": 1,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "ConnectingRod",
+  //  "Name": "连接杆",
+  //  "Icon": "连接杆",
+  //  "Amount": 1,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //}
+]

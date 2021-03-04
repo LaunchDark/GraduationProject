@@ -5,17 +5,17 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(ToggleGroup))]
+[RequireComponent(typeof(GridLayoutGroup))]
 public class mToggleGroup : MonoBehaviour
 {
-    [HideInInspector]
-    public mToggle[] items;
-    //[HideInInspector]
-    public int count = 3;
-    [HideInInspector]
-    public int index = -1;
-    private ToggleGroup toggleGroup;
+    [HideInInspector] public mToggle[] items;
+    [HideInInspector] public int count = 3;
+    [HideInInspector] public int index = -1;
 
-    private UnityAction<int> m_callFun;
+    [HideInInspector] public GridLayoutGroup layout;
+    protected ToggleGroup toggleGroup;
+
+    protected UnityAction<int> m_callFun;
     public UnityAction<int> callFun
     {
         set
@@ -29,19 +29,21 @@ public class mToggleGroup : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         index = -1;
-        items = transform.GetComponentsInChildren<mToggle>();
+        items = transform.GetComponentsInChildren<mToggle>(true);
         toggleGroup = transform.GetComponent<ToggleGroup>();
+        layout = transform.GetComponent<GridLayoutGroup>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        Init(count);
+        //Init(count);
+        Init(items.Length);
     }
 
-    public void Init(int num)
+    public virtual void Init(int num)
     {
         int need = num - items.Length;
         for (int i = 0; i < need; i++)
@@ -50,7 +52,9 @@ public class mToggleGroup : MonoBehaviour
         }
         items = transform.GetComponentsInChildren<mToggle>(true);
         for (int i = 0; i < items.Length; i++)
+        {
             items[i].toggle.onValueChanged.RemoveAllListeners();
+        }
         for (int i = 0; i < items.Length; i++)
         {
             items[i].gameObject.name = i.ToString();
@@ -62,7 +66,7 @@ public class mToggleGroup : MonoBehaviour
         SetIndex(-1);
     }
 
-    private void ToggleClick(bool b)
+    protected virtual void ToggleClick(bool b)
     {
         if (b)
         {
@@ -83,7 +87,7 @@ public class mToggleGroup : MonoBehaviour
         }
     }
 
-    public void SetIndex(int i)
+    public virtual void SetIndex(int i)
     {
         index = i;
         if (i < 0)
@@ -95,5 +99,10 @@ public class mToggleGroup : MonoBehaviour
         }
         else
             items[i].selected = true;
+    }
+
+    public virtual void Spacing(Vector2 vec)
+    {
+        layout.spacing = vec;
     }
 }

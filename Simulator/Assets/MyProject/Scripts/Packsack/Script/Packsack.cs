@@ -8,13 +8,13 @@ public class Packsack : MonoBehaviour
     public Transform content;
 
     //private PacksackInputKeyInterface packsackInputKeyInterface;
-    private PacksackLocation packsackLocation;
+    //private PacksackLocation packsackLocation;
 
     private void Awake()
     {
         //closeBtn.clickCallBack = CloseBtnClick;
         //packsackInputKeyInterface = gameObject.AddComponent<PacksackInputKeyInterface>();
-        packsackLocation = transform.GetComponentInChildren<PacksackLocation>();
+        //packsackLocation = transform.GetComponentInChildren<PacksackLocation>();
         CreateItem();
         //closeBtn.enterCallBack = () => closeBtn.transform.GetChild(0).gameObject.SetActive(true);
         //closeBtn.exitCallBack = () => closeBtn.transform.GetChild(0).gameObject.SetActive(false);

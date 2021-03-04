@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {
-    //public CButton btn;
+    public mButton btn;
     public SpriteAtlas atlas;
     public GameObject mask;
     public GameObject select;
@@ -20,7 +20,7 @@ public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHand
 
     private void Awake()
     {
-        //btn.clickCallBack = Click;
+        btn.clickCallBack = Click;
         select.SetActive(false);
         selectText.gameObject.SetActive(false);
         Messenger.AddListener(GlobalEvent.Packsack_Item_Change,()=> { 
@@ -66,20 +66,20 @@ public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //if (btn.button.interactable && !mask.activeSelf)
-        //{
-        //    select.SetActive(true);
-        //    selectText.gameObject.SetActive(true);
-        //}
+        if (btn.button.interactable && !mask.activeSelf)
+        {
+            select.SetActive(true);
+            selectText.gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //if (btn.button.interactable)
-        //{
-        //    select.SetActive(false);
-        //    selectText.gameObject.SetActive(false);
-        //}
+        if (btn.button.interactable)
+        {
+            select.SetActive(false);
+            selectText.gameObject.SetActive(false);
+        }
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LitJson;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ public class PacksackMgr : MonoBehaviour
     }
 
     public List<PacksackItemData> packsackItemDataList;
+    JsonData mPacksackCfg;
 
     private void Awake()
     {
@@ -40,19 +42,48 @@ public class PacksackMgr : MonoBehaviour
 
     private void InitPacksackItemData()
     {
+        //packsackItemDataList = new List<PacksackItemData>();
+        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Cube, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument));
+        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Sphere, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument));
+        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.HangLight, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument));
+
         packsackItemDataList = new List<PacksackItemData>();
+        //[
+        //    {
+        //    "InstrumentEnum":"Nail",
+        //    "Name":"测钉",
+        //    "Icon":"测钉",
+        //    "Amount":99,
+        //    "Lnk":"B",
+        //    "IsGroup":0,
+        //    "GroupList":[],
+        //    "IsAtPacksack":0
+        //    }
+        //]
+        mPacksackCfg = JsonMapper.ToObject((ResMgr.Instance.Load("Packsack/PacksackCfg") as TextAsset).text);
+        foreach (JsonData item in mPacksackCfg)
+        {
+            PacksackItemData data = new PacksackItemData();
+            data.id = (int)(InstrumentEnum)Enum.Parse(typeof(InstrumentEnum), (string)item["InstrumentEnum"]);
+            data.name = (string)item["Name"];
+            data.icon = (string)item["Icon"];
+            data.key = (string)item["Lnk"];
+            data.num = (int)item["Amount"];
+            data.isGroupInstrument = (int)item["IsGroup"] > 0 ? true : false;
+            data.isAtPacksack = (int)item["IsAtPacksack"] > 0 ? true : false;
+            //if (data.isGroupInstrument)
+            //{
+            //    foreach (JsonData son in item["GroupList"])
+            //    {
+            //        data.instrumentEnumList.Add((InstrumentEnum)Enum.Parse(typeof(InstrumentEnum), (string)son));
+            //    }
+            //    data.callback = CreatePlayerHoldGroupInstrument;
+            //}
+            //else data.callback = CreatePlayerHoldInstrument;
+            data.callback = CreatePlayerHoldInstrument;
+            packsackItemDataList.Add(data);
+        }
 
-        packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Cube, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
-        packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Sphere, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
-        packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.HangLight, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
-
-        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.wzQzy, "全站仪", "全站仪脚架", 1, "", CreatePlayerHoldGroupInstrument));//组合仪器
-        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Lj, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument));//组合仪器
-        ////全站仪包
-        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.QZY_552r15, "全站仪", "全站仪包", 1, "", CreatePlayerHoldInstrument, false));
-        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Sjj, "三脚架", "基准站包", 1, "", CreatePlayerHoldInstrument, false));
-        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Nail, "测钉", "测钉", 99, "", CreatePlayerHoldInstrument));
-        //packsackItemDataList.Add(new PacksackItemData((int)InstrumentEnum.Nail, "棱镜", "棱镜", 2, "", CreatePlayerHoldInstrument, false));
     }
 
     //初始化组合仪器,由多个基础仪器组合而成

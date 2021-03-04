@@ -21,7 +21,6 @@ public class UIRoot : MonoBehaviour
     [HideInInspector] public Transform Left;
     [HideInInspector] public Transform Right;
     [HideInInspector] public Transform Top;
-    [HideInInspector] public Transform Else;
 
 
     public void Init()
@@ -29,7 +28,6 @@ public class UIRoot : MonoBehaviour
         HideUIRoot();
         Left = transform.Find("Left");
         Right = transform.Find("Right");
-        Else = transform.Find("Else");
         Top = transform.Find("Top");
     }
 

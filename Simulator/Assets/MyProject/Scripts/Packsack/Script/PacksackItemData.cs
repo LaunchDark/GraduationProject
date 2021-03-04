@@ -18,14 +18,14 @@ public class PacksackItemData
 
     public string key = "";
 
-    public PacksackItemData(int _id, string _name, string _icon, int _num, string _key = "", Func<PacksackItemData, bool, GameObject> _callback = null, bool _isAtPacksack = true)
-    {
-        id = _id;
-        num = _num;
-        name = _name;
-        icon = _icon;
-        callback = _callback;
-        isAtPacksack = _isAtPacksack;
-        key = _key;
-    }
+    //public PacksackItemData(int _id, string _name, string _icon, int _num, string _key = "", Func<PacksackItemData, bool, GameObject> _callback = null, bool _isAtPacksack = true)
+    //{
+    //    id = _id;
+    //    num = _num;
+    //    name = _name;
+    //    icon = _icon;
+    //    callback = _callback;
+    //    isAtPacksack = _isAtPacksack;
+    //    key = _key;
+    //}
 }
