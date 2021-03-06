@@ -90,7 +90,7 @@ public class LeftHand : HandBase
 
         #region 正常行走并且是在没持有仪器的情况下,发送射线检测是否选中仪器
         Collider collider = null;
-        if (mState == State.normal && holdInstrument == null)
+        if (mState == State.normal && holdInstrument == null && !isOnUI)
         {
             RaycastHit hitInfo;
             int layerMask = ~(1 << 5) | (1 << 12);
@@ -212,7 +212,14 @@ public class LeftHand : HandBase
                 holdInstrument.transform.parent = null;
                 if (holdInstrument.isHangInsturment)
                 {
-                    holdInstrument.SetState(Instrument.State.life);
+                    if (isWall)
+                    {
+                        holdInstrument.SetState(Instrument.State.life);
+                    }
+                    else
+                    {
+                        holdInstrument.SetState(Instrument.State.drop);
+                    }
                 }
                 else
                 {

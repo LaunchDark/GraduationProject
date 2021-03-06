@@ -8,6 +8,7 @@ using Valve.VR.InteractionSystem;
 using DG.Tweening;
 
 [RequireComponent(typeof(Button))]
+[RequireComponent(typeof(Interactable))]
 public class mButton : UIElement
 {
     [HideInInspector] public Button button = null;
@@ -36,7 +37,7 @@ public class mButton : UIElement
         });
         originScale = transform.localScale;
         collider = transform.Find("Collider").GetComponent<BoxCollider>();
-        collider.size = new Vector3(transform.GetComponent<RectTransform>().sizeDelta.x, transform.GetComponent<RectTransform>().sizeDelta.y, collider.size.z);
+        //collider.size = new Vector3(transform.GetComponent<RectTransform>().sizeDelta.x, transform.GetComponent<RectTransform>().sizeDelta.y, collider.size.z);
     }
 
     private void OnEnable()
@@ -138,5 +139,14 @@ public class mButton : UIElement
         //执行点击回调
         if (clickCallBack != null)
             clickCallBack.Invoke();
+    }
+
+    /// <summary>
+    /// 设置碰撞
+    /// </summary>
+    /// <param name="vector3"></param>
+    public virtual void SetCollider(Vector3 vector3)
+    {
+        collider.size = vector3;
     }
 }

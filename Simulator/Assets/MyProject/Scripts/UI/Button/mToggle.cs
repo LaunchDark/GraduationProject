@@ -7,6 +7,7 @@ using DG.Tweening;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Toggle))]
+[RequireComponent(typeof(Interactable))]
 public class mToggle : UIElement
 {
     [HideInInspector] public Toggle toggle = null;
@@ -56,7 +57,7 @@ public class mToggle : UIElement
         });
         originScale = transform.localScale; 
         collider = transform.Find("Collider").GetComponent<BoxCollider>();
-        collider.size = new Vector3(transform.GetComponent<RectTransform>().sizeDelta.x, transform.GetComponent<RectTransform>().sizeDelta.y, 15.0f);
+        //collider.size = new Vector3(transform.GetComponent<RectTransform>().sizeDelta.x, transform.GetComponent<RectTransform>().sizeDelta.y, collider.size.z);
 
     }
 
@@ -149,5 +150,14 @@ public class mToggle : UIElement
     {
         Debug.Log("ToggleClick");
         HandClickDown();
+    }
+
+    /// <summary>
+    /// 设置碰撞
+    /// </summary>
+    /// <param name="vector3"></param>
+    public virtual void SetCollider(Vector3 vector3)
+    {
+        collider.size = vector3;
     }
 }

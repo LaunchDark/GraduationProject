@@ -8,14 +8,14 @@ public enum InstrumentEnum
 
 
     /// <summary>
-    /// 基准站
+    /// 测试方块
     /// </summary>
     [Description("测试方块")]
     Cube =1,
 
 
     /// <summary>
-    /// 移动站
+    /// 测试小球
     /// </summary>
     [Description("测试小球")]
     Sphere =2,

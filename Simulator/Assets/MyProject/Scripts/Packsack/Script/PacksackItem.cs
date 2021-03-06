@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 
-public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
+public class PacksackItem : MonoBehaviour
 {
     public mButton btn;
     public SpriteAtlas atlas;
@@ -21,6 +21,9 @@ public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHand
     private void Awake()
     {
         btn.clickCallBack = Click;
+        btn.exitCallBack = OnPointerExit;
+        btn.enterCallBack = OnPointerEnter;
+
         select.SetActive(false);
         selectText.gameObject.SetActive(false);
         Messenger.AddListener(GlobalEvent.Packsack_Item_Change,()=> { 
@@ -64,7 +67,7 @@ public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHand
             mData.callback.Invoke(mData, false);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter()
     {
         if (btn.button.interactable && !mask.activeSelf)
         {
@@ -73,7 +76,7 @@ public class PacksackItem : MonoBehaviour,IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit()
     {
         if (btn.button.interactable)
         {

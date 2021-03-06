@@ -26,9 +26,13 @@ public class ScrollControl : MonoBehaviour
             distance = 0;
         }
         //500 是遮罩的大小
-        if(distance > content.GetComponent<RectTransform>().sizeDelta.y - 500)
+        else if(distance > content.GetComponent<RectTransform>().sizeDelta.y - 500 && content.GetComponent<RectTransform>().sizeDelta.y > 500)
         {
             distance = (int)content.GetComponent<RectTransform>().sizeDelta.y - 500;
+        }
+        else
+        {
+            distance = 0;
         }
 
         content.DOLocalMoveY(distance,0.2f);

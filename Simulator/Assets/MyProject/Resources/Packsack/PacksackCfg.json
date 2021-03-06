@@ -1,6 +1,7 @@
 ﻿[
   {
     "InstrumentEnum": "Cube",
+    "InstrumentTypeEnum": "Desk",
     "Name": "测试方块",
     "Icon": "棱镜",
     "Amount": 2,
@@ -11,6 +12,7 @@
   },
   {
     "InstrumentEnum": "Sphere",
+    "InstrumentTypeEnum": "Chair",
     "Name": "测试小球",
     "Icon": "三脚架",
     "Amount": 2,
@@ -21,6 +23,7 @@
   },
   {
     "InstrumentEnum": "HangLight",
+    "InstrumentTypeEnum": "Light",
     "Name": "测试吊灯",
     "Icon": "碳纤杆",
     "Amount": 2,

@@ -46,6 +46,11 @@ public class RightHand : HandBase
             InputTouchPad();
         }
 
+        if (hand.GetGrabEnding() == GrabTypes.Grip)
+        {
+            GripDown = false;
+        }
+
         if (hand.GetGrabStarting() != GrabTypes.None)
         {
             if (hand.GetGrabStarting() == GrabTypes.Grip)
@@ -181,7 +186,7 @@ public class RightHand : HandBase
         {
             GripDown = true;
             //Debug.Log("生成方块");
-            PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.HangLight, true);
+            //PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.HangLight, true);
         }
     }
 
@@ -213,7 +218,14 @@ public class RightHand : HandBase
                 holdInstrument.transform.parent = null;
                 if (holdInstrument.isHangInsturment)
                 {
-                    holdInstrument.SetState(Instrument.State.life);
+                    if (isWall)
+                    {
+                        holdInstrument.SetState(Instrument.State.life);
+                    }
+                    else
+                    {
+                        holdInstrument.SetState(Instrument.State.drop);
+                    }
                 }
                 else
                 {
@@ -225,8 +237,8 @@ public class RightHand : HandBase
         }
         else
         {
-            Debug.Log("生成小球");
-            PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
+            //Debug.Log("生成小球");
+            //PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
         }
 
 

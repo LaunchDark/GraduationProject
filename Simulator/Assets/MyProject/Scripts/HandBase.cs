@@ -71,7 +71,11 @@ public class HandBase : MonoBehaviour
 	public GameObject TeleportPanel;
 	protected Vector3 teleportPoint;
 	protected bool shouldTeleport = false;
-
+	
+	/// <summary>
+	/// 是否是天花板/墙
+	/// </summary>
+	protected bool isWall = false; 
 
 	#endregion
 
@@ -120,9 +124,10 @@ public class HandBase : MonoBehaviour
 			//}
 
 			//手持物体时，发射射线检测，选中的墙，碰撞点向下面发射射线，然后根据物体厚度，高度，和墙的方向，调整手上物体
+			isWall = false;
 			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
 			RaycastHit hitInfo;
-			//只检测墙体层(9)
+			//只检测墙体层 layer = 9
 			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.width, 1 << 9))
 			{
 				//RaycastHit flood;
@@ -133,11 +138,14 @@ public class HandBase : MonoBehaviour
 				//	//位置等于检测位置正下方+物体高度+物体宽度
 				//	holdInstrument.transform.position = flood.point + new Vector3(0, holdInstrument.height, 0) + hitInfo.transform.forward * holdInstrument.width;
 				//}
+				isWall = true;
 				holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
 				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.width;
 			}
+			//只检测天花板 layer = 10
 			else if(Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.height, 1 << 10))
 			{
+				isWall = true;
 				holdInstrument.transform.eulerAngles = Vector3.up;
 				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.height;
 			}
@@ -246,7 +254,14 @@ public class HandBase : MonoBehaviour
 				holdInstrument.transform.parent = null;
 				if (holdInstrument.isHangInsturment)
 				{
-					holdInstrument.SetState(Instrument.State.life);
+					if (isWall)
+					{
+						holdInstrument.SetState(Instrument.State.life);
+					}
+					else
+					{
+						holdInstrument.SetState(Instrument.State.drop);
+					}
 				}
 				else 
 				{

@@ -22,6 +22,8 @@ public class UIRoot : MonoBehaviour
     [HideInInspector] public Transform Right;
     [HideInInspector] public Transform Top;
 
+    [HideInInspector] public Dictionary<int, Packsack> AllPacksack;
+
 
     public void Init()
     {
@@ -29,6 +31,14 @@ public class UIRoot : MonoBehaviour
         Left = transform.Find("Left");
         Right = transform.Find("Right");
         Top = transform.Find("Top");
+
+        AllPacksack = new Dictionary<int, Packsack>();
+        foreach (InstrumentTypeEnum value in InstrumentTypeEnum.GetValues(typeof(InstrumentTypeEnum)))
+        {
+            Packsack packsack = UITool.Instantiate("Packsack/Packsack", Right.gameObject).GetComponent<Packsack>();
+            AllPacksack.Add((int)value, packsack);
+            packsack.Init(value.ToString());
+        }
     }
 
     private void Update()

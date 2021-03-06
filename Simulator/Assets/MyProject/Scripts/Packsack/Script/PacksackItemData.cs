@@ -6,11 +6,10 @@ using System;
 public class PacksackItemData
 {
     public int id;
+    public int Type;
     public int num;
     public string name;
     public string icon;
-    public bool isGroupInstrument = false;
-    public List<InstrumentEnum> instrumentEnumList = new List<InstrumentEnum>();
 
     public Func<PacksackItemData, bool, GameObject> callback;
 
