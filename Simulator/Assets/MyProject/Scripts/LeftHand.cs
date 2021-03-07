@@ -10,7 +10,6 @@ public class LeftHand : HandBase
 
     protected bool teleportDown = false;
     protected bool isOnUI = false;
-    protected bool GripDown =false;
 
     [SerializeField] protected float RotateSpeed = 1.0f;
     [SerializeField] protected float MoveSpeed = 1.0f;
@@ -48,6 +47,12 @@ public class LeftHand : HandBase
         if(hand.GetGrabEnding() == GrabTypes.Grip)
         {
             GripDown = false;
+        }
+
+        if (!GripDown && ScaleInstrument)
+        {
+            ScaleInstrument.ScaleHand = null;
+            ScaleInstrument = null;
         }
 
         if (hand.GetGrabStarting() != GrabTypes.None)
@@ -92,8 +97,8 @@ public class LeftHand : HandBase
         Collider collider = null;
         if (mState == State.normal && holdInstrument == null && !isOnUI)
         {
-            RaycastHit hitInfo;
-            int layerMask = ~(1 << 5) | (1 << 12);
+            RaycastHit hitInfo; 
+            int layerMask = ~LayerMask.GetMask("UI", "Player");
             if (Physics.SphereCast(HandDirection.position, 0.1f, HandDirection.forward, out hitInfo, 3f, layerMask))
             {
                 //Debug.Log(hitInfo.collider.name);
@@ -117,9 +122,9 @@ public class LeftHand : HandBase
         }
         selectedInstrument = collider ? collider.gameObject : null;
         //如果右手选中了物体，左手不发射
-        if (RightHand.Instance.selectedInstrument == null)
+        //if (RightHand.Instance.selectedInstrument == null)
         {
-            Messenger.Broadcast<Collider>(GlobalEvent.Player_Selected_Instrument, collider);
+            Messenger.Broadcast<Collider,string>(GlobalEvent.Player_Selected_Instrument, collider,"Left");
         }
         #endregion
     }

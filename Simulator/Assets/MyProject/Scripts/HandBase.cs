@@ -75,7 +75,15 @@ public class HandBase : MonoBehaviour
 	/// <summary>
 	/// 是否是天花板/墙
 	/// </summary>
-	protected bool isWall = false; 
+	protected bool isWall = false;
+	/// <summary>
+	/// 按下grip键
+	/// </summary>
+	protected bool GripDown = false;
+	/// <summary>
+	/// 控制缩放的物体
+	/// </summary>
+	public Instrument ScaleInstrument;
 
 	#endregion
 
@@ -128,7 +136,7 @@ public class HandBase : MonoBehaviour
 			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
 			RaycastHit hitInfo;
 			//只检测墙体层 layer = 9
-			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.width, 1 << 9))
+			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.width, LayerMask.GetMask("Wall")))
 			{
 				//RaycastHit flood;
 				//if (Physics.Raycast(hitInfo.point, -hitInfo.transform.up, out flood))
@@ -143,7 +151,7 @@ public class HandBase : MonoBehaviour
 				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.width;
 			}
 			//只检测天花板 layer = 10
-			else if(Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.height, 1 << 10))
+			else if(Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.height, LayerMask.GetMask("TopWall")))
 			{
 				isWall = true;
 				holdInstrument.transform.eulerAngles = Vector3.up;
@@ -288,18 +296,6 @@ public class HandBase : MonoBehaviour
 		}
 	}
 
-
-	/// <summary>
-	/// 回收仪器事件
-	/// </summary>
-	public virtual void InputRecovery()
-	{
-		if (holdInstrument)
-		{
-			DeleteHoldInstrument();
-		}
-	}
-
 	/// <summary>
 	/// 拿起仪器事件
 	/// </summary>
@@ -308,7 +304,7 @@ public class HandBase : MonoBehaviour
 		if (mState == State.normal && selectedInstrument)
 		{
 			Instrument instrument = selectedInstrument.GetComponentInParent<Instrument>();
-			if (instrument.isHasR)
+			if (instrument.isHasR && instrument.mState != Instrument.State.held)
 			{ SetHoldInstrument(instrument); }
 		}
 	}
@@ -365,5 +361,10 @@ public class HandBase : MonoBehaviour
     {
 		ObjectAttachmentPoint.position = startAttachmentPoint;
 		ObjectAttachmentPoint.eulerAngles = startAttachmentRote;
+    }
+
+	public bool GetGripDown()
+    {
+		return GripDown;
     }
 }

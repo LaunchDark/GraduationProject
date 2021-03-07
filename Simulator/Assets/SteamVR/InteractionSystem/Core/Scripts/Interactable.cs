@@ -127,10 +127,13 @@ namespace Valve.VR.InteractionSystem
 
         protected virtual bool ShouldIgnore(GameObject check)
         {
-            for (int ignoreIndex = 0; ignoreIndex < hideHighlight.Length; ignoreIndex++)
+            if (hideHighlight != null)
             {
-                if (check == hideHighlight[ignoreIndex])
-                    return true;
+                for (int ignoreIndex = 0; ignoreIndex < hideHighlight.Length; ignoreIndex++)
+                {
+                    if (check == hideHighlight[ignoreIndex])
+                        return true;
+                }
             }
 
             return false;

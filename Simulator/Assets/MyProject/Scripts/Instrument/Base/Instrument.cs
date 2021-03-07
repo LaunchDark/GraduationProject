@@ -20,7 +20,7 @@ public class Instrument : MonoBehaviour
         held,//被玩家持有
         drop,//仪器下落的途中
         life,//放在场景上
-        enter,//进入仪器操作
+        free,//自由物体
     }
 
     /// <summary>
@@ -98,6 +98,21 @@ public class Instrument : MonoBehaviour
     /// 悬空仪器（挂灯，壁灯等）
     /// </summary>
     public bool isHangInsturment = false;
+    /// <summary>
+    /// 可交互物体
+    /// </summary>
+    public bool isFreeInstrument = false;
+    /// <summary>
+    /// 可以缩放的物体
+    /// </summary>
+    public bool CanScaleInstrument = false;
+    /// <summary>
+    /// 当前进入的手
+    /// </summary>
+    public HandBase ScaleHand;
+
+    protected Vector3 LastPos = Vector3.zero;
+    protected Vector3 CurPos;
 
 
     private void Awake()
@@ -131,7 +146,7 @@ public class Instrument : MonoBehaviour
             colliders.Remove(adsorbCollider);
         }
         SetState(State.normal);
-        Messenger.AddListener<Collider>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
+        Messenger.AddListener<Collider,string>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
         lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
         Messenger.AddListener(GlobalEvent.Enter_UI, EnterUI);
         Messenger.AddListener(GlobalEvent.Exit_UI, ExitUI);
@@ -152,7 +167,18 @@ public class Instrument : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (mState == State.held && HeldingHand.GetComponent<HandBase>().GetState() == HandBase.State.Instrument)
+        //Debug.Log(mState);
+        //Debug.Log(ScaleHand);
+        //Debug.Log(CanScaleInstrument);
+
+        if (mState == State.held && ScaleHand != null && CanScaleInstrument)
+        {
+            if (ScaleHand.GetGripDown())
+            {
+                ControlScale();
+            }
+        }
+        else if (mState == State.held && HeldingHand.GetComponent<HandBase>().GetState() == HandBase.State.Instrument)
         {
             //持有仪器时往地面画线
             lineRender.gameObject.SetActive(true);
@@ -169,7 +195,9 @@ public class Instrument : MonoBehaviour
                 Ray ray = new Ray(transform.position, transform.up * -1f);
                 RaycastHit hitInfo;
                 Debug.DrawRay(transform.position, transform.up * -1f * canDropDis, Color.red);
-                if (Physics.Raycast(ray, out hitInfo, canDropDis, LayerMask.GetMask("Ground")))
+                int layerMask = LayerMask.GetMask("Ground","Instrument");
+                //if (Physics.Raycast(ray, out hitInfo, canDropDis, LayerMask.GetMask("Ground")))
+                if (Physics.Raycast(ray, out hitInfo, canDropDis, layerMask))
                 {
                     SetRenderer(HeldState.green);
                 }
@@ -178,22 +206,11 @@ public class Instrument : MonoBehaviour
                     SetRenderer(HeldState.red);
                 }
             }
-            //持有仪器并且没有碰到别的物体时,屏幕中间发送射线,检测碰撞,判断是否有障碍物档在中间
-            //if (mHeldState == HeldState.green && !isHeldCollision)
-            //{
-            //    Ray ray = new Ray(HeldingHand.transform.position, HeldingHand.transform.forward);
-            //    RaycastHit hitInfo;
-            //    //float distance = Vector3.Distance(HeldingHand.transform.position, transform.position);
-            //    if (Physics.Raycast(ray, out hitInfo, 2))
-            //    {
-            //        Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
-            //        if (hitInfo.collider.GetComponentInParent<Instrument>() != this)
-            //            SetRenderer(HeldState.red);
-            //    }
-            //}
+            LastPos = Vector3.zero;
         }
         else
         {
+            LastPos = Vector3.zero;
             lineRender.gameObject.SetActive(false);
         }
     }
@@ -268,6 +285,15 @@ public class Instrument : MonoBehaviour
             sortMaxIndex++;
             selfSortIndex = sortMaxIndex;
         }
+        if(mState == State.free)
+        {
+            //放下模式
+            rig.isKinematic = false;
+            for (int i = 0; i < colliders.Count; i++)
+                colliders[i].isTrigger = false;
+            SetRenderer(HeldState.normal);
+            FreeCallBack();
+        }
     }
 
 
@@ -297,12 +323,28 @@ public class Instrument : MonoBehaviour
     virtual public void FallCourse() { }
 
     /// <summary>
+    /// 自由物体放下回调
+    /// </summary>
+    virtual public void FreeCallBack() { }
+
+    /// <summary>
     ///仪器在场景中被玩家选中时
     /// </summary>
     /// <param name="collider"></param>
-    private void SelectedInsturment(Collider collider)
+    private void SelectedInsturment(Collider collider,string Hand)
     {
         //Debug.Log("选中: " + transform.name);
+        if (Hand == "Right") 
+        {
+            if (LeftHand.Instance.selectedInstrument != null && LeftHand.Instance.selectedInstrument == gameObject)
+                return;
+        }
+        if(Hand == "Left")
+        {
+            if (RightHand.Instance.selectedInstrument != null && RightHand.Instance.selectedInstrument == gameObject)
+                return;
+        }
+
         if (mState == State.life)
         {
             if (collider == null)
@@ -410,7 +452,7 @@ public class Instrument : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (mState == State.held /*&& player*/)
         {
@@ -426,8 +468,16 @@ public class Instrument : MonoBehaviour
                 //碰到的对象不是仪器,变红
                 if (adsorbInstrument == null)
                 {
-                    if (other.gameObject.layer == 12)
+                    if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
                     {
+                        if (other.GetComponentInParent<Valve.VR.InteractionSystem.HandCollider>())
+                        {
+                            if (other.GetComponentInParent<Valve.VR.InteractionSystem.HandCollider>().transform.name == "HandColliderLeft(Clone)")
+                            {
+                                ScaleHand = LeftHand.Instance.GetComponent<HandBase>();
+                                ScaleHand.ScaleInstrument = this;
+                            }
+                        }
                         return;
                     }
                     SetRenderer(HeldState.red);
@@ -461,12 +511,12 @@ public class Instrument : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         OnTriggerEnter(other);
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         isInWall = null;
         if (mState == State.held /*&& player*/)
@@ -477,9 +527,9 @@ public class Instrument : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.transform.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.transform.gameObject.layer == LayerMask.NameToLayer("Instrument"))
         {
             if (mState == State.drop /*&& player*/)
             {
@@ -488,4 +538,51 @@ public class Instrument : MonoBehaviour
         }
 
     }
+
+    protected virtual void OnCollisionExit(Collision collision) { }
+
+    /// <summary>
+    /// 控制物体缩放
+    /// </summary>
+    protected virtual void ControlScale() { }
+
+    /// <summary>
+    /// 添加可捉取物体组件
+    /// </summary>
+    public virtual void AddFreeComponent()
+    {
+        if (!gameObject.GetComponent<Valve.VR.InteractionSystem.Interactable>())
+        {
+            gameObject.AddComponent<Valve.VR.InteractionSystem.Interactable>().setRangeOfMotionOnPickup = Valve.VR.SkeletalMotionRangeChange.WithController;
+            //gameObject.AddComponent<Valve.VR.InteractionSystem.Interactable>();
+        }
+        if (!gameObject.GetComponent<Valve.VR.InteractionSystem.Throwable>())
+        {
+            gameObject.AddComponent<Valve.VR.InteractionSystem.Throwable>();
+        }
+        if (!gameObject.GetComponent<Valve.VR.InteractionSystem.VelocityEstimator>())
+        {
+            gameObject.AddComponent<Valve.VR.InteractionSystem.VelocityEstimator>();
+        }
+    }
+
+    /// <summary>
+    /// 移除可捉取物体组件
+    /// </summary>
+    public virtual void RemoveFreeComponent()
+    {
+        if (gameObject.GetComponent<Valve.VR.InteractionSystem.VelocityEstimator>())
+        {
+            Destroy(gameObject.GetComponent<Valve.VR.InteractionSystem.VelocityEstimator>());
+        }
+        if (gameObject.GetComponent<Valve.VR.InteractionSystem.Throwable>())
+        {
+            Destroy(gameObject.GetComponent<Valve.VR.InteractionSystem.Throwable>());
+        }
+        if (gameObject.GetComponent<Valve.VR.InteractionSystem.Interactable>())
+        {
+            Destroy(gameObject.GetComponent<Valve.VR.InteractionSystem.Interactable>());
+        }
+    }
+
 }

@@ -10,7 +10,6 @@ public class RightHand : HandBase
 
     protected bool teleportDown = false;
     protected bool isOnUI = false;
-    protected bool GripDown = false;
 
     [SerializeField] protected float RotateSpeed = 1.0f;
     [SerializeField] protected float MoveSpeed = 1.0f;
@@ -49,6 +48,12 @@ public class RightHand : HandBase
         if (hand.GetGrabEnding() == GrabTypes.Grip)
         {
             GripDown = false;
+        }
+
+        if (!GripDown && ScaleInstrument)
+        {
+            ScaleInstrument.ScaleHand = null;
+            ScaleInstrument = null;
         }
 
         if (hand.GetGrabStarting() != GrabTypes.None)
@@ -95,7 +100,7 @@ public class RightHand : HandBase
         if (mState == State.normal && holdInstrument == null && !isOnUI)
         {
             RaycastHit hitInfo;
-            int layerMask = ~(1 << 5) | (1 << 12);
+            int layerMask = ~LayerMask.GetMask("UI", "Player");
             if (Physics.SphereCast(HandDirection.position, 0.1f, HandDirection.forward, out hitInfo, 3f, layerMask))
             {
                 //Debug.Log(hitInfo.collider.name);
@@ -119,9 +124,9 @@ public class RightHand : HandBase
         }
         selectedInstrument = collider ? collider.gameObject : null;
         //如果左手选中了物体，右手不发射
-        if (LeftHand.Instance.selectedInstrument == null)
+        //if (LeftHand.Instance.selectedInstrument == null)
         {
-            Messenger.Broadcast<Collider>(GlobalEvent.Player_Selected_Instrument, collider);
+            Messenger.Broadcast<Collider,string>(GlobalEvent.Player_Selected_Instrument, collider,"Right");
         }
 
         #endregion
@@ -226,6 +231,10 @@ public class RightHand : HandBase
                     {
                         holdInstrument.SetState(Instrument.State.drop);
                     }
+                }
+                else if (holdInstrument.isFreeInstrument)
+                {
+                    holdInstrument.SetState(Instrument.State.free);
                 }
                 else
                 {
