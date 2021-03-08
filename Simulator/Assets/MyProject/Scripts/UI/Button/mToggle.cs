@@ -148,7 +148,7 @@ public class mToggle : UIElement
 
     public virtual void ButtonClick()
     {
-        Debug.Log("ToggleClick");
+        //Debug.Log("ToggleClick");
         HandClickDown();
     }
 

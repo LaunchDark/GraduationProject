@@ -9,7 +9,7 @@ public class UIRoot : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = UITool.Instantiate("UI/UIRoot").GetComponent<UIRoot>();
             }
@@ -23,6 +23,8 @@ public class UIRoot : MonoBehaviour
     [HideInInspector] public Transform Top;
 
     [HideInInspector] public Dictionary<int, Packsack> AllPacksack;
+
+    protected List<mButton> mButtons;
 
 
     public void Init()
@@ -39,6 +41,10 @@ public class UIRoot : MonoBehaviour
             AllPacksack.Add((int)value, packsack);
             packsack.Init(value.ToString());
         }
+
+        Left.Find("Viewport/Content").gameObject.AddComponent<TypeSelect>().Init(AllPacksack.Count);
+
+        AddFunctionalButton();
     }
 
     private void Update()
@@ -49,12 +55,12 @@ public class UIRoot : MonoBehaviour
         {
             transform.localEulerAngles = new Vector3(15, transform.localEulerAngles.y, 0);
         }
-        else if (transform.localRotation.x >180 && transform.localEulerAngles.x < 345)
+        else if (transform.localRotation.x > 180 && transform.localEulerAngles.x < 345)
         {
             transform.localEulerAngles = new Vector3(345, transform.localEulerAngles.y, 0);
         }
     }
-    
+
     public void ShowUIRoot(Vector3 pos)
     {
         //transform.position = LeftHand.Instance.transform.position + (LeftHand.Instance.transform.position - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
@@ -65,7 +71,22 @@ public class UIRoot : MonoBehaviour
     public void HideUIRoot()
     {
         gameObject.SetActive(false);
+    }
 
+    /// <summary>
+    /// 添加功能性按键
+    /// </summary>
+    protected void AddFunctionalButton()
+    {
+        mButtons = new List<mButton>();
+
+        for (int i = 0; i < 1; i++)
+        {
+            mButton btn = UITool.Instantiate("UI/Base/Button", Left.Find("Viewport/Content").gameObject).GetComponent<mButton>();
+            mButtons.Add(btn);
+        }
+
+        mButtons[0].Init("截取屏幕", () => TipsCanvas.Instance.CountDown());
     }
 
 }

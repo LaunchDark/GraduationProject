@@ -3,15 +3,13 @@
 [ExecuteInEditMode]
 public class OutLineTargetComponent : MonoBehaviour
 {
-    //public Color color = Color.green;
-
     public Material material { set; get; }
-    private float time;
-    private float sumtime;
+
     private void Start()
     {
-        sumtime = 5;
+
     }
+
     void OnEnable()
     {
         Camera[] allCameras = Camera.allCameras;
@@ -25,15 +23,7 @@ public class OutLineTargetComponent : MonoBehaviour
     }
     private void Update()
     {
-   
-        //if (color.Equals(Color.green))
-        //    time += UnityEngine.Time.deltaTime;
-        //if (time >= sumtime) 
-      
-       
-    }
-    public void ResetTime() {
-        time = 0;
+               
     }
 
     void OnDisable()

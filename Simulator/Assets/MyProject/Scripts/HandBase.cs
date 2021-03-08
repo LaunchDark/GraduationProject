@@ -279,7 +279,7 @@ public class HandBase : MonoBehaviour
 			}
 			else if (holdInstrument.GetHeldState() == Instrument.HeldState.red)
 			{
-				UIMgr.Instance.ShowTips("仪器不可放下", "#FF0000");
+				Debug.LogWarning("仪器不可放下");
 			}
 		}
 	}

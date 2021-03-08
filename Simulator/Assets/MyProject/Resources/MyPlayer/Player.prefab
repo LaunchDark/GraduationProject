@@ -545,6 +545,7 @@ MonoBehaviour:
   TeleportPanelPrefab: {fileID: 9164949745810918896, guid: 927f039e16bac6947ba496cb7f70ec0b,
     type: 3}
   TeleportPanel: {fileID: 0}
+  ScaleInstrument: {fileID: 0}
   RotateSpeed: 1
   MoveSpeed: 1
 --- !u!1 &6588996240849292078
@@ -904,6 +905,7 @@ MonoBehaviour:
   TeleportPanelPrefab: {fileID: 9164949745810918896, guid: 927f039e16bac6947ba496cb7f70ec0b,
     type: 3}
   TeleportPanel: {fileID: 0}
+  ScaleInstrument: {fileID: 0}
   RotateSpeed: 1
   MoveSpeed: 1
 --- !u!1 &6588996240849437374
@@ -1551,7 +1553,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6588996240848981914}
   - component: {fileID: 6588996240855805590}
-  - component: {fileID: 6588996241429204219}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -1608,32 +1609,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/HeadsetOnHead
     needsReinit: 0
   allowToggleTo2D: 1
---- !u!114 &6588996241429204219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6588996240849469410}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27594384a081f0e41850514b34826aea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
-  snapLeftAction:
-    actionPath: /actions/default/in/SnapTurnLeft
-    needsReinit: 0
-  snapRightAction:
-    actionPath: /actions/default/in/SnapTurnRight
-    needsReinit: 0
-  telepory:
-    actionPath: /actions/default/in/Teleport
-    needsReinit: 0
-  TouchPad:
-    actionPath: /actions/default/in/TouchPad
-    needsReinit: 0
 --- !u!1 &6589712565241066418
 GameObject:
   m_ObjectHideFlags: 0

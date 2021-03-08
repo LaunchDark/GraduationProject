@@ -34,24 +34,6 @@ public class UITool
         else
             img.material = null;
     }
-    /// <summary>
-    /// 当前鼠标射线碰撞的UI
-    /// </summary>
-    /// <param name="go"></param>
-    /// <returns></returns>
-    public static bool IsRaycastUI(GameObject go)
-    {
-        List<RaycastResult> results = new List<RaycastResult>();
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        pointerEventData.position = Input.mousePosition;
-        EventSystem.current.RaycastAll(pointerEventData, results);
-        for (int i = 0; i < results.Count; i++)
-        {
-            if (results[i].gameObject == go)
-                return true;
-        }
-        return false;
-    }
 
     public static GameObject Instantiate(string path, GameObject parent = null)
     {
@@ -65,57 +47,6 @@ public class UITool
         GameObject go = (GameObject)GameObject.Instantiate(obj);
         if (parent) go.transform.SetParent(parent.transform, false);
         return go;
-    }
-
-    //public static void SetSkybox(string path)
-    //{
-    //    RenderSettings.skybox = (Material)ResMgr.Instance.Load(path);
-    //    DynamicGI.UpdateEnvironment();
-    //}
-
-    //public static void SetAmbientLight(float r, float g, float b)
-    //{
-    //    Color color = new Color(r, g, b);
-
-    //    RenderSettings.ambientLight = color;
-    //}
-
-    //环境光亮度通过代码改不了
-    //public static void SetAmbientIntensity(float intensity)
-    //{
-    //    RenderSettings.ambientIntensity = intensity;
-    //}
-
-    public static void SetCursor(bool b)
-    {
-        Cursor.visible = b;
-        Cursor.lockState = b?CursorLockMode.None:CursorLockMode.Locked;
-    }
-
-    /// <summary>
-    /// true为直接退出,false为弹出退出提示框
-    /// </summary>
-    /// <param name="isExit"></param>
-//    public static void ExitAPP(bool isExit)
-//    {
-//        if(isExit)
-//            UIRoot.Instance.SetExitAppCallBack(null);
-//        Application.Quit();
-//#if UNITY_EDITOR
-//        UnityEditor.EditorApplication.isPlaying = false;
-//#endif
-//    }
-
-    public static void ExitAppCallBack()
-    {
-        //MessageBoxData data = new MessageBoxData();
-        //data.content = "是否退出程序";
-        //data.single = false;
-        //data.leftBtnCallBack = () =>
-        //{
-        //    UITool.ExitAPP(true);
-        //};
-        //UIMgr.Instance.ShowMessageBox(data);
     }
 
     /// <summary>
@@ -132,23 +63,6 @@ public class UITool
         rect.anchorMin = newAnchorsMin;
         rect.anchorMax = newAnchorsMax;
         rect.offsetMin = rect.offsetMax = new Vector2(0, 0);
-    }
-
-
-    /// <summary>
-    /// 光标是否在输入框内
-    /// </summary>
-    /// <returns></returns>
-    public static bool IsFocusOnInputText()
-    {
-        if (EventSystem.current.currentSelectedGameObject == null)
-            return false;
-        if (EventSystem.current.currentSelectedGameObject.GetComponent<UnityEngine.UI.InputField>() != null)
-        {
-            return true;
-        }
-           
-        return false;
     }
 
     public static Transform TransformFindName(Transform go,string str)
@@ -184,19 +98,4 @@ public class UITool
         return str;
     }
 
-    //public static Vector3 WorldToUI(Camera camera, GameObject world)
-    //{
-    //    return WorldToUI(camera, world.transform.position);
-    //}
-
-    //public static Vector3 WorldToUI(Camera camera, Vector3 position)
-    //{
-    //    CanvasScaler scaler = UIRoot.Instance.canvasScaler;
-    //    float resolutionX = scaler.referenceResolution.x;
-    //    float resolutionY = scaler.referenceResolution.y;
-    //    Vector3 viewportPos = camera.WorldToViewportPoint(position);
-    //    Vector3 uiPos = new Vector3(viewportPos.x * resolutionX - resolutionX * 0.5f,
-    //        viewportPos.y * resolutionY - resolutionY * 0.5f, 0);
-    //    return uiPos;
-    //}
 }

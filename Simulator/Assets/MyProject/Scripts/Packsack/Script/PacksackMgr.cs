@@ -74,11 +74,8 @@ public class PacksackMgr : MonoBehaviour
         if (data.num <= 0)
         {
             Debug.LogWarning("数量不足");
-            if (hasTips)
-                UIMgr.Instance.ShowTips("数量不足");
             return null;
         }
-        UIMgr.Instance.HidePanel("Packsack/Packsack");
         GameObject go = InstrumentMgr.Instance.CreateInstrument((InstrumentEnum)data.id);
         if (go != null)
         {

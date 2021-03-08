@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 //资源加载器
@@ -19,11 +20,7 @@ public class ResMgr : MonoBehaviour
         }
     }
 
-    Dictionary<string, AssetBundle> resPackagesDic = new Dictionary<string, AssetBundle>();
     Dictionary<string, Object> objDic = new Dictionary<string, Object>();
-
-    //预加载资源预览
-    public List<Object> preLoadObjPreview = new List<Object>();
 
     public Object LoadByCore(string path)
     {
@@ -40,103 +37,94 @@ public class ResMgr : MonoBehaviour
         return o;
     }
 
-    public void LoadAsync(string path, System.Action complete)
+    public void GetFiles(string path)
     {
-        StartCoroutine(StartCoroutineLoadResAssetAsync(path, complete));
-    }
+        string imgtype = "*.BMP|*.JPG|*.GIF|*.PNG";
+        string[] ImageType = imgtype.Split('|');
 
-    private IEnumerator StartCoroutineLoadResAssetAsync(string path, System.Action complete)
-    {
-        ResourceRequest request = Resources.LoadAsync(path);
-        yield return request;
-        if (!objDic.ContainsKey(path))
+        //获取指定路径下面的所有资源文件  
+        if (Directory.Exists(path))
         {
-            objDic.Add(path, request.asset);
-            if (Application.isEditor)
-                preLoadObjPreview.Add(request.asset);
-        }
-        complete.Invoke();
-    }
+            DirectoryInfo direction = new DirectoryInfo(path);
+            FileInfo[] files = direction.GetFiles("*", SearchOption.AllDirectories);   //   获取所有文件
+            Debug.Log("该文件夹文件总数为" + files.Length);
 
-    private AssetBundle GetResPackageAssetBundle(string abName)
-    {
-        AssetBundle ab = null;
-        if (resPackagesDic.ContainsKey(abName))
-            ab = resPackagesDic[abName];
-        if (ab == null)
-        {
-            ab = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" + abName.ToLower());
-            resPackagesDic[abName] = ab;
-        }
-        return ab;
-    }
-
-    public Object LoadByResPackage(string path)
-    {
-        string abName = path.Split('/')[0];
-        string pfName = path.Split('/')[1];
-        if (objDic.ContainsKey(path))
-            return objDic[path];
-        AssetBundle ab = GetResPackageAssetBundle(abName);
-        Object o = ab.LoadAsset(pfName);
-        objDic.Add(path, o);
-        return o;
-    }
-
-    //预加载资源包专用,异步加载AB包里的所有对象
-    public void LoadByResPackageAllAssetsAsync(string abName, System.Action complete)
-    {
-        StartCoroutine(StartCoroutineLoadAbAssetAsync(abName, complete));
-    }
-
-    private IEnumerator StartCoroutineLoadAbAssetAsync(string abName, System.Action complete)
-    {
-        AssetBundle ab = GetResPackageAssetBundle(abName);
-        AssetBundleRequest request = ab.LoadAllAssetsAsync();
-        yield return request;
-        for (int i = 0; i < request.allAssets.Length; i++)
-        {
-            var o = request.allAssets[i];
-            string key = abName + "/" + o.name;
-            if (!objDic.ContainsKey(key))
+            for (int i = 0; i < files.Length; i++)       //获取所有文件名称
             {
-                objDic.Add(key, o);
-                if (Application.isEditor)
-                    preLoadObjPreview.Add(o);
+                if (files[i].Name.EndsWith(".meta"))
+                {
+                    continue;
+                }
+                Debug.Log("Name:" + files[i].Name);
+                Debug.Log("FullName:" + files[i].FullName);
+                //Debug.Log("DirectoryName:" + files[i].DirectoryName);
             }
+
+            //for (int i = 0; i < ImageType.Length; i++)
+            //{
+            //    //获取d盘中a文件夹下所有的图片路径  
+            //    string[] dirs = Directory.GetFiles(path, ImageType[i]);
+            //    for (int j = 0; j < dirs.Length; j++)
+            //    {
+            //        if (files[j].Name.EndsWith(".meta"))
+            //        {
+            //            continue;
+            //        }
+            //        Debug.Log("文件夹图片格式的Name:" + files[j].Name);
+            //    }
+
+            //}
         }
-        complete.Invoke();
     }
 
     /// <summary>
-    /// 卸载资源包AB的所有对象
+    /// 获取文件夹下所有相关文件路径
     /// </summary>
-    /// <param name="abName"></param>
-    public void UnLoadResPackageAssetBundleAsset(string abName)
+    /// <param name="path">文件夹路径</param>
+    /// <param name="Type">类型（*.cs/*.txt）</param>
+    /// <returns></returns>
+    public List<string> GetFiles(string path, string Type)
     {
-        if (resPackagesDic.ContainsKey(abName))
+        List<string> filesNames = new List<string>();
+        string[] tempValue = Directory.GetFiles(path, Type);
+        foreach (var item in tempValue)
         {
-            resPackagesDic[abName].Unload(true);
-            resPackagesDic.Remove(abName);
+            filesNames.Add(item);
         }
-        foreach (var item in objDic)
+        string[] tempPaths = GetFolderPath(path);
+        if (tempPaths.Length > 0)
         {
-            if (item.Key.Contains(abName + "/"))
-                objDic.Remove(item.Key);
-            if (Application.isEditor)
-                preLoadObjPreview.Remove(item.Value);
+            for (int i = 0; i < tempPaths.Length; i++)
+            {
+                List<string> tempFilesNames = GetFiles(tempPaths[i], Type);
+                foreach (var item in tempFilesNames)
+                {
+                    filesNames.Add(item);
+                }
+            }
         }
+        //foreach (var item in filesNames)
+        //{
+        //    Debug.Log(item);
+        //}
+        return filesNames;
+    }
+    /// <summary>
+    /// 获取文件夹下所有文件夹路径
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public string[] GetFolderPath(string path)
+    {
+        DirectoryInfo root = new DirectoryInfo(path);
+        DirectoryInfo[] tempValue = root.GetDirectories();
+        string[] tempPaths = new string[tempValue.Length];
+
+        for (int i = 0; i < tempValue.Length; i++)
+        {
+            tempPaths[i] = path + @"\" + tempValue[i].Name;
+        }
+        return tempPaths;
     }
 
-    public void UnLoadAsset(string abName)
-    {
-        if (objDic.ContainsKey(abName))
-        {
-            Object obj = objDic[abName];
-            //Resources.UnloadAsset(obj);
-            objDic.Remove(abName);
-            if (Application.isEditor)
-                preLoadObjPreview.Remove(obj);
-        }
-    }
 }

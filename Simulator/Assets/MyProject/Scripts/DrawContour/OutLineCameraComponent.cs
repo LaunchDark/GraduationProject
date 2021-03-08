@@ -26,15 +26,11 @@ public class OutLineCameraComponent:MonoBehaviour
         }
     }
 
-
-
     [Header("采样范围")]
     public float samplerArea = 1;
 
-
     [Header("降分辨率")]
     public int downSample = 1;
-
 
     [Header("迭代次数")]
     public int iteration = 2;

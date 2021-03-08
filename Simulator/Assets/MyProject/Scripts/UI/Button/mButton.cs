@@ -40,7 +40,17 @@ public class mButton : UIElement
         //collider.size = new Vector3(transform.GetComponent<RectTransform>().sizeDelta.x, transform.GetComponent<RectTransform>().sizeDelta.y, collider.size.z);
     }
 
-    private void OnEnable()
+    /// <summary>
+    /// 初始化按键
+    /// </summary>
+    /// <param name="name"></param>
+    public virtual void Init(string name,UnityAction click = null)
+    {
+        transform.Find("Name").GetComponent<Text>().text = name;
+        clickCallBack = click;
+    }
+
+    protected virtual void OnEnable()
     {
         if (!isTween) return;
         if (tw != null) tw.Kill();

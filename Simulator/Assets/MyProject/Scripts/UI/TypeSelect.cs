@@ -12,7 +12,7 @@ public class TypeSelect : mToggleGroup
     protected UnityAction<string> SelectFun;
     protected override void Start()
     {        
-        Init(UIRoot.Instance.AllPacksack.Count);     
+        //Init(UIRoot.Instance.AllPacksack.Count);     
         
     }
 
@@ -22,6 +22,11 @@ public class TypeSelect : mToggleGroup
     /// <param name="num">所有选项个数</param>
     public override void Init(int num)
     {
+        index = -1;
+        items = transform.GetComponentsInChildren<mToggle>(true);
+        toggleGroup = transform.GetComponent<ToggleGroup>();
+        layout = transform.GetComponent<GridLayoutGroup>();
+
         int need = num - items.Length;
         for (int i = 0; i < need; i++)
         {

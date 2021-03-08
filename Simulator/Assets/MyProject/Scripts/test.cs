@@ -6,36 +6,39 @@ using Valve.VR.InteractionSystem;
 
 public class test : MonoBehaviour
 {
-    public Hand left;
-    public Hand right;
+    //public Hand left;
+    //public Hand right;
 
-    public SteamVR_Action_Boolean snapLeftAction = SteamVR_Input.GetBooleanAction("SnapTurnLeft");
-    public SteamVR_Action_Boolean snapRightAction = SteamVR_Input.GetBooleanAction("SnapTurnRight");
+    //public SteamVR_Action_Boolean snapLeftAction = SteamVR_Input.GetBooleanAction("SnapTurnLeft");
+    //public SteamVR_Action_Boolean snapRightAction = SteamVR_Input.GetBooleanAction("SnapTurnRight");
 
-    public SteamVR_Action_Boolean telepory = SteamVR_Input.GetBooleanAction("Teleport");
+    //public SteamVR_Action_Boolean telepory = SteamVR_Input.GetBooleanAction("Teleport");
 
     //public SteamVR_Action_Single T = SteamVR_Input.GetSingleAction("TouchPadTop");
     //public SteamVR_Action_Single D = SteamVR_Input.GetSingleAction("TouchPadDown");
     //public SteamVR_Action_Single L = SteamVR_Input.GetSingleAction("TouchPadLeft");
     //public SteamVR_Action_Single R = SteamVR_Input.GetSingleAction("TouchPadRight");
 
-    public SteamVR_Action_Vector2 TouchPad = SteamVR_Input.GetVector2Action("TouchPad");
+    //public SteamVR_Action_Vector2 TouchPad = SteamVR_Input.GetVector2Action("TouchPad");
+
+    Coroutine aaa;
 
     void Start()
     {
-        transform.GetComponent<mButton>().clickCallBack = () => { Debug.Log("aaaaaa"); };
+        //transform.GetComponent<mButton>().clickCallBack = () => { Debug.Log("aaaaaa"); };
 
         //left = transform.Find("SteamVRObjects/LeftHand").GetComponent<Hand>();
         //right = transform.Find("SteamVRObjects/RightHand").GetComponent<Hand>();
 
         //print("左手类型：" + left.handType);
         //print("右手类型：" + right.handType);
+        //PathTest();        
     }
 
 
     void Update()
     {
-
+        #region 测试输入
         //if (TouchPad[SteamVR_Input_Sources.LeftHand].changed)
         //{
         //    //Debug.Log("左手摇杆输入：" + TouchPad[SteamVR_Input_Sources.LeftHand].axis);
@@ -44,10 +47,6 @@ public class test : MonoBehaviour
         //{
         //    //Debug.Log("右手摇杆输入：" + TouchPad[SteamVR_Input_Sources.RightHand].axis);
         //}
-
-
-
-
 
         //if (right.GetGrabStarting() != GrabTypes.None)
         //{
@@ -108,12 +107,37 @@ public class test : MonoBehaviour
         //{
         //    print("右手点击触摸板:");
         //}
+        #endregion
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            if (aaa != null)
+            {
+                StopCoroutine(aaa);
+            }
+            aaa = StartCoroutine(CountDownTime(5));
+        }
 
     }
 
-    public void ButtonTest()
+    public void PathTest()
     {
-        Debug.Log("按键点击");
+        Debug.Log(System.Environment.CurrentDirectory);//获取到本地工程的绝对路径
+        Debug.Log(Application.dataPath);//Assets资源文件夹的绝对路径
+        Debug.Log(Application.persistentDataPath);//持久性的数据存储路径，在不同平台路径不同，但都存在，绝对路径
+        Debug.Log(Application.streamingAssetsPath);//Assets资源文件夹下StreamingAssets文件夹目录的绝对路径
+        Debug.Log(Application.temporaryCachePath);//游戏运行时的缓存目录，也是绝对路径
+    }
+    
+    public IEnumerator CountDownTime(int i)
+    {
+        while (i > 0)
+        {
+            Debug.Log(i);
+            i--;
+            yield return new WaitForSeconds(1);
+        }
+        aaa = null;
     }
 
 }

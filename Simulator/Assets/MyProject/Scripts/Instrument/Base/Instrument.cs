@@ -148,19 +148,7 @@ public class Instrument : MonoBehaviour
         SetState(State.normal);
         Messenger.AddListener<Collider,string>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
         lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
-        Messenger.AddListener(GlobalEvent.Enter_UI, EnterUI);
-        Messenger.AddListener(GlobalEvent.Exit_UI, ExitUI);
         AwakeLater();
-    }
-    private void EnterUI()
-    {
-        //if (mState == State.enter && mInputKeyInterface != null) 
-        //InputKeyMgr.Instance.Remove(mInputKeyInterface);
-    }
-    private void ExitUI()
-    {
-        //if (mState == State.enter && mInputKeyInterface != null)
-        //InputKeyMgr.Instance.Register(mInputKeyInterface);
     }
 
     virtual public void AwakeLater() { }
@@ -544,7 +532,19 @@ public class Instrument : MonoBehaviour
     /// <summary>
     /// 控制物体缩放
     /// </summary>
-    protected virtual void ControlScale() { }
+    protected virtual void ControlScale() 
+    {
+        if (LastPos == Vector3.zero)
+        {
+            LastPos = ScaleHand.transform.position;
+            return;
+        }
+        CurPos = ScaleHand.transform.position;
+        //缩放比例 = 当前长度/上一个长度
+        float ratio = Mathf.Abs(Vector3.Distance(CurPos, transform.position)) / Mathf.Abs(Vector3.Distance(LastPos, transform.position));
+        transform.localScale *= ratio;
+        LastPos = CurPos;
+    }
 
     /// <summary>
     /// 添加可捉取物体组件
