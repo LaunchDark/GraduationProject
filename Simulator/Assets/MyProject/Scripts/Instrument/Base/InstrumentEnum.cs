@@ -22,10 +22,10 @@ public enum InstrumentEnum
 
 
     /// <summary>
-    /// 测钉
+    /// 测试复合体
     /// </summary>
-    [Description("测钉")]
-    Nail = 3,
+    [Description("测试复合体")]
+    Double = 3,
 
 
     /// <summary>

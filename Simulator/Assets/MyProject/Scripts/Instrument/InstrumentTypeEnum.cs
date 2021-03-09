@@ -6,43 +6,61 @@ public enum InstrumentTypeEnum
     /// 全部
     /// </summary>
     [Description("全部")]
-    All = 0,
+    全部 = 0,
 
     /// <summary>
     /// 桌子
     /// </summary>
     [Description("桌子")]
-    Desk,
+    桌子,
 
     /// <summary>
     /// 椅子沙发
     /// </summary>
     [Description("椅子沙发")]
-    Chair,
+    椅子沙发,
 
     /// <summary>
     /// 床
     /// </summary>
     [Description("床")]
-    Bed,
+    床,
 
     /// <summary>
     /// 橱窗
     /// </summary>
     [Description("橱窗")]
-    ShopWindow,
+    橱窗,
 
     /// <summary>
     /// 灯饰
     /// </summary>
     [Description("灯饰")]
-    Light,
+    灯饰,
+
+    /// <summary>
+    /// 灯饰
+    /// </summary>
+    [Description("测试1")]
+    测试1,
+
+    /// <summary>
+    /// 灯饰
+    /// </summary>
+    [Description("测试2")]
+    测试2,
+
+    /// <summary>
+    /// 灯饰
+    /// </summary>
+    [Description("测试3")]
+    测试3,
 
     /// <summary>
     /// 其他
     /// </summary>
     [Description("其他")]
-    Other,
+    其他,
 
 
 }

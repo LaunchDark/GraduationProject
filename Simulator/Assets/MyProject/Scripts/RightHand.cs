@@ -47,6 +47,24 @@ public class RightHand : HandBase
 
         if (hand.GetGrabEnding() == GrabTypes.Grip)
         {
+            //如果没有调用过其他UI
+            if (GripDown)
+            {
+                if (!ChangeCanvas.Instance.gameObject.activeSelf)
+                {
+                    if (selectedInstrument != null)
+                    {
+                        if (selectedInstrument.GetComponentInParent<Instrument>())
+                        {
+                            ChangeCanvas.Instance.ShowUI(transform.position, selectedInstrument.GetComponentInParent<Instrument>());
+                        }
+                    }
+                }
+                else
+                {
+                    ChangeCanvas.Instance.HideUI();
+                }
+            }
             GripDown = false;
         }
 
@@ -200,6 +218,7 @@ public class RightHand : HandBase
         //print("右手输入类型：" + hand.GetGrabStarting());
         if (GripDown)
         {
+            GripDown = false;
             if (UIRoot.Instance.gameObject.activeSelf)
             {
                 UIRoot.Instance.HideUIRoot();
@@ -207,7 +226,6 @@ public class RightHand : HandBase
             else
             {
                 UIRoot.Instance.ShowUIRoot(transform.position);
-                GripDown = false;
             }
             return;
         }

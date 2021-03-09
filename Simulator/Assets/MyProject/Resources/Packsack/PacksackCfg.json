@@ -1,7 +1,7 @@
 ﻿[
   {
     "InstrumentEnum": "Cube",
-    "InstrumentTypeEnum": "Desk",
+    "InstrumentTypeEnum": "桌子",
     "Name": "测试方块",
     "Icon": "棱镜",
     "Amount": 2,
@@ -12,7 +12,7 @@
   },
   {
     "InstrumentEnum": "Sphere",
-    "InstrumentTypeEnum": "Chair",
+    "InstrumentTypeEnum": "椅子沙发",
     "Name": "测试小球",
     "Icon": "三脚架",
     "Amount": 2,
@@ -23,8 +23,19 @@
   },
   {
     "InstrumentEnum": "HangLight",
-    "InstrumentTypeEnum": "Light",
+    "InstrumentTypeEnum": "灯饰",
     "Name": "测试吊灯",
+    "Icon": "碳纤杆",
+    "Amount": 2,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "Double",
+    "InstrumentTypeEnum": "其他",
+    "Name": "测试复合体",
     "Icon": "碳纤杆",
     "Amount": 2,
     "Lnk": "",

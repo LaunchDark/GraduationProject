@@ -27,7 +27,7 @@ public class Packsack : MonoBehaviour
                     UITool.Instantiate("Packsack/PacksackItem", content.gameObject).GetComponent<PacksackItem>().SetData(PacksackMgr.Instance.packsackItemDataList[i]);
                 }
             } 
-            else if(gameObject.name == "All")
+            else if(gameObject.name == "全部")
             {
                 if (PacksackMgr.Instance.packsackItemDataList[i].isAtPacksack)
                 {

@@ -114,9 +114,27 @@ public class Instrument : MonoBehaviour
     protected Vector3 LastPos = Vector3.zero;
     protected Vector3 CurPos;
 
+    /// <summary>
+    /// 可以更换材质的物体
+    /// </summary>
+    public List<Renderer> CanChange;
+    /// <summary>
+    /// 用于更换的材质
+    /// </summary>
+    public List<Material> EachMaterials;
+    /// <summary>
+    /// 当前所用的款式
+    /// </summary>
+    [HideInInspector] public int CurMaterial = 0;
 
     private void Awake()
     {
+        //改变层级
+        foreach (var item in transform.GetComponentsInChildren<Transform>())
+        {
+            item.gameObject.layer = LayerMask.NameToLayer("Instrument");
+        }
+
         mState = State.normal;
         rig = gameObject.GetComponent<Rigidbody>();
         greenMaterial = (Material)ResMgr.Instance.LoadByCore("Material/GreenMaterial");
@@ -420,6 +438,7 @@ public class Instrument : MonoBehaviour
             //Debug.Log("默认材质");
             for (int i = 0; i < renderers.Length; i++)
                 renderers[i].materials = materials[i];
+            ChangeMaterial(CurMaterial);
         }
         if (heldState == HeldState.green)
         {
@@ -583,6 +602,19 @@ public class Instrument : MonoBehaviour
         {
             Destroy(gameObject.GetComponent<Valve.VR.InteractionSystem.Interactable>());
         }
+    }
+
+    /// <summary>
+    /// 更改整个仪器材质
+    /// </summary>
+    /// <param name="n">第n套材质</param>
+    public virtual void ChangeMaterial(int n)
+    {
+        for (int i = 0; i < CanChange.Count; i++)
+        {
+            renderers[i].material = EachMaterials[n * CanChange.Count + i];
+        }
+        CurMaterial = n;
     }
 
 }

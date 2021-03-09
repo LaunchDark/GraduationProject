@@ -43,6 +43,10 @@ public class mToggleGroup : MonoBehaviour
         Init(items.Length);
     }
 
+    /// <summary>
+    /// 初始化按键
+    /// </summary>
+    /// <param name="num">要显示的按键个数</param>
     public virtual void Init(int num)
     {
         int need = num - items.Length;
@@ -66,6 +70,10 @@ public class mToggleGroup : MonoBehaviour
         SetIndex(-1);
     }
 
+    /// <summary>
+    /// 触发点击事件
+    /// </summary>
+    /// <param name="b"></param>
     protected virtual void ToggleClick(bool b)
     {
         if (b)
@@ -87,6 +95,10 @@ public class mToggleGroup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 设置当前选项
+    /// </summary>
+    /// <param name="i"></param>
     public virtual void SetIndex(int i)
     {
         index = i;
@@ -101,6 +113,10 @@ public class mToggleGroup : MonoBehaviour
             items[i].selected = true;
     }
 
+    /// <summary>
+    /// 设置间距
+    /// </summary>
+    /// <param name="vec"></param>
     public virtual void Spacing(Vector2 vec)
     {
         layout.spacing = vec;

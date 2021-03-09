@@ -5,6 +5,9 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 镜头UI，跟随头部移动
+/// </summary>
 public class TipsCanvas : MonoBehaviour
 {
     protected static TipsCanvas instance;
@@ -36,19 +39,27 @@ public class TipsCanvas : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 截图倒计时
+    /// </summary>
     public void CountDown()
     {
         if(coroutine != null)
         {
             StopCoroutine(coroutine);
-        }
-        Tips.text = 5.ToString();
-        Tips.gameObject.SetActive(true);
+        }      
         coroutine = StartCoroutine(CountDownTime(5));
     }
 
-    public IEnumerator CountDownTime(int i)
+    /// <summary>
+    /// 截屏倒计时
+    /// </summary>
+    /// <param name="i">倒计时间</param>
+    /// <returns></returns>
+    public IEnumerator CountDownTime(int i = 5)
     {
+        Tips.text = 5.ToString();
+        Tips.gameObject.SetActive(true);
         i++;
         while (i >= 0)
         {
@@ -68,11 +79,16 @@ public class TipsCanvas : MonoBehaviour
         coroutine = StartCoroutine(ShowTips("截图成功"));
     }
 
-    public IEnumerator ShowTips(string tip)
+    /// <summary>
+    /// 显示提示
+    /// </summary>
+    /// <param name="tip">提示显示时长</param>
+    /// <returns></returns>
+    public IEnumerator ShowTips(string tip,int time = 1)
     {
         Tips.text = tip;
         Tips.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(time);
         Tips.gameObject.SetActive(false);
     }
 

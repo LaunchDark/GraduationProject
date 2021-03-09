@@ -23,6 +23,7 @@ public class test : MonoBehaviour
 
     Coroutine aaa;
 
+
     void Start()
     {
         //transform.GetComponent<mButton>().clickCallBack = () => { Debug.Log("aaaaaa"); };
@@ -109,15 +110,17 @@ public class test : MonoBehaviour
         //}
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            if (aaa != null)
-            {
-                StopCoroutine(aaa);
-            }
-            aaa = StartCoroutine(CountDownTime(5));
-        }
-
+        #region 测试携程
+        //if (Input.GetKeyDown(KeyCode.Keypad1))
+        //{
+        //    if (aaa != null)
+        //    {
+        //        StopCoroutine(aaa);
+        //    }
+        //    aaa = StartCoroutine(CountDownTime(5));
+        //}
+        #endregion
+        
     }
 
     public void PathTest()
@@ -139,5 +142,6 @@ public class test : MonoBehaviour
         }
         aaa = null;
     }
+
 
 }

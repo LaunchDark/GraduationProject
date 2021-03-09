@@ -77,11 +77,10 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/²âÊÔĞ¡Çò";
             case InstrumentEnum.HangLight:
                 return "Instruments/²âÊÔµõµÆ";
+            case InstrumentEnum.Double:
+                return "Instruments/²âÊÔ¸´ºÏÌå";
 
 
-
-            case InstrumentEnum.Nail:
-                return "Nail/Nail";
             case InstrumentEnum.Lj:
                 return "Àâ¾µ";
             case InstrumentEnum.Dzg:
