@@ -10,15 +10,4 @@ public class CubeBulid : Instrument
         isFreeInstrument = true;
         CanScaleInstrument = true;
     }
-
-    public override void FreeCallBack()
-    {
-        AddFreeComponent();
-    }
-
-    public override void HeldCallBack(GameObject hand)
-    {
-        base.HeldCallBack(hand);
-        RemoveFreeComponent();
-    }
 }

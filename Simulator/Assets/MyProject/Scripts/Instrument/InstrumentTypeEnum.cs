@@ -15,10 +15,10 @@ public enum InstrumentTypeEnum
     桌子,
 
     /// <summary>
-    /// 椅子沙发
+    /// 椅子
     /// </summary>
-    [Description("椅子沙发")]
-    椅子沙发,
+    [Description("椅子")]
+    椅子,
 
     /// <summary>
     /// 床
@@ -27,10 +27,10 @@ public enum InstrumentTypeEnum
     床,
 
     /// <summary>
-    /// 橱窗
+    /// 柜子
     /// </summary>
-    [Description("橱窗")]
-    橱窗,
+    [Description("柜子")]
+    柜子,
 
     /// <summary>
     /// 灯饰
@@ -39,16 +39,16 @@ public enum InstrumentTypeEnum
     灯饰,
 
     /// <summary>
-    /// 灯饰
+    /// 电器
     /// </summary>
-    [Description("测试1")]
-    测试1,
+    [Description("电器")]
+    电器,
 
     /// <summary>
-    /// 灯饰
+    /// 饰品
     /// </summary>
-    [Description("测试2")]
-    测试2,
+    [Description("饰品")]
+    饰品,
 
     /// <summary>
     /// 灯饰

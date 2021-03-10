@@ -136,7 +136,7 @@ public class HandBase : MonoBehaviour
 			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
 			RaycastHit hitInfo;
 			//只检测墙体层 layer = 9
-			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.width, LayerMask.GetMask("Wall")))
+			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.width / 2), LayerMask.GetMask("Wall")))
 			{
 				//RaycastHit flood;
 				//if (Physics.Raycast(hitInfo.point, -hitInfo.transform.up, out flood))
@@ -148,14 +148,14 @@ public class HandBase : MonoBehaviour
 				//}
 				isWall = true;
 				holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
-				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.width;
+				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.width / 2);
 			}
 			//只检测天花板 layer = 10
-			else if(Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + holdInstrument.height, LayerMask.GetMask("TopWall")))
+			else if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.height / 2), LayerMask.GetMask("TopWall")))
 			{
 				isWall = true;
 				holdInstrument.transform.eulerAngles = Vector3.up;
-				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * holdInstrument.height;
+				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.height / 2);
 			}
 			else
 			{

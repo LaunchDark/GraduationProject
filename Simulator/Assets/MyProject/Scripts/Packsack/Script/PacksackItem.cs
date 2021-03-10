@@ -45,16 +45,18 @@ public class PacksackItem : MonoBehaviour
         if (data == null) return;
         mask.SetActive(data.num == 0);
         icon.sprite = atlas.GetSprite(data.icon);
+        
         num.text = data.num >= 0 ? data.num.ToString() : "";
         if(data.num >= 0)
         {
-            num.transform.parent.gameObject.SetActive(true);
+            num.transform.parent.gameObject.SetActive(false);
             num.text = data.num.ToString();
         }
         else
         {
             num.transform.parent.gameObject.SetActive(false);
         }
+
         itemName.text = data.name;
         selectText.text = data.key;
         select.SetActive(false);

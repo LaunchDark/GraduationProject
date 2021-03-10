@@ -46,9 +46,9 @@ public class Instrument : MonoBehaviour
 
     //设置仪器可操控范围
     public float MaxOffsetZ = 3;
-    public float MinOffsetZ = 0;
+    public float MinOffsetZ = 0.5f;
     private float offsetZ = 1;
-    public float canDropDis = 1;//设置值为0时,仪器不能放在地面上
+    public float canDropDis = 2;//设置值为0时,仪器不能放在地面上
 
     //原来网格的材质
     private Renderer[] renderers;
@@ -89,11 +89,11 @@ public class Instrument : MonoBehaviour
     /// <summary>
     /// 宽度
     /// </summary>
-    public float width;
+    public float width = 0.5f;
     /// <summary>
     /// 高度
     /// </summary>
-    public float height;
+    public float height = 0.5f;
     /// <summary>
     /// 悬空仪器（挂灯，壁灯等）
     /// </summary>
@@ -151,11 +151,11 @@ public class Instrument : MonoBehaviour
             materials.Add(renderers[i].materials);
         }
         colliders = transform.GetComponentsInChildren<Collider>(true).ToList();
-        for (int i = colliders.Count - 1; i >= 0; i--)
-        {
-            if (colliders[i].GetComponent<MeshCollider>() != null)
-                colliders.Remove(colliders[i]);
-        }
+        //for (int i = colliders.Count - 1; i >= 0; i--)
+        //{
+        //    if (colliders[i].GetComponent<MeshCollider>() != null)
+        //        colliders.Remove(colliders[i]);
+        //}
         if (adsorbCollider)
         {
             adsorbCollider.enabled = false;
@@ -285,7 +285,7 @@ public class Instrument : MonoBehaviour
             if (adsorbCollider && subInstrument == null) adsorbCollider.enabled = true;
             rig.isKinematic = true;
             for (int i = 0; i < colliders.Count; i++)
-                colliders[i].isTrigger = true;
+                colliders[i].isTrigger = false;
             SetRenderer(HeldState.normal);
             LifeCallBack();
             sortMaxIndex++;
@@ -311,6 +311,10 @@ public class Instrument : MonoBehaviour
     virtual public void HeldCallBack(GameObject hand)
     {
         HeldingHand = hand;
+        if (isFreeInstrument)
+        {
+            RemoveFreeComponent();
+        }
     }
 
     /// <summary>
@@ -331,7 +335,10 @@ public class Instrument : MonoBehaviour
     /// <summary>
     /// 自由物体放下回调
     /// </summary>
-    virtual public void FreeCallBack() { }
+    public virtual void FreeCallBack() 
+    {
+        AddFreeComponent();
+    }
 
     /// <summary>
     ///仪器在场景中被玩家选中时
@@ -340,17 +347,22 @@ public class Instrument : MonoBehaviour
     private void SelectedInsturment(Collider collider,string Hand)
     {
         //Debug.Log("选中: " + transform.name);
-        if (Hand == "Right") 
+        if (Hand == "Right")
         {
             if (LeftHand.Instance.selectedInstrument != null && LeftHand.Instance.selectedInstrument == gameObject)
+            {
+                //Debug.Log(111);
                 return;
+            }
         }
-        if(Hand == "Left")
+        if (Hand == "Left")
         {
             if (RightHand.Instance.selectedInstrument != null && RightHand.Instance.selectedInstrument == gameObject)
+            {
+                //Debug.Log(222);
                 return;
+            }
         }
-
         if (mState == State.life)
         {
             if (collider == null)
@@ -359,6 +371,7 @@ public class Instrument : MonoBehaviour
             }
             else if (collider.transform.GetComponentInParent<Instrument>() == this)
             {
+                //Debug.Log(333);
                 SetOutLine(true);
             }
             else
@@ -433,19 +446,19 @@ public class Instrument : MonoBehaviour
     public void SetRenderer(HeldState heldState)
     {
         mHeldState = heldState;
-        if (heldState == HeldState.normal)
+        if (heldState == HeldState.normal || heldState == HeldState.green)
         {
             //Debug.Log("默认材质");
             for (int i = 0; i < renderers.Length; i++)
                 renderers[i].materials = materials[i];
             ChangeMaterial(CurMaterial);
         }
-        if (heldState == HeldState.green)
-        {
-            //Debug.Log("绿色材质");
-            for (int i = 0; i < renderers.Length; i++)
-                renderers[i].material = greenMaterial;
-        }
+        //if (heldState == HeldState.green)
+        //{
+        //    //Debug.Log("绿色材质");
+        //    for (int i = 0; i < renderers.Length; i++)
+        //        renderers[i].material = greenMaterial;
+        //}
         if (heldState == HeldState.red)
         {
             //Debug.Log("红色材质");

@@ -1,4 +1,5 @@
 ﻿[
+  //测试
   {
     "InstrumentEnum": "Cube",
     "InstrumentTypeEnum": "桌子",
@@ -12,7 +13,7 @@
   },
   {
     "InstrumentEnum": "Sphere",
-    "InstrumentTypeEnum": "椅子沙发",
+    "InstrumentTypeEnum": "椅子",
     "Name": "测试小球",
     "Icon": "三脚架",
     "Amount": 2,
@@ -42,56 +43,175 @@
     "IsGroup": 0,
     "GroupList": [],
     "IsAtPacksack": 1
+  },
+
+  //床
+  {
+    "InstrumentEnum": "抱枕1",
+    "InstrumentTypeEnum": "床",
+    "Name": "抱枕1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "抱枕2",
+    "InstrumentTypeEnum": "床",
+    "Name": "抱枕2",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "枕头1",
+    "InstrumentTypeEnum": "床",
+    "Name": "枕头1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "床1",
+    "InstrumentTypeEnum": "床",
+    "Name": "床1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //柜子
+  {
+    "InstrumentEnum": "床头柜1",
+    "InstrumentTypeEnum": "柜子",
+    "Name": "床头柜1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "电视柜1",
+    "InstrumentTypeEnum": "柜子",
+    "Name": "电视柜1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //桌子
+  {
+    "InstrumentEnum": "长桌1",
+    "InstrumentTypeEnum": "桌子",
+    "Name": "长桌1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "圆桌1",
+    "InstrumentTypeEnum": "桌子",
+    "Name": "圆桌1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //椅子
+  {
+    "InstrumentEnum": "椅子1",
+    "InstrumentTypeEnum": "椅子",
+    "Name": "椅子1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "椅子2",
+    "InstrumentTypeEnum": "椅子",
+    "Name": "椅子2",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "椅子3",
+    "InstrumentTypeEnum": "椅子",
+    "Name": "椅子3",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "沙发1",
+    "InstrumentTypeEnum": "椅子",
+    "Name": "沙发1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //电器
+  {
+    "InstrumentEnum": "电视1",
+    "InstrumentTypeEnum": "电器",
+    "Name": "电视1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //灯饰
+
+  //饰品
+  {
+    "InstrumentEnum": "画1",
+    "InstrumentTypeEnum": "饰品",
+    "Name": "画1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
   }
-  //,
-  //{
-  //  "InstrumentEnum": "RTK_GalaxyOne_Plus",
-  //  "Name": "银河",
-  //  "Icon": "银河",
-  //  "Amount": 2,
-  //  "Lnk": "",
-  //  "IsGroup": 0,
-  //  "GroupList": [],
-  //  "IsAtPacksack": 1
-  //},
-  //{
-  //  "InstrumentEnum": "BottomAntenna",
-  //  "Name": "天线",
-  //  "Icon": "天线",
-  //  "Amount": 2,
-  //  "Lnk": "",
-  //  "IsGroup": 0,
-  //  "GroupList": [],
-  //  "IsAtPacksack": 1
-  //},
-  //{
-  //  "InstrumentEnum": "Bracket",
-  //  "Name": "托架",
-  //  "Icon": "托架",
-  //  "Amount": 1,
-  //  "Lnk": "",
-  //  "IsGroup": 0,
-  //  "GroupList": [],
-  //  "IsAtPacksack": 1
-  //},
-  //{
-  //  "InstrumentEnum": "HeightPiece",
-  //  "Name": "测高片",
-  //  "Icon": "测高片",
-  //  "Amount": 1,
-  //  "Lnk": "",
-  //  "IsGroup": 0,
-  //  "GroupList": [],
-  //  "IsAtPacksack": 1
-  //},
-  //{
-  //  "InstrumentEnum": "ConnectingRod",
-  //  "Name": "连接杆",
-  //  "Icon": "连接杆",
-  //  "Amount": 1,
-  //  "Lnk": "",
-  //  "IsGroup": 0,
-  //  "GroupList": [],
-  //  "IsAtPacksack": 1
-  //}
+
+  //其他
 ]

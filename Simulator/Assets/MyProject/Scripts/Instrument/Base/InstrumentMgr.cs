@@ -71,6 +71,7 @@ public class InstrumentMgr : MonoBehaviour
     {
         switch (instrumentEnum)
         {
+            #region 测试
             case InstrumentEnum.Cube:
                 return "Instruments/测试方块";
             case InstrumentEnum.Sphere:
@@ -79,51 +80,73 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/测试吊灯";
             case InstrumentEnum.Double:
                 return "Instruments/测试复合体";
+            #endregion
 
+            #region 床
+            case InstrumentEnum.抱枕1:
+                return "Instruments/床/抱枕1";
+            case InstrumentEnum.抱枕2:
+                return "Instruments/床/抱枕2";
+            case InstrumentEnum.枕头1:
+                return "Instruments/床/枕头1";
+            case InstrumentEnum.床1:
+                return "Instruments/床/床1";
+            #endregion
 
-            case InstrumentEnum.Lj:
-                return "棱镜";
-            case InstrumentEnum.Dzg:
-                return "对中杆";
-            case InstrumentEnum.Sjj:
-                return "三脚架";
-            case InstrumentEnum.QZY_552r15:
-                return "552R15Load/全站仪";
-            case InstrumentEnum.RtkOnePlush:
-                return "银河1Plus";
-            case InstrumentEnum.ConnectGun:
-                return "连接杆";
-            case InstrumentEnum.RtkCreatEnjoy:
-                return "创享Rtk";
-            case InstrumentEnum.Stick:
-                return "碳纤杆";
-            case InstrumentEnum.Bracket:
-                return "托架";
-            case InstrumentEnum.HeightPiece:
-                return "测高片";
-            case InstrumentEnum.BottomAntenna:
-                return "底部天线";
-            case InstrumentEnum.TopAntenna:
-                return "顶部天线";
-            case InstrumentEnum.DSZ3:
-                return "U-DSZ3";
-            case InstrumentEnum.DL2007:
-                return "U-DL2007";
-            case InstrumentEnum.Ruler_4687:
-                return "木制水准尺4687";
-            case InstrumentEnum.Ruler_4787:
-                return "木制水准尺4787";
-            case InstrumentEnum.RulerPad:
-                return "U-尺垫";
-            case InstrumentEnum.SteelRulerPad:
-                return "U-铟钢尺底座";
-            case InstrumentEnum.BarCodeSteelRuler:
-                return "U-铟钢尺";
+            #region 柜子
+            case InstrumentEnum.床头柜1:
+                return "Instruments/柜子/床头柜1";
+            case InstrumentEnum.电视柜1:
+                return "Instruments/柜子/电视柜1";
+            #endregion
+
+            #region 桌子
+            case InstrumentEnum.长桌1:
+                return "Instruments/桌子/长桌1";
+            case InstrumentEnum.圆桌1:
+                return "Instruments/桌子/圆桌1";
+            #endregion
+
+            #region 椅子
+            case InstrumentEnum.椅子1:
+                return "Instruments/椅子/椅子1";
+            case InstrumentEnum.椅子2:
+                return "Instruments/椅子/椅子2";
+            case InstrumentEnum.椅子3:
+                return "Instruments/椅子/椅子3";
+            case InstrumentEnum.沙发1:
+                return "Instruments/椅子/沙发1";
+            #endregion
+
+            #region 电器
+            case InstrumentEnum.电视1:
+                return "Instruments/电器/电视1";
+            #endregion
+
+            #region 灯饰
+
+            #endregion
+
+            #region 饰品
+            case InstrumentEnum.画1:
+                return "Instruments/饰品/画1";
+            #endregion
+
+            #region 其他
+
+            #endregion
+
             default:
                 return null;
         }
     }
 
+    /// <summary>
+    /// 获取某个家具的全部物体
+    /// </summary>
+    /// <param name="instrumentEnum"></param>
+    /// <param name="isAcive"></param>
+    /// <returns></returns>
     public List<GameObject> GetTypeALLInstrument(InstrumentEnum instrumentEnum, bool isAcive = true)
     {
         if (instrumentGameObjectDic.ContainsKey(instrumentEnum))
@@ -156,14 +179,35 @@ public class InstrumentMgr : MonoBehaviour
         return null;
     }
 
-    //删除仪器
+    /// <summary>
+    /// 删除家具
+    /// </summary>
+    /// <param name="instrument"></param>
     public void DeleteInstrument(Instrument instrument)
     {
         Instrument[] temp = instrument.transform.GetComponentsInChildren<Instrument>();
         for (int i = 0; i < temp.Length; i++)
         {
+            if (temp[i].gameObject.activeSelf) Messenger.Broadcast<Instrument>(GlobalEvent.Player_Delete_Instrument, temp[i]);
             temp[i].gameObject.SetActive(false);
-            Messenger.Broadcast<Instrument>(GlobalEvent.Player_Delete_Instrument, temp[i]);
+            if (temp[i].curAdsorbInstrument != null)
+            {
+                temp[i].curAdsorbInstrument.adsorbCollider.enabled = true;
+                temp[i].curAdsorbInstrument.subInstrument = null;
+            }
+            temp[i].curAdsorbInstrument = null;
+        }
+    }
+
+    /// <summary>
+    /// 删除全部家具
+    /// </summary>
+    public void DeleteSceneAllInstrument()
+    {
+        Instrument[] temp = FindObjectsOfType<Instrument>();
+        for (int i = 0; i < temp.Length; i++)
+        {
+            DeleteInstrument(temp[i]);
         }
     }
 

@@ -147,7 +147,7 @@ public class mButton : UIElement
         //Debug.Log("Click");
         HandClickDown();
         //执行点击回调
-        if (clickCallBack != null)
+        if (clickCallBack != null && !currentHand.gameObject.GetComponent<HandBase>().GetGripDown())
             clickCallBack.Invoke();
     }
 

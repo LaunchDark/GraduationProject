@@ -64,6 +64,9 @@ public class OutLineCameraComponent:MonoBehaviour
     {
         if (target.material == null)
             target.material = new Material(preoutlineShader);
+
+        //Debug.Log(target.material);
+        //Debug.Log(target.gameObject.name);
         targetObjects.Add(target);
 
         RefreshCommandBuff();

@@ -134,7 +134,12 @@ MonoBehaviour:
   groupInstrumentType: 0
   selfSortIndex: 0
   isInWall: {fileID: 0}
-  width: 0.5
-  height: 0.5
+  width: 1
+  height: 1
   isHangInsturment: 0
   isFreeInstrument: 0
+  CanScaleInstrument: 0
+  ScaleHand: {fileID: 0}
+  CanChange: []
+  EachMaterials: []
+  CurMaterial: 0

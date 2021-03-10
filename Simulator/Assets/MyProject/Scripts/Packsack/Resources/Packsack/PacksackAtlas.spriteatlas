@@ -39,11 +39,11 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 0
+      enableTightPacking: 1
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 40035e593c53c2149916dee6e63fc767, type: 3}
-    totalSpriteSurfaceArea: 1044190
+    totalSpriteSurfaceArea: 1854190
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -61,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1cb18ca6631970e4ab48a25c982417e2, type: 3}
   - {fileID: 21300000, guid: d9fb11f761990a34090b86863887ba55, type: 3}
   - {fileID: 21300000, guid: e05a8658c9b78c348b37ad6acdb1e342, type: 3}
+  - {fileID: 21300000, guid: c389f609aaac04042affb2c351e2f607, type: 3}
   - {fileID: 21300000, guid: 0fadb4a91f5b0bf4ca47fe2aa8de9beb, type: 3}
   - {fileID: 21300000, guid: 0484935a07b86834abc6d47ca2f72a85, type: 3}
   - {fileID: 21300000, guid: 7a7789bb9b3056047b65b9048df15f78, type: 3}
@@ -93,6 +94,7 @@ SpriteAtlas:
   - guanbi_O
   - "\u5929\u7EBF"
   - mask
+  - "\u6D4B\u8BD5"
   - kuang_01
   - huishou_B
   - "\u624B\u7C3F"

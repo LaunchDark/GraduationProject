@@ -5,14 +5,12 @@ public enum InstrumentEnum
     [Description("空")]
     None = 0,
 
-
-
+    #region 测试用
     /// <summary>
     /// 测试方块
     /// </summary>
     [Description("测试方块")]
     Cube =1,
-
 
     /// <summary>
     /// 测试小球
@@ -20,13 +18,11 @@ public enum InstrumentEnum
     [Description("测试小球")]
     Sphere =2,
 
-
     /// <summary>
     /// 测试复合体
     /// </summary>
     [Description("测试复合体")]
     Double = 3,
-
 
     /// <summary>
     /// 吊灯
@@ -34,138 +30,111 @@ public enum InstrumentEnum
     [Description("测试吊灯")]
     HangLight = 4,
 
+    #endregion
+
+    #region 床
+    /// <summary>
+    /// 抱枕1
+    /// </summary>
+    [Description("抱枕1")]
+    抱枕1,
 
     /// <summary>
-    /// 棱镜
+    /// 抱枕2
     /// </summary>
-    [Description("棱镜")]
-    Lj =5,
-
+    [Description("抱枕2")]
+    抱枕2,
 
     /// <summary>
-    /// 对中杆
+    /// 枕头1
     /// </summary>
-    [Description("对中杆")]
-    Dzg =6,
-
+    [Description("枕头1")]
+    枕头1,
 
     /// <summary>
-    /// 三脚架
+    /// 床1
     /// </summary>
-    [Description("三脚架")]
-    Sjj =7,
+    [Description("床1")]
+    床1,
+    #endregion
 
+    #region 柜子
+    /// <summary>
+    /// 床头柜1
+    /// </summary>
+    [Description("床头柜1")]
+    床头柜1,
 
     /// <summary>
-    /// 连接杆
+    /// 电视柜1
     /// </summary>
-    [Description("连接杆")]
-    ConnectGun,
+    [Description("电视柜1")]
+    电视柜1,
+    #endregion
 
+    #region 桌子
+    /// <summary>
+    /// 长桌1
+    /// </summary>
+    [Description("长桌1")]
+    长桌1,
 
     /// <summary>
-    /// 全站仪552R15
+    /// 圆桌1
     /// </summary>
-    [Description("全站仪552r15")]
-    QZY_552r15,
+    [Description("圆桌1")]
+    圆桌1,
+    #endregion
 
+    #region 椅子
+    /// <summary>
+    /// 椅子1
+    /// </summary>
+    [Description("椅子1")]
+    椅子1,
 
     /// <summary>
-    /// RTK银河1plush
+    /// 椅子2
     /// </summary>
-    [Description("RTK")]
-    RtkOnePlush,
-
+    [Description("椅子2")]
+    椅子2,
 
     /// <summary>
-    /// 创享RTK
+    /// 椅子3
     /// </summary>
-    [Description("RTK")]
-    RtkCreatEnjoy,
+    [Description("椅子3")]
+    椅子3,
 
     /// <summary>
-    /// 测高片
+    /// 沙发1
     /// </summary>
-    [Description("测高片")]
-    HeightPiece,
+    [Description("沙发1")]
+    沙发1,
+    #endregion
 
+    #region 电器
     /// <summary>
-    /// 托架
+    /// 电视1
     /// </summary>
-    [Description("托架")]
-    Bracket,
+    [Description("电视1")]
+    电视1,
+    #endregion
 
+    #region 灯饰
+
+    #endregion
+
+    #region 饰品
     /// <summary>
-    /// 碳纤杆
+    /// 画1
     /// </summary>
-    [Description("碳纤杆")]
-    Stick,
+    [Description("画1")]
+    画1,
 
+    #endregion
 
-    /// <summary>
-    /// 装载在RTK底部的天线
-    /// </summary>
-    [Description("底部天线")]
-    BottomAntenna,
+    #region 其他
 
+    #endregion
 
-    /// <summary>
-    ///  装载在RTK顶部的天线
-    /// </summary>
-    [Description("顶部天线")]
-    TopAntenna,
-
-    /// <summary>
-    ///  DSZ3
-    /// </summary>
-    [Description("DSZ3")]
-    DSZ3,
-
-    /// <summary>
-    ///  完整水准仪
-    /// </summary>
-    [Description("水准仪")]
-    WZ_DSZ3,
-
-    /// <summary>
-    ///  DL2007
-    /// </summary>
-    [Description("DL2007")]
-    DL2007,
-
-    /// <summary>
-    ///  完整DL-2007水准仪
-    /// </summary>
-    [Description("DL-2007水准仪")]
-    WZ_DL2007,
-
-    /// <summary>
-    ///  木制水准尺4687
-    /// </summary>
-    [Description("水准尺4687")]
-    Ruler_4687,
-
-    /// <summary>
-    ///  木制水准尺4787
-    /// </summary>
-    [Description("水准尺4787")]
-    Ruler_4787,
-
-    /// <summary>
-    ///  尺垫
-    /// </summary>
-    [Description("尺垫")]
-    RulerPad,
-
-    /// <summary>
-    ///  铟钢尺垫
-    /// </summary>
-    [Description("铟钢尺垫")]
-    SteelRulerPad,
-
-    /// <summary>
-    ///  条码铟钢尺
-    /// </summary>
-    [Description("条码铟钢尺")]
-    BarCodeSteelRuler,
 }
