@@ -23,6 +23,8 @@ public class test : MonoBehaviour
 
     Coroutine aaa;
 
+    public Material material;
+
 
     void Start()
     {
@@ -120,7 +122,12 @@ public class test : MonoBehaviour
         //    aaa = StartCoroutine(CountDownTime(5));
         //}
         #endregion
-        
+
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            Color();
+        }
+
     }
 
     public void PathTest()
@@ -143,5 +150,9 @@ public class test : MonoBehaviour
         aaa = null;
     }
 
+    public void Color()
+    {
+        Debug.Log(material.color);
+    }
 
 }

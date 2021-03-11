@@ -194,19 +194,35 @@ public class HandBase : MonoBehaviour
 	/// </summary>
 	protected virtual void InputTeleport()
     {
+		bool can = true;
 		if (mState == State.normal && holdInstrument == null)
 		{			
 			RaycastHit hitInfo;
-			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 10f, TeleportLayerMask))
+			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 10f))
 			{
-				teleportPoint = hitInfo.point;
-				ShowLaser(hitInfo);
-				TeleportPanel.SetActive(true);
-				TeleportPanel.transform.position = hitInfo.point + new Vector3(0, 0.01f, 0);//深度缓冲问题
-				shouldTeleport = true;
+				if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+					teleportPoint = hitInfo.point;
+					ShowLaser(hitInfo);
+					TeleportPanel.SetActive(true);
+					TeleportPanel.transform.position = hitInfo.point + new Vector3(0, 0.01f, 0);//深度缓冲问题
+					shouldTeleport = true;
+				}
+                else
+				{
+					shouldTeleport = false;
+					can = false;
+                }
+				
 			}
-			else
+            else
 			{
+				shouldTeleport = false;
+				can = false;
+            }
+			if(!can)
+			{
+				shouldTeleport = false;
 				laser.SetActive(false);
 				TeleportPanel.SetActive(false);
 				Debug.DrawLine(HandDirection.position, HandDirection.forward * 3f, Color.red);
@@ -215,13 +231,16 @@ public class HandBase : MonoBehaviour
 	}
 
 	protected virtual void Teleport()
-    {
-		shouldTeleport = false;
+	{
 		TeleportPanel.SetActive(false);
-		Vector3 diff = Player.instance.transform.position - HeadTransform.position;
-		diff.y = 0;
-		Player.instance.transform.position = teleportPoint + diff;
-    }
+		if (shouldTeleport)
+		{
+			shouldTeleport = false;
+			Vector3 diff = Player.instance.transform.position - HeadTransform.position;
+			diff.y = 0;
+			Player.instance.transform.position = teleportPoint + diff;
+		}
+	}
 
 	/// <summary>
 	/// 获取手部状态

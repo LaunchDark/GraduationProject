@@ -80,13 +80,14 @@ public class UIRoot : MonoBehaviour
     {
         mButtons = new List<mButton>();
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 2; i++)
         {
             mButton btn = UITool.Instantiate("UI/Base/Button", Left.Find("Viewport/Content").gameObject).GetComponent<mButton>();
             mButtons.Add(btn);
         }
 
         mButtons[0].Init("截取屏幕", () => TipsCanvas.Instance.CountDown());
+        mButtons[1].Init("收回所有家具", () => InstrumentMgr.Instance.DeleteSceneAllInstrument());
     }
 
 }
