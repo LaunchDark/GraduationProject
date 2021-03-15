@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : Instrument
+public class WallBuild : Instrument
 {
     void Start()
     {
