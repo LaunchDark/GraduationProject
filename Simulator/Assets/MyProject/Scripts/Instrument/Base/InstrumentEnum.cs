@@ -118,6 +118,12 @@ public enum InstrumentEnum
     /// </summary>
     [Description("电视1")]
     电视1,
+
+    /// <summary>
+    /// 音响
+    /// </summary>
+    [Description("音响")]
+    音响,
     #endregion
 
     #region 灯饰
@@ -134,6 +140,17 @@ public enum InstrumentEnum
     #endregion
 
     #region 其他
+    /// <summary>
+    /// 门
+    /// </summary>
+    [Description("门")]
+    门,
+
+    /// <summary>
+    /// 墙
+    /// </summary>
+    [Description("墙")]
+    墙,
 
     #endregion
 

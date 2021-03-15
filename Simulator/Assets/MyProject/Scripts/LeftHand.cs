@@ -68,6 +68,11 @@ public class LeftHand : HandBase
             GripDown = false;
         }
 
+        if (hand.GetGrabEnding() == GrabTypes.Pinch)
+        {
+            TriggerDown = false;
+        }
+
         if (!GripDown && ScaleInstrument)
         {
             ScaleInstrument.ScaleHand = null;
@@ -229,7 +234,7 @@ public class LeftHand : HandBase
         {
             InputHeld();
         }
-        else if (holdInstrument)
+        else if (holdInstrument && !TriggerDown)
         {
             if (holdInstrument.GetHeldState() == Instrument.HeldState.green)
             {
@@ -245,6 +250,10 @@ public class LeftHand : HandBase
                         holdInstrument.SetState(Instrument.State.drop);
                     }
                 }
+                else if (holdInstrument.isFreeInstrument)
+                {
+                    holdInstrument.SetState(Instrument.State.free);
+                }
                 else
                 {
                     holdInstrument.SetState(Instrument.State.drop);
@@ -253,7 +262,7 @@ public class LeftHand : HandBase
                 SetState(State.normal);
             }
         }
-
+        TriggerDown = true;
     }
 
     protected override void InputTeleport()

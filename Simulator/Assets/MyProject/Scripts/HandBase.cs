@@ -81,6 +81,10 @@ public class HandBase : MonoBehaviour
 	/// </summary>
 	protected bool GripDown = false;
 	/// <summary>
+	/// 按下Trigger键
+	/// </summary>
+	protected bool TriggerDown = false;
+	/// <summary>
 	/// 控制缩放的物体
 	/// </summary>
 	public Instrument ScaleInstrument;
@@ -385,5 +389,15 @@ public class HandBase : MonoBehaviour
 	public bool GetGripDown()
     {
 		return GripDown;
+    }
+
+	public bool GetTriggerDown()
+    {
+		return TriggerDown;
+    }
+
+	public void SetTriggerDown(bool b)
+    {
+		TriggerDown = b;
     }
 }

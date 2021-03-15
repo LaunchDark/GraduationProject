@@ -93,6 +93,7 @@ public class mButton : UIElement
     protected override void OnButtonClick()
     {
         //onHandClick.Invoke(currentHand);
+        currentHand.gameObject.GetComponent<HandBase>().SetTriggerDown(true);
         ButtonClick();
     }
 

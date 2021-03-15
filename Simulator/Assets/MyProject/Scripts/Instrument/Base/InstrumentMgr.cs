@@ -72,6 +72,8 @@ public class InstrumentMgr : MonoBehaviour
         switch (instrumentEnum)
         {
             #region 测试
+            case InstrumentEnum.门:
+                return "Instruments/测试门";
             case InstrumentEnum.Cube:
                 return "Instruments/测试方块";
             case InstrumentEnum.Sphere:
@@ -121,6 +123,8 @@ public class InstrumentMgr : MonoBehaviour
             #region 电器
             case InstrumentEnum.电视1:
                 return "Instruments/电器/电视1";
+            case InstrumentEnum.音响:
+                return "Instruments/电器/音响";
             #endregion
 
             #region 灯饰
@@ -207,7 +211,10 @@ public class InstrumentMgr : MonoBehaviour
         Instrument[] temp = FindObjectsOfType<Instrument>();
         for (int i = 0; i < temp.Length; i++)
         {
-            DeleteInstrument(temp[i]);
+            if (temp[i].type != InstrumentEnum.墙)
+            {
+                DeleteInstrument(temp[i]);
+            }
         }
     }
 

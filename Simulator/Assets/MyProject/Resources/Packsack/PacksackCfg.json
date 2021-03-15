@@ -1,6 +1,17 @@
 ﻿[
   //测试
   {
+    "InstrumentEnum": "门",
+    "InstrumentTypeEnum": "桌子",
+    "Name": "门",
+    "Icon": "棱镜",
+    "Amount": 2,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
     "InstrumentEnum": "Cube",
     "InstrumentTypeEnum": "桌子",
     "Name": "测试方块",
@@ -192,6 +203,17 @@
     "Name": "电视1",
     "Icon": "碳纤杆",
     "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "音响1",
+    "InstrumentTypeEnum": "电器",
+    "Name": "音响1",
+    "Icon": "碳纤杆",
+    "Amount": 1,
     "Lnk": "",
     "IsGroup": 0,
     "GroupList": [],

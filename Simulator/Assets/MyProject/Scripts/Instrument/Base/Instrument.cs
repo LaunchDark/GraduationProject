@@ -34,7 +34,6 @@ public class Instrument : MonoBehaviour
     }
 
     [HideInInspector] public InstrumentEnum type = InstrumentEnum.None;
-    protected bool isHasF = false;
     [HideInInspector] public bool isHasR = true;
 
 
@@ -426,11 +425,6 @@ public class Instrument : MonoBehaviour
             offsetZ = MaxOffsetZ;
         if (offsetZ < MinOffsetZ)
             offsetZ = MinOffsetZ;
-    }
-
-    public bool GetIsHasF()
-    {
-        return isHasF;
     }
 
     //判断是否是组合仪器

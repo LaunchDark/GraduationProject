@@ -52,6 +52,7 @@ public class RightHand : HandBase
             {
                 if (!ChangeCanvas.Instance.gameObject.activeSelf)
                 {
+                    //如果选中仪器，弹出仪器的材质选择UI
                     if (selectedInstrument != null)
                     {
                         if (selectedInstrument.GetComponentInParent<Instrument>())
@@ -66,6 +67,11 @@ public class RightHand : HandBase
                 }
             }
             GripDown = false;
+        }
+
+        if (hand.GetGrabEnding() == GrabTypes.Pinch)
+        {
+            TriggerDown = false;
         }
 
         if (!GripDown && ScaleInstrument)
@@ -208,8 +214,6 @@ public class RightHand : HandBase
         else
         {
             GripDown = true;
-            //Debug.Log("生成方块");
-            //PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.HangLight, true);
         }
     }
 
@@ -234,7 +238,7 @@ public class RightHand : HandBase
         {
             InputHeld();
         }
-        else if (holdInstrument)
+        else if (holdInstrument && !TriggerDown)
         {
             if(holdInstrument.GetHeldState() == Instrument.HeldState.green)
             {
@@ -262,13 +266,7 @@ public class RightHand : HandBase
                 SetState(State.normal);
             }
         }
-        else
-        {
-            //Debug.Log("生成小球");
-            //PacksackMgr.Instance.CreatePlayerHoldInstrument(InstrumentEnum.Sphere, true);
-        }
-
-
+        TriggerDown = true;
     }
 
     protected override void InputTeleport()
