@@ -140,7 +140,7 @@ public class HandBase : MonoBehaviour
 			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
 			RaycastHit hitInfo;
 			//只检测墙体层 layer = 9
-			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.width / 2), LayerMask.GetMask("Wall")))
+			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.width / 2 * holdInstrument.transform.localScale.x), LayerMask.GetMask("Wall")))
 			{
 				//RaycastHit flood;
 				//if (Physics.Raycast(hitInfo.point, -hitInfo.transform.up, out flood))
@@ -155,7 +155,7 @@ public class HandBase : MonoBehaviour
 				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.width / 2);
 			}
 			//只检测天花板 layer = 10
-			else if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.height / 2), LayerMask.GetMask("TopWall")))
+			else if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.height / 2 * holdInstrument.transform.localScale.y), LayerMask.GetMask("TopWall")))
 			{
 				isWall = true;
 				holdInstrument.transform.eulerAngles = Vector3.up;
@@ -197,34 +197,40 @@ public class HandBase : MonoBehaviour
 	/// 点击触摸板事件
 	/// </summary>
 	protected virtual void InputTeleport()
-    {
+	{
 		bool can = true;
 		if (mState == State.normal && holdInstrument == null)
-		{			
+		{
 			RaycastHit hitInfo;
-			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 10f))
+			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 5f))
 			{
-				if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-                {
+				bool isFloot = false;
+				//如果是地毯
+				if (hitInfo.collider.GetComponentInParent<Instrument>())
+				{
+					isFloot = hitInfo.collider.GetComponentInParent<Instrument>().isFloot;
+				}
+				if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ground") || isFloot)
+				{
 					teleportPoint = hitInfo.point;
 					ShowLaser(hitInfo);
 					TeleportPanel.SetActive(true);
 					TeleportPanel.transform.position = hitInfo.point + new Vector3(0, 0.01f, 0);//深度缓冲问题
 					shouldTeleport = true;
 				}
-                else
+				else
 				{
 					shouldTeleport = false;
 					can = false;
-                }
-				
+				}
+
 			}
-            else
+			else
 			{
 				shouldTeleport = false;
 				can = false;
-            }
-			if(!can)
+			}
+			if (!can)
 			{
 				shouldTeleport = false;
 				laser.SetActive(false);
@@ -348,7 +354,8 @@ public class HandBase : MonoBehaviour
 		instrument.SetState(Instrument.State.held, gameObject);
 		holdInstrument.transform.SetParent(transform.GetChild(1).transform);
 		holdInstrument.transform.localPosition = Vector3.zero;
-		holdInstrument.transform.localRotation = Quaternion.Euler(Vector3.zero);
+		//holdInstrument.transform.localRotation = Quaternion.Euler(Vector3.zero);
+		holdInstrument.transform.LookAt(Player.instance.transform);
 		SetState(State.Instrument);
 	}
 

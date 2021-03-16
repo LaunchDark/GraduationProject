@@ -27,8 +27,8 @@ MonoBehaviour:
   groupInstrumentType: 0
   selfSortIndex: 0
   isInWall: {fileID: 0}
-  width: 0.5
-  height: 0.5
+  width: 0.25
+  height: 0.25
   isHangInsturment: 0
   isFreeInstrument: 0
   CanScaleInstrument: 0

@@ -1,60 +1,60 @@
 ﻿[
   //测试
-  {
-    "InstrumentEnum": "门",
-    "InstrumentTypeEnum": "桌子",
-    "Name": "门",
-    "Icon": "棱镜",
-    "Amount": 2,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "Cube",
-    "InstrumentTypeEnum": "桌子",
-    "Name": "测试方块",
-    "Icon": "棱镜",
-    "Amount": 2,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "Sphere",
-    "InstrumentTypeEnum": "椅子",
-    "Name": "测试小球",
-    "Icon": "三脚架",
-    "Amount": 2,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "HangLight",
-    "InstrumentTypeEnum": "灯饰",
-    "Name": "测试吊灯",
-    "Icon": "碳纤杆",
-    "Amount": 2,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "Double",
-    "InstrumentTypeEnum": "其他",
-    "Name": "测试复合体",
-    "Icon": "碳纤杆",
-    "Amount": 2,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
+  //{
+  //  "InstrumentEnum": "门",
+  //  "InstrumentTypeEnum": "桌子",
+  //  "Name": "门",
+  //  "Icon": "棱镜",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "Cube",
+  //  "InstrumentTypeEnum": "桌子",
+  //  "Name": "测试方块",
+  //  "Icon": "棱镜",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "Sphere",
+  //  "InstrumentTypeEnum": "椅子",
+  //  "Name": "测试小球",
+  //  "Icon": "三脚架",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "HangLight",
+  //  "InstrumentTypeEnum": "灯饰",
+  //  "Name": "测试吊灯",
+  //  "Icon": "碳纤杆",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
+  //{
+  //  "InstrumentEnum": "Double",
+  //  "InstrumentTypeEnum": "其他",
+  //  "Name": "测试复合体",
+  //  "Icon": "碳纤杆",
+  //  "Amount": 2,
+  //  "Lnk": "",
+  //  "IsGroup": 0,
+  //  "GroupList": [],
+  //  "IsAtPacksack": 1
+  //},
 
   //床
   {
@@ -200,7 +200,7 @@
   {
     "InstrumentEnum": "电视1",
     "InstrumentTypeEnum": "电器",
-    "Name": "电视1",
+    "Name": "电视",
     "Icon": "碳纤杆",
     "Amount": 99,
     "Lnk": "",
@@ -209,9 +209,20 @@
     "IsAtPacksack": 1
   },
   {
-    "InstrumentEnum": "音响1",
+    "InstrumentEnum": "音响",
     "InstrumentTypeEnum": "电器",
-    "Name": "音响1",
+    "Name": "音响",
+    "Icon": "碳纤杆",
+    "Amount": 1,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "空调1",
+    "InstrumentTypeEnum": "电器",
+    "Name": "空调",
     "Icon": "碳纤杆",
     "Amount": 1,
     "Lnk": "",
@@ -221,6 +232,17 @@
   },
 
   //灯饰
+  {
+    "InstrumentEnum": "壁灯1",
+    "InstrumentTypeEnum": "灯饰",
+    "Name": "壁灯1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
 
   //饰品
   {
@@ -233,7 +255,88 @@
     "IsGroup": 0,
     "GroupList": [],
     "IsAtPacksack": 1
-  }
+  },
+  {
+    "InstrumentEnum": "杯子1",
+    "InstrumentTypeEnum": "饰品",
+    "Name": "杯子1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "花瓶1",
+    "InstrumentTypeEnum": "饰品",
+    "Name": "花瓶1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //卫生间
+  {
+    "InstrumentEnum": "花洒1",
+    "InstrumentTypeEnum": "卫生间",
+    "Name": "花洒",
+    "Icon": "碳纤杆",
+    "Amount": 1,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "马桶1",
+    "InstrumentTypeEnum": "卫生间",
+    "Name": "马桶",
+    "Icon": "碳纤杆",
+    "Amount": 1,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "洗手盆1",
+    "InstrumentTypeEnum": "卫生间",
+    "Name": "洗手盆",
+    "Icon": "碳纤杆",
+    "Amount": 1,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+
+  //厨房
 
   //其他
+  {
+    "InstrumentEnum": "地毯1",
+    "InstrumentTypeEnum": "其他",
+    "Name": "地毯1",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "垃圾桶1",
+    "InstrumentTypeEnum": "其他",
+    "Name": "垃圾桶",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  }
 ]

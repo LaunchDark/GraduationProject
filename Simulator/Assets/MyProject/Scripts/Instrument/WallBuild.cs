@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 墙
+/// </summary>
 public class WallBuild : Instrument
 {
     void Start()
@@ -14,6 +17,11 @@ public class WallBuild : Instrument
         adsorbTypeList = new List<InstrumentEnum>();
         adsorbTypeList.Add(InstrumentEnum.门);
         SetAdsorbCollider();
+
+        foreach (var item in transform.GetComponentsInChildren<Transform>())
+        {
+            item.gameObject.layer = LayerMask.NameToLayer("Wall");
+        }
 
     }
 

@@ -119,7 +119,7 @@ public class LeftHand : HandBase
 
         #region 正常行走并且是在没持有仪器的情况下,发送射线检测是否选中仪器
         Collider collider = null;
-        if (mState == State.normal && holdInstrument == null && !isOnUI)
+        if (mState == State.normal && holdInstrument == null && !isOnUI &&!teleportDown)
         {
             RaycastHit hitInfo; 
             int layerMask = ~LayerMask.GetMask("UI", "Player");
@@ -135,14 +135,20 @@ public class LeftHand : HandBase
             }
             else
             {
-                laser.SetActive(false);
+                if (!teleportDown)
+                {
+                    laser.SetActive(false);
+                }
                 //Debug.DrawLine(ray.origin, transform.GetComponent<HandPhysics>().handCollider.transform.position + transform.GetComponent<HandPhysics>().handCollider.transform.forward * 3f, Color.red);
                 Debug.DrawLine(HandDirection.position, HandDirection.forward * 3f, Color.red);
             }
         }
         else
         {
-            laser.SetActive(false);
+            if (!teleportDown)
+            {
+                laser.SetActive(false);
+            }
         }
         selectedInstrument = collider ? collider.gameObject : null;
         //如果右手选中了物体，左手不发射

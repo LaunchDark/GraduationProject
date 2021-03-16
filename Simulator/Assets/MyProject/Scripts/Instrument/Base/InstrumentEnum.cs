@@ -124,9 +124,20 @@ public enum InstrumentEnum
     /// </summary>
     [Description("音响")]
     音响,
+
+    /// <summary>
+    /// 空调1
+    /// </summary>
+    [Description("空调1")]
+    空调1,
     #endregion
 
     #region 灯饰
+    /// <summary>
+    /// 壁灯1
+    /// </summary>
+    [Description("壁灯1")]
+    壁灯1,
 
     #endregion
 
@@ -136,6 +147,44 @@ public enum InstrumentEnum
     /// </summary>
     [Description("画1")]
     画1,
+
+    /// <summary>
+    /// 杯子1
+    /// </summary>
+    [Description("杯子1")]
+    杯子1,
+
+    /// <summary>
+    /// 花瓶1
+    /// </summary>
+    [Description("花瓶1")]
+    花瓶1,
+
+    #endregion
+
+    #region 卫生间
+    /// <summary>
+    /// 花洒1
+    /// </summary>
+    [Description("花洒1")]
+    花洒1,
+
+    /// <summary>
+    /// 马桶1
+    /// </summary>
+    [Description("马桶1")]
+    马桶1,
+
+    /// <summary>
+    /// 洗手盆1
+    /// </summary>
+    [Description("洗手盆1")]
+    洗手盆1,
+
+
+    #endregion
+
+    #region 厨房
 
     #endregion
 
@@ -151,6 +200,18 @@ public enum InstrumentEnum
     /// </summary>
     [Description("墙")]
     墙,
+
+    /// <summary>
+    /// 地毯1
+    /// </summary>
+    [Description("地毯1")]
+    地毯1,
+
+    /// <summary>
+    /// 垃圾桶1
+    /// </summary>
+    [Description("垃圾桶1")]
+    垃圾桶1,
 
     #endregion
 

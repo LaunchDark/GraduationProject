@@ -10,6 +10,13 @@ public class Sofa1Build : Instrument
     void Start()
     {
         type = InstrumentEnum.沙发1;
+
+        MaxOffsetZ = 3f;
+        MinOffsetZ = 1f;
+        canDropDis = 2f;
+
+        width = 0.7f;
+        height = 0.3f;
     }
 
 }

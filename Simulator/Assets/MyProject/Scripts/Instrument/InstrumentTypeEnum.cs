@@ -51,10 +51,16 @@ public enum InstrumentTypeEnum
     饰品,
 
     /// <summary>
-    /// 灯饰
+    /// 卫生间
     /// </summary>
-    [Description("测试3")]
-    测试3,
+    [Description("卫生间")]
+    卫生间,
+
+    /// <summary>
+    /// 厨房
+    /// </summary>
+    [Description("厨房")]
+    厨房,
 
     /// <summary>
     /// 其他

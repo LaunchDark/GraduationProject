@@ -86,7 +86,7 @@ public class Instrument : MonoBehaviour
     /// </summary>
     [HideInInspector] public Transform isInWall;
     /// <summary>
-    /// 宽度
+    /// 宽度、宽度
     /// </summary>
     public float width = 0.5f;
     /// <summary>
@@ -104,7 +104,11 @@ public class Instrument : MonoBehaviour
     /// <summary>
     /// 可以缩放的物体
     /// </summary>
-    public bool CanScaleInstrument = false;
+    public bool CanScaleInstrument = true;
+    /// <summary>
+    /// 地毯
+    /// </summary>
+    public bool isFloot = false;
     /// <summary>
     /// 当前进入的手
     /// </summary>
@@ -165,6 +169,7 @@ public class Instrument : MonoBehaviour
         SetState(State.normal);
         Messenger.AddListener<Collider,string>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
         lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
+        SetRenderer(HeldState.normal);
         AwakeLater();
     }
 

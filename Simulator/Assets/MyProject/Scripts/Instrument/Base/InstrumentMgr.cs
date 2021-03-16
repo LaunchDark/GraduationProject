@@ -125,19 +125,43 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/电器/电视1";
             case InstrumentEnum.音响:
                 return "Instruments/电器/音响";
+            case InstrumentEnum.空调1:
+                return "Instruments/电器/空调1";
             #endregion
 
             #region 灯饰
-
+            case InstrumentEnum.壁灯1:
+                return "Instruments/灯饰/壁灯1";
             #endregion
 
             #region 饰品
             case InstrumentEnum.画1:
                 return "Instruments/饰品/画1";
+            case InstrumentEnum.杯子1:
+                return "Instruments/饰品/杯子1";
+            case InstrumentEnum.花瓶1:
+                return "Instruments/饰品/花瓶1";
+            #endregion
+
+            #region 卫生间
+            case InstrumentEnum.花洒1:
+                return "Instruments/卫生间/花洒1";
+            case InstrumentEnum.马桶1:
+                return "Instruments/卫生间/马桶1";
+            case InstrumentEnum.洗手盆1:
+                return "Instruments/卫生间/洗手盆1";
+
+            #endregion
+
+            #region 厨房
+
             #endregion
 
             #region 其他
-
+            case InstrumentEnum.地毯1:
+                return "Instruments/其他/地毯1";
+            case InstrumentEnum.垃圾桶1:
+                return "Instruments/其他/垃圾桶1";
             #endregion
 
             default:

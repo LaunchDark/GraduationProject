@@ -11,6 +11,14 @@ public class Chair1Build : Instrument
     {
         type = InstrumentEnum.椅子1;
         isFreeInstrument = true;
+        CanScaleInstrument = true;
+
+        MaxOffsetZ = 2f;
+        MinOffsetZ = 0.3f;
+        canDropDis = 2f;
+
+        width = 0.3f;
+        height = 0.3f;
     }
 
 }
