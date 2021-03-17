@@ -140,7 +140,7 @@ public class HandBase : MonoBehaviour
 			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
 			RaycastHit hitInfo;
 			//只检测墙体层 layer = 9
-			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.width / 2 * holdInstrument.transform.localScale.z), LayerMask.GetMask("Wall")))
+			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.width / 2 * holdInstrument.transform.localScale.x), LayerMask.GetMask("Wall")))
 			{
 				//RaycastHit flood;
 				//if (Physics.Raycast(hitInfo.point, -hitInfo.transform.up, out flood))
@@ -152,14 +152,14 @@ public class HandBase : MonoBehaviour
 				//}
 				isWall = true;
 				holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
-				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.width / 2 * holdInstrument.transform.localScale.z);
+				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.width / 2);
 			}
 			//只检测天花板 layer = 10
 			else if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.height / 2 * holdInstrument.transform.localScale.y), LayerMask.GetMask("TopWall")))
 			{
 				isWall = true;
 				holdInstrument.transform.eulerAngles = Vector3.up;
-				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.height / 2 * holdInstrument.transform.localScale.y);
+				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.height / 2);
 			}
 			else
 			{
@@ -216,8 +216,6 @@ public class HandBase : MonoBehaviour
 					ShowLaser(hitInfo);
 					TeleportPanel.SetActive(true);
 					TeleportPanel.transform.position = hitInfo.point + new Vector3(0, 0.01f, 0);//深度缓冲问题
-					TeleportPanel.transform.LookAt(Player.instance.transform);
-					//TeleportPanel.transform.rotation = Quaternion.Euler(new Vector3(0, TeleportPanel.transform.rotation.y + 180, 0));
 					shouldTeleport = true;
 				}
 				else

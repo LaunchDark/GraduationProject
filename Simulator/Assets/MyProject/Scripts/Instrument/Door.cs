@@ -2,24 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 门
-/// </summary>
 public class Door : Instrument
 {
 
     void Start()
     {
         type = InstrumentEnum.门;
-        CanScaleInstrument = false;
-
         MaxOffsetZ = 3f;
         MinOffsetZ = 0.5f;
-        canDropDis = 3f;
-
-        width = 0.1f;
-        height = 2f;
-
+        canDropDis = 0f;
         adsorbTypeList = new List<InstrumentEnum>();
         adsorbTypeList.Add(InstrumentEnum.墙);
     }

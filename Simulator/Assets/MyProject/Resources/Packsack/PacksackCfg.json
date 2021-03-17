@@ -125,34 +125,12 @@
     "GroupList": [],
     "IsAtPacksack": 1
   },
-  {
-    "InstrumentEnum": "衣柜1",
-    "InstrumentTypeEnum": "柜子",
-    "Name": "衣柜",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
 
   //桌子
   {
     "InstrumentEnum": "长桌1",
     "InstrumentTypeEnum": "桌子",
     "Name": "长桌1",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "长桌2",
-    "InstrumentTypeEnum": "桌子",
-    "Name": "玻璃桌",
     "Icon": "碳纤杆",
     "Amount": 99,
     "Lnk": "",
@@ -217,17 +195,6 @@
     "GroupList": [],
     "IsAtPacksack": 1
   },
-  {
-    "InstrumentEnum": "沙发2",
-    "InstrumentTypeEnum": "椅子",
-    "Name": "单人沙发",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
 
   //电器
   {
@@ -257,18 +224,7 @@
     "InstrumentTypeEnum": "电器",
     "Name": "空调",
     "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "电脑1",
-    "InstrumentTypeEnum": "电器",
-    "Name": "电脑",
-    "Icon": "碳纤杆",
-    "Amount": 99,
+    "Amount": 1,
     "Lnk": "",
     "IsGroup": 0,
     "GroupList": [],
@@ -279,29 +235,7 @@
   {
     "InstrumentEnum": "壁灯1",
     "InstrumentTypeEnum": "灯饰",
-    "Name": "壁灯",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "顶灯1",
-    "InstrumentTypeEnum": "灯饰",
-    "Name": "顶灯",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "吊灯1",
-    "InstrumentTypeEnum": "灯饰",
-    "Name": "吊灯",
+    "Name": "壁灯1",
     "Icon": "碳纤杆",
     "Amount": 99,
     "Lnk": "",
@@ -344,61 +278,6 @@
     "GroupList": [],
     "IsAtPacksack": 1
   },
-  {
-    "InstrumentEnum": "花瓶2",
-    "InstrumentTypeEnum": "饰品",
-    "Name": "花瓶2",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  //{
-  //  "InstrumentEnum": "花瓶3",
-  //  "InstrumentTypeEnum": "饰品",
-  //  "Name": "花瓶3",
-  //  "Icon": "碳纤杆",
-  //  "Amount": 99,
-  //  "Lnk": "",
-  //  "IsGroup": 0,
-  //  "GroupList": [],
-  //  "IsAtPacksack": 1
-  //},
-  {
-    "InstrumentEnum": "花瓶4",
-    "InstrumentTypeEnum": "饰品",
-    "Name": "花瓶4",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "花瓶5",
-    "InstrumentTypeEnum": "饰品",
-    "Name": "花瓶5",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "花瓶6",
-    "InstrumentTypeEnum": "饰品",
-    "Name": "花瓶6",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
 
   //卫生间
   {
@@ -428,7 +307,7 @@
     "InstrumentTypeEnum": "卫生间",
     "Name": "洗手盆",
     "Icon": "碳纤杆",
-    "Amount": 99,
+    "Amount": 1,
     "Lnk": "",
     "IsGroup": 0,
     "GroupList": [],
@@ -436,78 +315,12 @@
   },
 
   //厨房
-  {
-    "InstrumentEnum": "橱柜1",
-    "InstrumentTypeEnum": "厨房",
-    "Name": "橱柜",
-    "Icon": "碳纤杆",
-    "Amount": 1,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "灶台1",
-    "InstrumentTypeEnum": "厨房",
-    "Name": "灶台",
-    "Icon": "碳纤杆",
-    "Amount": 2,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "水壶1",
-    "InstrumentTypeEnum": "厨房",
-    "Name": "水壶",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "厨具1",
-    "InstrumentTypeEnum": "厨房",
-    "Name": "碗架",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "厨具2",
-    "InstrumentTypeEnum": "厨房",
-    "Name": "锅",
-    "Icon": "碳纤杆",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
 
   //其他
   {
-    "InstrumentEnum": "门",
-    "InstrumentTypeEnum": "其他",
-    "Name": "门",
-    "Icon": "棱镜",
-    "Amount": 99,
-    "Lnk": "",
-    "IsGroup": 0,
-    "GroupList": [],
-    "IsAtPacksack": 1
-  },
-  {
     "InstrumentEnum": "地毯1",
     "InstrumentTypeEnum": "其他",
-    "Name": "地毯",
+    "Name": "地毯1",
     "Icon": "碳纤杆",
     "Amount": 99,
     "Lnk": "",

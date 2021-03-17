@@ -70,12 +70,6 @@ public enum InstrumentEnum
     /// </summary>
     [Description("电视柜1")]
     电视柜1,
-
-    /// <summary>
-    /// 衣柜1
-    /// </summary>
-    [Description("衣柜1")]
-    衣柜1,
     #endregion
 
     #region 桌子
@@ -84,11 +78,6 @@ public enum InstrumentEnum
     /// </summary>
     [Description("长桌1")]
     长桌1,
-    /// <summary>
-    /// 长桌2
-    /// </summary>
-    [Description("长桌2")]
-    长桌2,
 
     /// <summary>
     /// 圆桌1
@@ -121,12 +110,6 @@ public enum InstrumentEnum
     /// </summary>
     [Description("沙发1")]
     沙发1,
-
-    /// <summary>
-    /// 沙发2
-    /// </summary>
-    [Description("沙发2")]
-    沙发2,
     #endregion
 
     #region 电器
@@ -147,12 +130,6 @@ public enum InstrumentEnum
     /// </summary>
     [Description("空调1")]
     空调1,
-
-    /// <summary>
-    /// 电脑1
-    /// </summary>
-    [Description("电脑1")]
-    电脑1,
     #endregion
 
     #region 灯饰
@@ -161,16 +138,6 @@ public enum InstrumentEnum
     /// </summary>
     [Description("壁灯1")]
     壁灯1,
-    /// <summary>
-    /// 顶灯1
-    /// </summary>
-    [Description("顶灯1")]
-    顶灯1,
-    /// <summary>
-    /// 吊灯1
-    /// </summary>
-    [Description("吊灯1")]
-    吊灯1,
 
     #endregion
 
@@ -193,36 +160,6 @@ public enum InstrumentEnum
     [Description("花瓶1")]
     花瓶1,
 
-    /// <summary>
-    /// 花瓶2
-    /// </summary>
-    [Description("花瓶2")]
-    花瓶2,
-
-    /// <summary>
-    /// 花瓶3
-    /// </summary>
-    [Description("花瓶3")]
-    花瓶3,
-
-    /// <summary>
-    /// 花瓶4
-    /// </summary>
-    [Description("花瓶4")]
-    花瓶4,
-
-    /// <summary>
-    /// 花瓶5
-    /// </summary>
-    [Description("花瓶5")]
-    花瓶5,
-
-    /// <summary>
-    /// 花瓶6
-    /// </summary>
-    [Description("花瓶6")]
-    花瓶6,
-
     #endregion
 
     #region 卫生间
@@ -244,38 +181,11 @@ public enum InstrumentEnum
     [Description("洗手盆1")]
     洗手盆1,
 
+
     #endregion
 
     #region 厨房
-    /// <summary>
-    /// 橱柜1
-    /// </summary>
-    [Description("橱柜1")]
-    橱柜1,
 
-    /// <summary>
-    /// 灶台1
-    /// </summary>
-    [Description("灶台1")]
-    灶台1,
-
-    /// <summary>
-    /// 水壶1
-    /// </summary>
-    [Description("水壶1")]
-    水壶1,
-
-    /// <summary>
-    /// 厨具1
-    /// </summary>
-    [Description("厨具1")]
-    厨具1,
-
-    /// <summary>
-    /// 厨具2
-    /// </summary>
-    [Description("厨具2")]
-    厨具2,
     #endregion
 
     #region 其他

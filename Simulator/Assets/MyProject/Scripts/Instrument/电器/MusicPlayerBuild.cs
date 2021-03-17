@@ -8,16 +8,11 @@ public class MusicPlayerBuild : Instrument
     void Start()
     {
         type = InstrumentEnum.音响;
-
         isFreeInstrument = true;
         isHangInsturment = true;
-
         MaxOffsetZ = 2f;
         MinOffsetZ = 0.2f;
         canDropDis = 2f;
-
-        width = 0.3f;
-        height = 0.45f;
 
         audioManager = gameObject.AddComponent<AudioManager>();
     }
