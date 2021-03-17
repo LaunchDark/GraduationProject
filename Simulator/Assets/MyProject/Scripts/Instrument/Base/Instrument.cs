@@ -71,7 +71,7 @@ public class Instrument : MonoBehaviour
     [HideInInspector] public List<Instrument> groupInstrumentList;//组合仪器列表
     [HideInInspector] public InstrumentEnum groupInstrumentType;//组合仪器类型
 
-    protected InstrumentLineRender lineRender;
+    //protected InstrumentLineRender lineRender;
 
     [HideInInspector] public int selfSortIndex;//背包定位排序值
     [HideInInspector] static int sortMaxIndex;//背包定位排序值
@@ -86,7 +86,7 @@ public class Instrument : MonoBehaviour
     /// </summary>
     [HideInInspector] public Transform isInWall;
     /// <summary>
-    /// 宽度、宽度
+    /// 宽度、厚度
     /// </summary>
     public float width = 0.5f;
     /// <summary>
@@ -168,7 +168,7 @@ public class Instrument : MonoBehaviour
         }
         SetState(State.normal);
         Messenger.AddListener<Collider,string>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
-        lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
+        //lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
         SetRenderer(HeldState.normal);
         AwakeLater();
     }
@@ -191,11 +191,11 @@ public class Instrument : MonoBehaviour
         else if (mState == State.held && HeldingHand.GetComponent<HandBase>().GetState() == HandBase.State.Instrument)
         {
             //持有仪器时往地面画线
-            lineRender.gameObject.SetActive(true);
+            //lineRender.gameObject.SetActive(true);
             //吸附模式
             if (curAdsorbInstrument)
             {
-                lineRender.gameObject.SetActive(false);
+                //lineRender.gameObject.SetActive(false);
                 return;
             }
             //放下模式
@@ -221,7 +221,7 @@ public class Instrument : MonoBehaviour
         else
         {
             LastPos = Vector3.zero;
-            lineRender.gameObject.SetActive(false);
+            //lineRender.gameObject.SetActive(false);
         }
     }
 
