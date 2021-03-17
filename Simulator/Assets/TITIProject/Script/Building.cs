@@ -72,6 +72,7 @@ public class Building
         theTop.transform.localScale = scale;
         theTop.transform.position = pos;
         theTop.transform.parent = Parent.transform;
+        BuildingInfo.Instance.Walls.Add(theTop.transform);
     }
 
     public void CreatFloor(GameObject Parent)
@@ -82,7 +83,9 @@ public class Building
         theFloor.transform.localScale = scale;
         theFloor.transform.position = pos;
         theFloor.name = "Floor";
+        BuildingInfo.Instance.Walls.Add(theFloor.transform);
         theFloor.transform.parent = Parent.transform;
+        
     }
 
 

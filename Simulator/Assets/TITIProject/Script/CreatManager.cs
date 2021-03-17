@@ -14,10 +14,12 @@ public class CreatManager : MonoBehaviour
         build.CreatFloor(building1);
         build.CreatTop(building1);
         build.SetWall();
-        Vector2 DoorShape = new Vector2(1, 2);
-        Vector2 DoorPos = new Vector2(2, 0);
+        Vector2 winPos = new Vector2(0, 1);
+        Vector2 winShape = new Vector2(1, 1);
+        Vector2 DoorShape = new Vector2(0.9f, 1.9f);
+        Vector2 DoorPos = new Vector2(0, 0);
         build.walls[1].SetHole(HoleType.Door, DoorShape, DoorPos);
-        build.walls[0].SetHole(HoleType.Door, DoorShape, DoorPos);
+        build.walls[0].SetHole(HoleType.Windows, winShape, winPos);
         build.CreatWall(building1);
     }
 

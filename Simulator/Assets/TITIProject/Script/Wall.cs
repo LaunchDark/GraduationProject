@@ -64,6 +64,7 @@ public class Wall
             wall.transform.localScale = shape;
             wall.transform.position = this.pos;
             wall.transform.parent = Parent.transform;
+            BuildingInfo.Instance.Walls.Add(wall.transform);
 
         }
         else if (this.Hole.Type == HoleType.Door)
@@ -117,6 +118,7 @@ public class Wall
             door1.transform.parent = wall.transform;
             door2.transform.parent = wall.transform;
             wall.transform.parent = Parent.transform;
+            BuildingInfo.Instance.Doors.Add(wall.transform);
         }
         else if(this.Hole.Type == HoleType.Windows)
         {
@@ -133,8 +135,62 @@ public class Wall
 
             if(wallNum % 2 != 0)
             {
-                window0.transform.position = new Vector3(pos.x, pos.y + this.Hole.shape.y / 2, pos.z + this.Hole.pos.x);
+                window0.transform.position = new Vector3(pos.x, (pos.y - shape.y / 2) +
+                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
+
+                window0.transform.localScale = new Vector3(shape.x, 
+                    Math.Abs(((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)), this.Hole.shape.x);
+
+                window1.transform.position = new Vector3(pos.x, (pos.y + shape.y / 2) -
+                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
+
+                window1.transform.localScale = new Vector3(shape.x, 
+                    Math.Abs((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)), this.Hole.shape.x);
+
+                window2.transform.position = new Vector3(pos.x, pos.y, (pos.z - (shape.z / 2))
+                    + (((this.pos.z + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.z - (shape.z / 2))) / 2);
+
+                window2.transform.localScale = new Vector3(shape.x, shape.y,
+                    Math.Abs(((pos.z - (shape.z / 2)) - ((this.pos.z + this.Hole.pos.x) - (this.Hole.shape.x / 2)))));
+
+                window3.transform.position = new Vector3(pos.x, pos.y, (pos.z + (shape.z / 2))
+                    - ((pos.z + (shape.z / 2)) - ((this.pos.z + this.Hole.pos.x) + (this.Hole.shape.x / 2))) / 2);
+
+                window3.transform.localScale = new Vector3(shape.x, shape.y,
+                    Math.Abs(((pos.z + (shape.z / 2)) - ((this.pos.z + this.Hole.pos.x) + (this.Hole.shape.x / 2)))));
             }
+            else if(wallNum % 2 == 0)
+            {
+                window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) +
+                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z);
+
+                window0.transform.localScale = new Vector3(this.Hole.shape.x,
+                    Math.Abs(((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)), shape.z);
+
+                window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) -
+                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2, pos.z);
+
+                window1.transform.localScale = new Vector3(this.Hole.shape.x, 
+                    Math.Abs((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)), shape.z);
+
+                window2.transform.position = new Vector3((pos.x - (shape.x / 2)) +
+                    (((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.x - (shape.x / 2))) / 2, pos.y, pos.z);
+
+                window2.transform.localScale = new Vector3(Math.Abs(((pos.x - (shape.x / 2))
+                    - ((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)))), shape.y, shape.z);
+
+                window3.transform.position = new Vector3((pos.x + (shape.x / 2)) -
+                    ((pos.x + (shape.x / 2)) - ((this.pos.x + this.Hole.pos.x) + (this.Hole.shape.x / 2))) / 2, pos.y, pos.z);
+
+                window3.transform.localScale = new Vector3(Math.Abs(((pos.x + (shape.x / 2))
+                    - ((this.pos.x + this.Hole.pos.x) + (this.Hole.shape.x / 2)))), shape.y, shape.z);
+            }
+            window0.transform.parent = Wall.transform;
+            window1.transform.parent = Wall.transform;
+            window2.transform.parent = Wall.transform;
+            window3.transform.parent = Wall.transform;
+            Wall.transform.parent = Parent.transform;
+            BuildingInfo.Instance.Windows.Add(Wall.transform);
         }
 
     }
