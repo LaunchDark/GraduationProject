@@ -72,16 +72,14 @@ public class InstrumentMgr : MonoBehaviour
         switch (instrumentEnum)
         {
             #region 测试
-            case InstrumentEnum.门:
-                return "Instruments/测试门";
-            case InstrumentEnum.Cube:
-                return "Instruments/测试方块";
-            case InstrumentEnum.Sphere:
-                return "Instruments/测试小球";
-            case InstrumentEnum.HangLight:
-                return "Instruments/测试吊灯";
-            case InstrumentEnum.Double:
-                return "Instruments/测试复合体";
+            //case InstrumentEnum.Cube:
+            //    return "Instruments/测试方块";
+            //case InstrumentEnum.Sphere:
+            //    return "Instruments/测试小球";
+            //case InstrumentEnum.HangLight:
+            //    return "Instruments/测试吊灯";
+            //case InstrumentEnum.Double:
+            //    return "Instruments/测试复合体";
             #endregion
 
             #region 床
@@ -100,11 +98,15 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/柜子/床头柜1";
             case InstrumentEnum.电视柜1:
                 return "Instruments/柜子/电视柜1";
+            case InstrumentEnum.衣柜1:
+                return "Instruments/柜子/衣柜1";
             #endregion
 
             #region 桌子
             case InstrumentEnum.长桌1:
                 return "Instruments/桌子/长桌1";
+            case InstrumentEnum.长桌2:
+                return "Instruments/桌子/玻璃桌1";
             case InstrumentEnum.圆桌1:
                 return "Instruments/桌子/圆桌1";
             #endregion
@@ -118,6 +120,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/椅子/椅子3";
             case InstrumentEnum.沙发1:
                 return "Instruments/椅子/沙发1";
+            case InstrumentEnum.沙发2:
+                return "Instruments/椅子/沙发2";
             #endregion
 
             #region 电器
@@ -127,11 +131,17 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/电器/音响";
             case InstrumentEnum.空调1:
                 return "Instruments/电器/空调1";
+            case InstrumentEnum.电脑1:
+                return "Instruments/电器/电脑1";
             #endregion
 
             #region 灯饰
             case InstrumentEnum.壁灯1:
                 return "Instruments/灯饰/壁灯1";
+            case InstrumentEnum.顶灯1:
+                return "Instruments/灯饰/顶灯1";
+            case InstrumentEnum.吊灯1:
+                return "Instruments/灯饰/吊灯1";
             #endregion
 
             #region 饰品
@@ -141,6 +151,16 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/饰品/杯子1";
             case InstrumentEnum.花瓶1:
                 return "Instruments/饰品/花瓶1";
+            case InstrumentEnum.花瓶2:
+                return "Instruments/饰品/花瓶2";
+            case InstrumentEnum.花瓶3:
+                return "Instruments/饰品/花瓶3";
+            case InstrumentEnum.花瓶4:
+                return "Instruments/饰品/花瓶4";
+            case InstrumentEnum.花瓶5:
+                return "Instruments/饰品/花瓶5";
+            case InstrumentEnum.花瓶6:
+                return "Instruments/饰品/花瓶6";
             #endregion
 
             #region 卫生间
@@ -150,11 +170,19 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/卫生间/马桶1";
             case InstrumentEnum.洗手盆1:
                 return "Instruments/卫生间/洗手盆1";
-
             #endregion
 
             #region 厨房
-
+            case InstrumentEnum.橱柜1:
+                return "Instruments/厨房/橱柜1";
+            case InstrumentEnum.灶台1:
+                return "Instruments/厨房/灶台1";
+            case InstrumentEnum.水壶1:
+                return "Instruments/厨房/水壶1";
+            case InstrumentEnum.厨具1:
+                return "Instruments/厨房/厨具1";
+            case InstrumentEnum.厨具2:
+                return "Instruments/厨房/厨具2";
             #endregion
 
             #region 其他
@@ -162,6 +190,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/其他/地毯1";
             case InstrumentEnum.垃圾桶1:
                 return "Instruments/其他/垃圾桶1";
+            case InstrumentEnum.门:
+                return "Instruments/其他/门1";
             #endregion
 
             default:
