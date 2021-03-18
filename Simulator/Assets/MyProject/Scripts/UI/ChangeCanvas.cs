@@ -44,7 +44,11 @@ public class ChangeCanvas : MonoBehaviour
         }
         if (instrument)
         {
-            if (!instrument.gameObject.activeSelf || instrument.mState != Instrument.State.life)
+            if (!instrument.gameObject.activeSelf)
+            {
+                HideUI();
+            }
+            else if(instrument.mState == Instrument.State.drop || instrument.mState == Instrument.State.held || instrument.mState == Instrument.State.normal)
             {
                 HideUI();
             }

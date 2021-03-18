@@ -8,15 +8,15 @@ public class CreatManager : MonoBehaviour
     void Start()
     {
         Vector3 pos = new Vector3(0, 0, 0);
-        Building build = new Building(BuildingType.none,2.5f, 10.0f, 5.0f, 0.02f, pos);
+        Building build = new Building(BuildingType.none,2.5f, 10.0f, 5.0f, 0.1f, pos);
         int num = 1;
         GameObject building1 = new GameObject("building" + num);
         build.CreatFloor(building1);
         build.CreatTop(building1);
         build.SetWall();
         Vector2 winPos = new Vector2(0, 1);
-        Vector2 winShape = new Vector2(1, 1);
-        Vector2 DoorShape = new Vector2(0.9f, 1.9f);
+        Vector2 winShape = new Vector2(0.94f, 0.7f);
+        Vector2 DoorShape = new Vector2(0.9f, 2.0f);
         Vector2 DoorPos = new Vector2(0, 0);
         build.walls[1].SetHole(HoleType.Door, DoorShape, DoorPos);
         build.walls[0].SetHole(HoleType.Windows, winShape, winPos);

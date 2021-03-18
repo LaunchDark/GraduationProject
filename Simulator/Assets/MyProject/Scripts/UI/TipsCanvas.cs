@@ -23,7 +23,7 @@ public class TipsCanvas : MonoBehaviour
         }
     }
 
-    protected Coroutine coroutine;
+    public Coroutine coroutine;
     /// <summary>
     /// 提示
     /// </summary>

@@ -34,6 +34,9 @@ public class Instrument : MonoBehaviour
     }
 
     [HideInInspector] public InstrumentEnum type = InstrumentEnum.None;
+    /// <summary>
+    /// 是否可以被拿起
+    /// </summary>
     [HideInInspector] public bool isHasR = true;
 
 
@@ -135,7 +138,8 @@ public class Instrument : MonoBehaviour
         //改变层级
         foreach (var item in transform.GetComponentsInChildren<Transform>())
         {
-            item.gameObject.layer = LayerMask.NameToLayer("Instrument");
+            if (!item.GetComponentInParent<Canvas>())
+                item.gameObject.layer = LayerMask.NameToLayer("Instrument");
         }
 
         mState = State.normal;
@@ -154,11 +158,12 @@ public class Instrument : MonoBehaviour
             materials.Add(renderers[i].materials);
         }
         colliders = transform.GetComponentsInChildren<Collider>(true).ToList();
-        //for (int i = colliders.Count - 1; i >= 0; i--)
-        //{
-        //    if (colliders[i].GetComponent<MeshCollider>() != null)
-        //        colliders.Remove(colliders[i]);
-        //}
+        //如果是按键的碰撞盒，移除
+        for (int i = colliders.Count - 1; i >= 0; i--)
+        {
+            if (colliders[i].GetComponentInParent<mButton>() != null)
+                colliders.Remove(colliders[i]);
+        }
         if (adsorbCollider)
         {
             adsorbCollider.enabled = false;

@@ -109,6 +109,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/×À×Ó/²£Á§×À1";
             case InstrumentEnum.Ô²×À1:
                 return "Instruments/×À×Ó/Ô²×À1";
+            case InstrumentEnum.Ô²×À2:
+                return "Instruments/×À×Ó/Ô²×À2";
             #endregion
 
             #region ÒÎ×Ó
@@ -142,6 +144,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/µÆÊÎ/¶¥µÆ1";
             case InstrumentEnum.µõµÆ1:
                 return "Instruments/µÆÊÎ/µõµÆ1";
+            case InstrumentEnum.Ì¨µÆ1:
+                return "Instruments/µÆÊÎ/Ì¨µÆ1";
             #endregion
 
             #region ÊÎÆ·
@@ -192,6 +196,12 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/ÆäËû/À¬»øÍ°1";
             case InstrumentEnum.ÃÅ:
                 return "Instruments/ÆäËû/ÃÅ1";
+            case InstrumentEnum.´°:
+                return "Instruments/ÆäËû/´°1";
+            case InstrumentEnum.´°Á±:
+                return "Instruments/ÆäËû/´°Á±";
+            case InstrumentEnum.µõÉÈ1:
+                return "Instruments/ÆäËû/µõÉÈ1";
             #endregion
 
             default:

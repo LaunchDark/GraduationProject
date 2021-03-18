@@ -93,8 +93,11 @@ public class mButton : UIElement
     protected override void OnButtonClick()
     {
         //onHandClick.Invoke(currentHand);
-        currentHand.gameObject.GetComponent<HandBase>().SetTriggerDown(true);
-        ButtonClick();
+        if (currentHand)
+        {
+            currentHand.gameObject.GetComponent<HandBase>().SetTriggerDown(true);
+            ButtonClick();
+        }
     }
 
     /// <summary>
@@ -148,8 +151,13 @@ public class mButton : UIElement
         //Debug.Log("Click");
         HandClickDown();
         //执行点击回调
-        if (clickCallBack != null && !currentHand.gameObject.GetComponent<HandBase>().GetGripDown())
-            clickCallBack.Invoke();
+        if (currentHand)
+        {
+            if (clickCallBack != null && !currentHand.gameObject.GetComponent<HandBase>().GetGripDown())
+            {
+                clickCallBack.Invoke();
+            }
+        }
     }
 
     /// <summary>

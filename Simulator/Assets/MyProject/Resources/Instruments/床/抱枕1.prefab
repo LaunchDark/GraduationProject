@@ -32,9 +32,13 @@ MonoBehaviour:
   isHangInsturment: 0
   isFreeInstrument: 0
   CanScaleInstrument: 0
+  isFloot: 0
   ScaleHand: {fileID: 0}
-  CanChange: []
-  EachMaterials: []
+  CanChange:
+  - {fileID: 4038124703675814664}
+  EachMaterials:
+  - {fileID: 2100000, guid: 51993ec9ef337484f87010b8602e9e9a, type: 2}
+  - {fileID: 2100000, guid: 13ad3c1183b9eaf408546d092497fa83, type: 2}
   CurMaterial: 0
 --- !u!64 &5821652753774084514
 MeshCollider:
@@ -105,6 +109,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23449420758914004, guid: 3bed8b713ee10824d9d035b76cc72dde,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51993ec9ef337484f87010b8602e9e9a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bed8b713ee10824d9d035b76cc72dde, type: 3}
 --- !u!1 &4061324534507039546 stripped
@@ -116,6 +125,12 @@ GameObject:
 --- !u!1 &4061129239173902390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1413546285740266, guid: 3bed8b713ee10824d9d035b76cc72dde,
+    type: 3}
+  m_PrefabInstance: {fileID: 4060278851150119132}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4038124703675814664 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23449420758914004, guid: 3bed8b713ee10824d9d035b76cc72dde,
     type: 3}
   m_PrefabInstance: {fileID: 4060278851150119132}
   m_PrefabAsset: {fileID: 0}

@@ -171,6 +171,17 @@
     "GroupList": [],
     "IsAtPacksack": 1
   },
+  {
+    "InstrumentEnum": "圆桌2",
+    "InstrumentTypeEnum": "桌子",
+    "Name": "圆桌2",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
 
   //椅子
   {
@@ -302,6 +313,17 @@
     "InstrumentEnum": "吊灯1",
     "InstrumentTypeEnum": "灯饰",
     "Name": "吊灯",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "台灯1",
+    "InstrumentTypeEnum": "灯饰",
+    "Name": "台灯",
     "Icon": "碳纤杆",
     "Amount": 99,
     "Lnk": "",
@@ -505,9 +527,42 @@
     "IsAtPacksack": 1
   },
   {
+    "InstrumentEnum": "窗",
+    "InstrumentTypeEnum": "其他",
+    "Name": "窗",
+    "Icon": "棱镜",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "窗帘",
+    "InstrumentTypeEnum": "其他",
+    "Name": "窗帘",
+    "Icon": "棱镜",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
     "InstrumentEnum": "地毯1",
     "InstrumentTypeEnum": "其他",
     "Name": "地毯",
+    "Icon": "碳纤杆",
+    "Amount": 99,
+    "Lnk": "",
+    "IsGroup": 0,
+    "GroupList": [],
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "吊扇1",
+    "InstrumentTypeEnum": "其他",
+    "Name": "吊扇",
     "Icon": "碳纤杆",
     "Amount": 99,
     "Lnk": "",

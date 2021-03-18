@@ -95,6 +95,12 @@ public enum InstrumentEnum
     /// </summary>
     [Description("圆桌1")]
     圆桌1,
+
+    /// <summary>
+    /// 圆桌2
+    /// </summary>
+    [Description("圆桌2")]
+    圆桌2,
     #endregion
 
     #region 椅子
@@ -161,16 +167,24 @@ public enum InstrumentEnum
     /// </summary>
     [Description("壁灯1")]
     壁灯1,
+
     /// <summary>
     /// 顶灯1
     /// </summary>
     [Description("顶灯1")]
     顶灯1,
+
     /// <summary>
     /// 吊灯1
     /// </summary>
     [Description("吊灯1")]
     吊灯1,
+
+    /// <summary>
+    /// 台灯1
+    /// </summary>
+    [Description("台灯1")]
+    台灯1,
 
     #endregion
 
@@ -286,6 +300,18 @@ public enum InstrumentEnum
     门,
 
     /// <summary>
+    /// 窗
+    /// </summary>
+    [Description("窗")]
+    窗,
+
+    /// <summary>
+    /// 窗帘
+    /// </summary>
+    [Description("窗帘")]
+    窗帘,
+
+    /// <summary>
     /// 墙
     /// </summary>
     [Description("墙")]
@@ -302,6 +328,12 @@ public enum InstrumentEnum
     /// </summary>
     [Description("垃圾桶1")]
     垃圾桶1,
+
+    /// <summary>
+    /// 吊扇1
+    /// </summary>
+    [Description("吊扇1")]
+    吊扇1,
 
     #endregion
 

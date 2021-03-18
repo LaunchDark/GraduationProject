@@ -5,10 +5,15 @@ using UnityEngine;
 public class MusicPlayerBuild : Instrument
 {
     protected AudioManager audioManager;
+    public mButton playBtn;
+    public mButton nextBtn;
+    public mButton lastBtn;
+
     void Start()
     {
         type = InstrumentEnum.音响;
 
+        CanScaleInstrument = false;
         isFreeInstrument = true;
         isHangInsturment = true;
 
@@ -19,12 +24,10 @@ public class MusicPlayerBuild : Instrument
         width = 0.3f;
         height = 0.45f;
 
-        audioManager = gameObject.AddComponent<AudioManager>();
-    }
+        audioManager = transform.GetComponent<AudioManager>();
 
-    public AudioManager GetAudioManager()
-    {
-        return audioManager;
+        playBtn.clickCallBack = audioManager.PlayOrPause;
+        nextBtn.clickCallBack = audioManager.NextMusic;
+        lastBtn.clickCallBack = audioManager.LastMusic;
     }
-
 }

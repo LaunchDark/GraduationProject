@@ -79,8 +79,20 @@ MonoBehaviour:
   CanScaleInstrument: 1
   isFloot: 0
   ScaleHand: {fileID: 0}
-  CanChange: []
-  EachMaterials: []
+  CanChange:
+  - {fileID: 407132620771875786}
+  - {fileID: 407311380658303820}
+  - {fileID: 407533467692217044}
+  - {fileID: 407542021964732554}
+  EachMaterials:
+  - {fileID: 2100000, guid: e2fa078164dab1e48b500c378178c987, type: 2}
+  - {fileID: 2100000, guid: ebb0c3b5d671dd34991ceaf790a1d9f0, type: 2}
+  - {fileID: 2100000, guid: 4379688209759be42b774711d72df308, type: 2}
+  - {fileID: 2100000, guid: e4817947540c70a40b08fb6789e59939, type: 2}
+  - {fileID: 2100000, guid: a3237d6a2db39cc4da6e53487606b63e, type: 2}
+  - {fileID: 2100000, guid: 5f5d8b64fa1bd4742a3f6db878c039d0, type: 2}
+  - {fileID: 2100000, guid: 65f2f0d48140ae94fa62192c8d838822, type: 2}
+  - {fileID: 2100000, guid: c902eb7a8be4fc7418ad511de582f71b, type: 2}
   CurMaterial: 0
 --- !u!1001 &429508163473756956
 PrefabInstance:
@@ -148,6 +160,30 @@ Transform:
 --- !u!1 &428357614099477402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1195844099399814, guid: 468a1217f0bcc8944b3b66e0dfd662e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 429508163473756956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &407132620771875786 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23511475652856022, guid: 468a1217f0bcc8944b3b66e0dfd662e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 429508163473756956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &407311380658303820 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23332653757849680, guid: 468a1217f0bcc8944b3b66e0dfd662e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 429508163473756956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &407533467692217044 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23136892993888712, guid: 468a1217f0bcc8944b3b66e0dfd662e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 429508163473756956}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &407542021964732554 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23092121141201814, guid: 468a1217f0bcc8944b3b66e0dfd662e9,
     type: 3}
   m_PrefabInstance: {fileID: 429508163473756956}
   m_PrefabAsset: {fileID: 0}
