@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: icon
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 51f976772550ff044bb9a30055e750a4, type: 3}
+    totalSpriteSurfaceArea: 861888
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ca7d5c40b9c689d40a92e730bdf1946e, type: 3}
+  - {fileID: 21300000, guid: 8faed75089126a54b8f74e6cb7d7770c, type: 3}
+  - {fileID: 21300000, guid: a1689bf05b20a634cbe42b039bda26ea, type: 3}
+  - {fileID: 21300000, guid: 03f69c0111f36b84ca13dec6c13fbf15, type: 3}
+  - {fileID: 21300000, guid: f93d0991fe9954f48bf2b01297baaa9f, type: 3}
+  - {fileID: 21300000, guid: cb841062d08c5e443a859e9382337979, type: 3}
+  - {fileID: 21300000, guid: ddc32213d48fba340a0118e845af8f07, type: 3}
+  - {fileID: 21300000, guid: d823f323f2832904f813b38ce2c5d4ea, type: 3}
+  - {fileID: 21300000, guid: f7a3233322cfbf84e912358428a30b98, type: 3}
+  - {fileID: 21300000, guid: 61b782431ae81ea4082fcda75f4b6bde, type: 3}
+  - {fileID: 21300000, guid: e46e33a3d1743de4da47d494fa12cfc6, type: 3}
+  - {fileID: 21300000, guid: 93d364a3412822544b225147790828eb, type: 3}
+  - {fileID: 21300000, guid: 50bf54d34ffe6a64c826054e4bd70685, type: 3}
+  - {fileID: 21300000, guid: 395bdd047cf957640aedb765d5584a60, type: 3}
+  - {fileID: 21300000, guid: 41e516743e690a0409196cb923caedfa, type: 3}
+  - {fileID: 21300000, guid: 8bf36b551109a6c44be1b6e95fabacde, type: 3}
+  - {fileID: 21300000, guid: df677a7568c86284e9335100ee0fc47c, type: 3}
+  - {fileID: 21300000, guid: 76944dc5fc21d814c8cb7b600649fa97, type: 3}
+  - {fileID: 21300000, guid: eb2abc76320ad514382f70865bb756f8, type: 3}
+  - {fileID: 21300000, guid: 1258e1b6e20bdb942943f55560a92349, type: 3}
+  - {fileID: 21300000, guid: 235943b6c148d89459a52170b0724a95, type: 3}
+  - {fileID: 21300000, guid: e9cdf958c93af9944a2ef070426069a1, type: 3}
+  - {fileID: 21300000, guid: bdae9d7852c9bff4d8837069978bc7b9, type: 3}
+  - {fileID: 21300000, guid: c33dd9b85c1492b4fada6fab76be7c02, type: 3}
+  - {fileID: 21300000, guid: 458edd29a17cc304cb506b8f748838b2, type: 3}
+  - {fileID: 21300000, guid: fa36a8994f79be54b97a071669167f97, type: 3}
+  - {fileID: 21300000, guid: 23f72ac90999479489e46b0413e4dc29, type: 3}
+  - {fileID: 21300000, guid: eff91af9342427c41b6bd0df0f27c8f3, type: 3}
+  - {fileID: 21300000, guid: 0256282a7e55a5f498e373a27690aa9f, type: 3}
+  - {fileID: 21300000, guid: ded2a84a1dbe3f94e8756a19a15b2a9c, type: 3}
+  - {fileID: 21300000, guid: 4537a09afec0b17499cceb26c83f29c5, type: 3}
+  - {fileID: 21300000, guid: faca2f9a39acfa1459ac3e0b5c0e6fc0, type: 3}
+  - {fileID: 21300000, guid: d7bdfaea6bd4f6b47ac1094ec3e76eaf, type: 3}
+  - {fileID: 21300000, guid: 4685ea2b4c5e2de49a010dba171f1cf3, type: 3}
+  - {fileID: 21300000, guid: 5e00935b5c9219540a2ab4ebad98e170, type: 3}
+  - {fileID: 21300000, guid: 7c1ca7bbfc70e2a4e94a8912ebf81b9f, type: 3}
+  - {fileID: 21300000, guid: d6790ccb9a7f7104f832aa9b8226f5e5, type: 3}
+  - {fileID: 21300000, guid: 884d114c0c945d3478275726773552b9, type: 3}
+  - {fileID: 21300000, guid: a37e1f6c8cae5714da207ad210447371, type: 3}
+  - {fileID: 21300000, guid: aed81c9c79395014c8a8e7cdd1c83cad, type: 3}
+  - {fileID: 21300000, guid: 03220dbc88b5a6c4281246ec775a89d5, type: 3}
+  - {fileID: 21300000, guid: aea6e9ec963cf0a44bae96b984f02e61, type: 3}
+  - {fileID: 21300000, guid: 89fdec1e266697d42ae7421e60d14ec2, type: 3}
+  - {fileID: 21300000, guid: 8ad5714e426af2b4987ffb502b401af9, type: 3}
+  - {fileID: 21300000, guid: 64f9b4eeb7723f245a0918398eb5019c, type: 3}
+  - {fileID: 21300000, guid: bd09486fccefa9743aefbfcfa7e8ee92, type: 3}
+  - {fileID: 21300000, guid: ba5a6abf3ee589144bd6cc6bbaf3dc31, type: 3}
+  - {fileID: 21300000, guid: e5ec3ccf578053c4ea427aa7f91b554e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - pingzi1
+  - bingxiang
+  - ditan
+  - pingzi4
+  - shuihu
+  - huasa
+  - taideng
+  - baozhen2
+  - datingyuanzhuo
+  - kongtiao
+  - pingzi2
+  - baozhen
+  - shafa1
+  - dianfengshan
+  - dianshigui2
+  - yinxiang1
+  - xishoupan
+  - chuangtougui
+  - chufangxiaobujian
+  - yigui
+  - beizi
+  - chuanghu
+  - bideng
+  - men
+  - pingzi5
+  - pingzi6
+  - zhuozi
+  - dianshigui
+  - bijiben
+  - diaodeng
+  - lajitong
+  - guo
+  - deng
+  - matong
+  - yinxiang
+  - yizi
+  - zhenpizi 1
+  - yuanzhuo
+  - zhentou
+  - dianshi
+  - bolizhuo
+  - huakuang
+  - chufang
+  - yizi1 1
+  - chuanglian
+  - meiqizao
+  - shafa
+  - chuang 1
+  m_Tag: icon
+  m_IsVariant: 0

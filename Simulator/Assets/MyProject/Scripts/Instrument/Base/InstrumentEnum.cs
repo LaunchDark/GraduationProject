@@ -159,6 +159,12 @@ public enum InstrumentEnum
     /// </summary>
     [Description("电脑1")]
     电脑1,
+
+    /// <summary>
+    /// 冰箱1
+    /// </summary>
+    [Description("冰箱1")]
+    冰箱1,
     #endregion
 
     #region 灯饰

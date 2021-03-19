@@ -18,8 +18,29 @@ public class ScrollControl : MonoBehaviour
         Mask = transform.Find("Viewport").GetComponent<RectTransform>();
 
         UpBtn.clickCallBack = () => { MoveContent((int)content.GetComponent<RectTransform>().anchoredPosition.y - 100); };
-        DownBtn.clickCallBack = () => { MoveContent((int)content.GetComponent<RectTransform>().anchoredPosition.y + 100); };
+        UpBtn.enterCallBack = () =>
+        {
+            if (UpBtn.transform.Find("Image/Enter"))
+                UpBtn.transform.Find("Image/Enter").gameObject.SetActive(true);
+        };
+        UpBtn.exitCallBack = () =>
+        {
+            if (UpBtn.transform.Find("Image/Enter"))
+                UpBtn.transform.Find("Image/Enter").gameObject.SetActive(false);
+        };
 
+        DownBtn.clickCallBack = () => { MoveContent((int)content.GetComponent<RectTransform>().anchoredPosition.y + 100); };
+        DownBtn.enterCallBack = () =>
+        {
+            if (DownBtn.transform.Find("Image/Enter"))
+                DownBtn.transform.Find("Image/Enter").gameObject.SetActive(true);
+        };
+        DownBtn.exitCallBack = () =>
+        {
+
+            if (DownBtn.transform.Find("Image/Enter"))
+                DownBtn.transform.Find("Image/Enter").gameObject.SetActive(false);
+        };
     }
 
     protected virtual void MoveContent(int distance)

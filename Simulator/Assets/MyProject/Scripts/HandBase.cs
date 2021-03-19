@@ -13,7 +13,7 @@ public class HandBase : MonoBehaviour
 	public enum State
 	{
 		normal,//正常
-		Instrument,//手持仪器
+		Instrument,//手持家具
 	}
 
 	#region Variables
@@ -121,20 +121,6 @@ public class HandBase : MonoBehaviour
 	{
 		if (holdInstrument != null)
 		{
-			//if (holdInstrument.isInWall)
-			//{
-			//	//墙厚0.1(10cm) 碰撞盒0.2(20cm)
-
-
-			//	// holdInstrument + 0.05 = wall
-
-			//	//重复移位
-			//	holdInstrument.transform.eulerAngles = holdInstrument.isInWall.eulerAngles;
-			//	holdInstrument.transform.localPosition = new Vector3(0, 0, holdInstrument.GetOffsetZ());
-			//	//holdInstrument.transform.position = holdInstrument.transform.position + (holdInstrument.isInWall.forward * (holdInstrument.radius - holdInstrument.test));
-			//	holdInstrument.transform.position = holdInstrument.transform.position + (holdInstrument.isInWall.forward * (0.55f - Vector3.Distance(holdInstrument.transform.position, holdInstrument.isInWall.position)));
-			//}
-
 			//手持物体时，发射射线检测，选中的墙，碰撞点向下面发射射线，然后根据物体厚度，高度，和墙的方向，调整手上物体
 			isWall = false;
 			Ray ray = new Ray(HandDirection.position, HandDirection.forward);
@@ -142,14 +128,6 @@ public class HandBase : MonoBehaviour
 			//只检测墙体层 layer = 9
 			if (Physics.Raycast(ray, out hitInfo, holdInstrument.GetOffsetZ() + (holdInstrument.width / 2 * holdInstrument.transform.localScale.z), LayerMask.GetMask("Wall")))
 			{
-				//RaycastHit flood;
-				//if (Physics.Raycast(hitInfo.point, -hitInfo.transform.up, out flood))
-				//{
-				//	//方向等于墙体方向
-				//	holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
-				//	//位置等于检测位置正下方+物体高度+物体宽度
-				//	holdInstrument.transform.position = flood.point + new Vector3(0, holdInstrument.height, 0) + hitInfo.transform.forward * holdInstrument.width;
-				//}
 				isWall = true;
 				holdInstrument.transform.eulerAngles = hitInfo.transform.eulerAngles;
 				holdInstrument.transform.position = hitInfo.point + hitInfo.transform.forward * (holdInstrument.width / 2 * holdInstrument.transform.localScale.z);
@@ -282,52 +260,6 @@ public class HandBase : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 放下仪器事件
-	/// </summary>
-	public virtual void InputTakeDown()
-	{
-		if (holdInstrument && mState == State.normal)
-		{
-			if (holdInstrument.GetHeldState() == Instrument.HeldState.green)
-			{
-				holdInstrument.transform.parent = null;
-				if (holdInstrument.isHangInsturment)
-				{
-					if (isWall)
-					{
-						holdInstrument.SetState(Instrument.State.life);
-					}
-					else
-					{
-						holdInstrument.SetState(Instrument.State.drop);
-					}
-				}
-				else 
-				{
-					holdInstrument.SetState(Instrument.State.drop);
-				}
-				holdInstrument = null;
-			}
-			else if (holdInstrument.GetHeldState() == Instrument.HeldState.red)
-			{
-				Debug.LogWarning("仪器不可放下");
-			}
-		}
-	}
-
-	/// <summary>
-	/// 调整仪器距离事件
-	/// </summary>
-	/// <param name="f">仪器距离</param>
-	public virtual void InputDisitance(float f)
-	{
-		if (holdInstrument && mState == State.normal)
-		{
-			holdInstrument.SetOffsetZChange(f);
-		}
-	}
-
-	/// <summary>
 	/// 拿起仪器事件
 	/// </summary>
 	public virtual void InputHeld()
@@ -356,8 +288,9 @@ public class HandBase : MonoBehaviour
 		instrument.SetState(Instrument.State.held, gameObject);
 		holdInstrument.transform.SetParent(transform.GetChild(1).transform);
 		holdInstrument.transform.localPosition = Vector3.zero;
+		holdInstrument.transform.localRotation = Quaternion.Euler(new Vector3(0,180,0));
 		//holdInstrument.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		holdInstrument.transform.LookAt(Player.instance.transform);
+		//holdInstrument.transform.LookAt(Player.instance.transform);
 		SetState(State.Instrument);
 	}
 
