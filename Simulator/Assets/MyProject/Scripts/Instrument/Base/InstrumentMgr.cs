@@ -198,8 +198,12 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/其他/垃圾桶1";
             case InstrumentEnum.门:
                 return "Instruments/其他/门1";
+            case InstrumentEnum.门框:
+                return "Instruments/其他/门框";
             case InstrumentEnum.窗:
                 return "Instruments/其他/窗1";
+            case InstrumentEnum.窗台:
+                return "Instruments/其他/窗台";
             case InstrumentEnum.窗帘:
                 return "Instruments/其他/窗帘";
             case InstrumentEnum.吊扇1:
@@ -277,7 +281,7 @@ public class InstrumentMgr : MonoBehaviour
         Instrument[] temp = FindObjectsOfType<Instrument>();
         for (int i = 0; i < temp.Length; i++)
         {
-            if (temp[i].type != InstrumentEnum.墙)
+            if (temp[i].type != InstrumentEnum.门框)
             {
                 DeleteInstrument(temp[i]);
             }

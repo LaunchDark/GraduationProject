@@ -48,7 +48,6 @@ public class PacksackMgr : MonoBehaviour
             data.Type = (int)(InstrumentTypeEnum)Enum.Parse(typeof(InstrumentTypeEnum),(string)item["InstrumentTypeEnum"]);
             data.name = (string)item["Name"];
             data.icon = (string)item["Icon"];
-            data.key = (string)item["Lnk"];
             data.num = (int)item["Amount"];
             data.isAtPacksack = (int)item["IsAtPacksack"] > 0 ? true : false;
             data.callback = CreatePlayerHoldInstrument;
@@ -103,52 +102,4 @@ public class PacksackMgr : MonoBehaviour
         return null;
     }
 
-    //获取地图上存在的仪器(剔除掉组合仪器)
-    public List<Instrument> GetMapInstrumentList()
-    {
-        List<Instrument> mapInstrumentList = GameObject.FindObjectsOfType<Instrument>().ToList();
-        List<Instrument> group = new List<Instrument>();
-        for (int i = 0; i < mapInstrumentList.Count; i++)
-        {
-            if (mapInstrumentList[i].IsGroupInstrument())
-                group.Add(mapInstrumentList[i]);
-        }
-        //剔除掉组合仪器的内部基础仪器
-        for (int i = 0; i < group.Count; i++)
-        {
-            Instrument[] temp = group[i].GetComponentsInChildren<Instrument>();
-            for (int j = 1; j < temp.Length; j++)
-            {
-                mapInstrumentList.Remove(temp[j]);
-            }
-        }
-        for (int i = mapInstrumentList.Count - 1; i >= 0; i--)
-        {
-            if (mapInstrumentList[i].mState != Instrument.State.life)
-                mapInstrumentList.RemoveAt(i);
-        }
-        return mapInstrumentList;
-    }
-
-
-    public List<Instrument> GetMapInstrumentList(List<InstrumentEnum> ignoreEnumList, bool isAtPacksack = true)
-    {
-        List<Instrument> mapInstrumentList = GetMapInstrumentList();
-        for (int i = mapInstrumentList.Count - 1; i >= 0; i--)
-        {
-            //是组合仪器,不剔除
-            if (mapInstrumentList[i].IsGroupInstrument())
-                continue;
-            //忽略类型不包含,再判断是否在背包显示
-            if (ignoreEnumList.Contains(mapInstrumentList[i].type) == false)
-            {
-                if (PacksackMgr.Instance.GetPacksackItemData(mapInstrumentList[i].type).isAtPacksack == isAtPacksack)
-                    continue;
-            }
-            //剩下不符合的都剔除掉
-            mapInstrumentList.Remove(mapInstrumentList[i]);
-        }
-        mapInstrumentList.Sort((Instrument a, Instrument b) => { return a.selfSortIndex - b.selfSortIndex; });
-        return mapInstrumentList;
-    }
 }

@@ -12,21 +12,27 @@ public class Door : Instrument
     void Start()
     {
         type = InstrumentEnum.门;
-        isHasR = false;
         CanScaleInstrument = false;
 
         MaxOffsetZ = 3f;
         MinOffsetZ = 0.5f;
-        canDropDis = 3f;
+        canDropDis = 0f;
 
         width = 0.1f;
         height = 2f;
 
         adsorbTypeList = new List<InstrumentEnum>();
-        adsorbTypeList.Add(InstrumentEnum.墙);
+        adsorbTypeList.Add(InstrumentEnum.门框);
 
         RotaCenter = transform.Find("旋转轴");
         GetComponentInChildren<mButton>().clickCallBack = OpenOrCloseDoor;
+
+        foreach (var item in transform.GetComponentsInChildren<Transform>())
+        {
+            if (item.GetComponentInParent<mButton>())
+                item.gameObject.layer = LayerMask.NameToLayer("UI");
+        }
+
     }
 
     override public void AdsorbCallBack()

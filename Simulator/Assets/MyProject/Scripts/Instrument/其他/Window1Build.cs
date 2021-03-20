@@ -16,13 +16,13 @@ public class Window1Build : Instrument
 
         MaxOffsetZ = 3f;
         MinOffsetZ = 0.5f;
-        canDropDis = 5f;
+        canDropDis = 0f;
 
         width = 0.1f;
         height = 0.8f;
 
         adsorbTypeList = new List<InstrumentEnum>();
-        adsorbTypeList.Add(InstrumentEnum.墙);
+        adsorbTypeList.Add(InstrumentEnum.窗台);
     }
 
     override public void AdsorbCallBack()

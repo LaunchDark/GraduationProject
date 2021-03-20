@@ -168,4 +168,9 @@ public class mButton : UIElement
     {
         collider.size = vector3;
     }
+
+    public virtual void SetText(string str)
+    {
+        transform.Find("Name").GetComponent<Text>().text = str;
+    }
 }

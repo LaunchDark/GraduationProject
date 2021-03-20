@@ -26,10 +26,12 @@ public class UIRoot : MonoBehaviour
 
     protected List<mButton> mButtons;
 
-
+    [SerializeField] protected mButton PlayBtn;
+    [SerializeField] protected mButton ExitBtn;
+    bool isPlaying = false;
     public void Init()
     {
-        HideUIRoot();
+        //HideUIRoot();
         Left = transform.Find("Left");
         Right = transform.Find("Right");
         Top = transform.Find("Top");
@@ -45,6 +47,14 @@ public class UIRoot : MonoBehaviour
         Left.Find("Viewport/Content").gameObject.AddComponent<TypeSelect>().Init(AllPacksack.Count);
 
         AddFunctionalButton();
+
+        Left.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+
+        PlayBtn.clickCallBack = Play;
+        ExitBtn.clickCallBack = Exit;
+        Vector3 pos = Valve.VR.InteractionSystem.Player.instance.transform.position;
+        ShowUIRoot(new Vector3(pos.x, pos.y + 1, pos.z + 0.5f));
     }
 
     private void Update()
@@ -70,7 +80,8 @@ public class UIRoot : MonoBehaviour
 
     public void HideUIRoot()
     {
-        gameObject.SetActive(false);
+        if (isPlaying == true)
+            gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -80,7 +91,7 @@ public class UIRoot : MonoBehaviour
     {
         mButtons = new List<mButton>();
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 4; i++)
         {
             mButton btn = UITool.Instantiate("UI/Base/Button", Left.Find("Viewport/Content").gameObject).GetComponent<mButton>();
             mButtons.Add(btn);
@@ -88,6 +99,41 @@ public class UIRoot : MonoBehaviour
 
         mButtons[0].Init("截取屏幕", () => TipsCanvas.Instance.CountDown());
         mButtons[1].Init("收回所有家具", () => InstrumentMgr.Instance.DeleteSceneAllInstrument());
+        mButtons[2].Init("切换默认灯光", () => ClosePlayerLight());
+        mButtons[3].Init("返回", () => Back());
     }
 
+    protected void ClosePlayerLight()
+    {
+        Valve.VR.InteractionSystem.Player.instance.transform.Find("SteamVRObjects/BodyCollider/Point Light").gameObject.
+            SetActive(!Valve.VR.InteractionSystem.Player.instance.transform.Find("SteamVRObjects/BodyCollider/Point Light").gameObject.activeSelf);
+    }
+
+    /// <summary>
+    /// 开始
+    /// </summary>
+    protected void Play()
+    {
+        isPlaying = true;
+        Left.gameObject.SetActive(true);
+        Right.gameObject.SetActive(true);
+        Top.gameObject.SetActive(false);
+    }
+
+    protected void Back()
+    {
+        PlayBtn.SetText("继续");
+        Left.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+        Top.gameObject.SetActive(true);
+    }
+
+    protected void Exit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

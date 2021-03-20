@@ -11,7 +11,6 @@ public class PacksackItem : MonoBehaviour
     public SpriteAtlas atlas;
     public GameObject mask;
     public GameObject select;
-    public Text selectText;
     public Image icon;
     public Text itemName;
     public Text num;
@@ -25,7 +24,6 @@ public class PacksackItem : MonoBehaviour
         btn.enterCallBack = OnPointerEnter;
 
         select.SetActive(false);
-        selectText.gameObject.SetActive(false);
         Messenger.AddListener(GlobalEvent.Packsack_Item_Change,()=> { 
             if(gameObject.activeSelf && mData!=null)
             {   
@@ -58,9 +56,7 @@ public class PacksackItem : MonoBehaviour
         }
 
         itemName.text = data.name;
-        selectText.text = data.key;
         select.SetActive(false);
-        selectText.gameObject.SetActive(false);
     }
 
     public void Click()
@@ -74,7 +70,6 @@ public class PacksackItem : MonoBehaviour
         if (btn.button.interactable && !mask.activeSelf)
         {
             select.SetActive(true);
-            selectText.gameObject.SetActive(true);
         }
     }
 
@@ -83,7 +78,6 @@ public class PacksackItem : MonoBehaviour
         if (btn.button.interactable)
         {
             select.SetActive(false);
-            selectText.gameObject.SetActive(false);
         }
     }
 

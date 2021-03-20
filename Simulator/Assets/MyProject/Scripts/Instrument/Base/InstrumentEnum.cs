@@ -312,16 +312,22 @@ public enum InstrumentEnum
     窗,
 
     /// <summary>
+    /// 窗台
+    /// </summary>
+    [Description("窗台")]
+    窗台,
+
+    /// <summary>
     /// 窗帘
     /// </summary>
     [Description("窗帘")]
     窗帘,
 
     /// <summary>
-    /// 墙
+    /// 门框
     /// </summary>
-    [Description("墙")]
-    墙,
+    [Description("门框")]
+    门框,
 
     /// <summary>
     /// 地毯1

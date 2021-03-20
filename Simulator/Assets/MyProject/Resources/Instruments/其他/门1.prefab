@@ -413,7 +413,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5
@@ -478,7 +477,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.2124405, y: 6.7173676, z: 16.672825}
+  m_Size: {x: 15.2124405, y: 8.717368, z: 16.672825}
   m_Center: {x: 10.962206, y: 2.522274, z: 0.5217299}
 --- !u!1001 &1145055111714374938
 PrefabInstance:
