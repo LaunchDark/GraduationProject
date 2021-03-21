@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum HoleType
 {
@@ -17,27 +19,43 @@ public class hole
     public Vector2 shape;
 }
 
-public class windows : hole
+public class windows :  hole
 {
-
-
     public windows(int WallNum, Vector2 Shape, Vector2 Pos)
     {
         this.Type = HoleType.Windows;
         this.wallNum = WallNum;
-        this.shape = Shape;
+        //this.shape = Shape;
         this.pos = Pos;
     }
+
+    public windows(int WallNum, Vector2 Pos)
+    {
+        this.Type = HoleType.Windows;
+        this.wallNum = WallNum;
+        this.shape = new Vector2(1, 0.8f);
+        this.pos = Pos;
+    }
+
 }
 
 public class door : hole
 {
+    //new public Vector2 shape = new Vector2(0.9f, 2.0f);
     public door(int WallNum, Vector2 Shape, float posX)
     {
         this.Type = HoleType.Door;
         this.wallNum = WallNum;
         this.shape = Shape;
         this.pos = new Vector2(posX, Shape.y / 2);
+    }
+
+    public door(int WallNum, float posX)
+    {
+        this.Type = HoleType.Door;
+        this.wallNum = WallNum;
+        this.shape = new Vector2(0.9f, 2.0f);
+        this.pos = new Vector2(posX, this.shape.y / 2);
     }
 }
 
@@ -47,12 +65,14 @@ public class Wall
     public hole Hole = null;
     public Vector3 shape;
     public Vector3 pos;
+    public Vector3 RoomPos;
 
-    public Wall(float lenght, float weight, float thick, Vector3 pos, int wallNum)
+    public Wall(float lenght, float weight, float thick, Vector3 pos, int wallNum, Vector3 RoomPos)
     {
         this.wallNum = wallNum;
         shape = new Vector3(lenght, weight, thick);
         this.pos = pos;
+        this.RoomPos = RoomPos;
     }
 
     public void CreatWall(string wallName, GameObject Parent)
@@ -79,6 +99,24 @@ public class Wall
             door2.name = "door2";
             if (wallNum % 2 != 0)
             {
+                GameObject thedoor = new GameObject("door" + wallNum);
+                thedoor.transform.position = new Vector3(pos.x, (pos.y - shape.y / 2) + this.Hole.shape.y / 2, pos.z + this.Hole.pos.x);
+                //BuildingInfo.Instance.Doors.Add(thedoor.transform);
+                Vector3 dir = thedoor.transform.position - this.RoomPos;
+
+                if (dir.x < 0)
+                {
+                    thedoor.transform.localEulerAngles = new Vector3(0, 90, 0);
+                }
+                else if (dir.x > 0)
+                {
+                    thedoor.transform.localEulerAngles = new Vector3(0, -90, 0);
+                }
+                BuildingInfo.Instance.Doors.Add(thedoor.transform);
+                thedoor.transform.parent = Parent.transform;
+
+
+
                 door0.transform.position = new Vector3(pos.x, pos.y + this.Hole.shape.y / 2, pos.z + this.Hole.pos.x);         //计算门框位置
                 door0.transform.localScale = new Vector3(shape.x, this.shape.y - this.Hole.shape.y, this.Hole.shape.x);         //大小缩放
 
@@ -99,6 +137,23 @@ public class Wall
             }
             else if (wallNum % 2 == 0)
             {
+
+                GameObject thedoor = new GameObject("door" + wallNum);
+                thedoor.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) + this.Hole.shape.y / 2, pos.z);
+                Vector3 dir = thedoor.transform.position - this.RoomPos;
+
+                if (dir.z < 0)
+                {
+
+                }
+                else if (dir.z > 0)
+                {
+                    thedoor.transform.localEulerAngles = new Vector3(0, 180, 0);
+                }
+                BuildingInfo.Instance.Doors.Add(thedoor.transform);
+                thedoor.transform.parent = Parent.transform;
+
+
                 door0.transform.position = new Vector3(pos.x + this.Hole.pos.x, pos.y + this.Hole.shape.y / 2, pos.z);
                 door0.transform.localScale = new Vector3(this.Hole.shape.x, this.shape.y - this.Hole.shape.y, shape.z);
 
@@ -118,7 +173,7 @@ public class Wall
             door1.transform.parent = wall.transform;
             door2.transform.parent = wall.transform;
             wall.transform.parent = Parent.transform;
-            BuildingInfo.Instance.Doors.Add(wall.transform);
+            BuildingInfo.Instance.Walls.Add(wall.transform);
         }
         else if(this.Hole.Type == HoleType.Windows)
         {
@@ -135,6 +190,24 @@ public class Wall
 
             if(wallNum % 2 != 0)
             {
+                GameObject theWindow = new GameObject("window" + wallNum);
+                theWindow.transform.position = new Vector3(pos.x, (pos.y - shape.y / 2) + this.Hole.pos.y, pos.z + this.Hole.pos.x);
+                Vector3 dir = theWindow.transform.position - this.RoomPos;
+             
+                if(dir.x < 0)
+                {
+                    theWindow.transform.localEulerAngles = new Vector3(0, 90, 0);
+                }
+                else if(dir.x > 0)
+                {
+                    theWindow.transform.localEulerAngles = new Vector3(0, -90, 0);
+                }
+                BuildingInfo.Instance.Windows.Add(theWindow.transform);
+                theWindow.transform.parent = Parent.transform;
+
+
+
+
                 window0.transform.position = new Vector3(pos.x, (pos.y - shape.y / 2) +
                     (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
 
@@ -161,6 +234,21 @@ public class Wall
             }
             else if(wallNum % 2 == 0)
             {
+                GameObject theWindow = new GameObject("window" + wallNum);
+                theWindow.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) + this.Hole.pos.y, pos.z);
+                Vector3 dir = theWindow.transform.position - this.RoomPos;
+
+                if(dir.z < 0)
+                {
+                    
+                }
+                else if(dir.z > 0)
+                {
+                    theWindow.transform.localEulerAngles = new Vector3(0, 180, 0);
+                }
+                BuildingInfo.Instance.Windows.Add(theWindow.transform);
+                theWindow.transform.parent = Parent.transform;
+
                 window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) +
                     (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z);
 
@@ -190,7 +278,7 @@ public class Wall
             window2.transform.parent = Wall.transform;
             window3.transform.parent = Wall.transform;
             Wall.transform.parent = Parent.transform;
-            BuildingInfo.Instance.Windows.Add(Wall.transform);
+            BuildingInfo.Instance.Walls.Add(Wall.transform);
         }
 
     }
@@ -204,6 +292,18 @@ public class Wall
         else if (type == HoleType.Windows)
         {
             this.Hole = new windows(wallNum, shape, pos);
+        }
+    }
+
+    public void SetHole(HoleType type, Vector2 pos)
+    {
+        if (type == HoleType.Door)
+        {
+            this.Hole = new door(wallNum, pos.x);
+        }
+        else if (type == HoleType.Windows)
+        {
+            this.Hole = new windows(wallNum, pos);
         }
     }
 }

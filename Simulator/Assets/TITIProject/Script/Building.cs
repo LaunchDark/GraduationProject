@@ -21,7 +21,7 @@ public class Building
     public float height = 2.5f;
     public float weight = 1.0f;
     public float lenght = 1.0f;
-    public float thick = 0.02f;
+    public float thick = 0.1f;
     public Vector3 pos = new Vector3(0.0f, 0.0f, 0.0f);
     
 
@@ -44,13 +44,13 @@ public class Building
             if(x % 2 == 0)
             {
                 Pos = new Vector3(this.pos.x, this.pos.y + (this.height / 2), this.pos.z + (num * weight) / 2);             //前后墙壁的位置
-                walls[x] = new Wall(this.lenght + this.thick, this.height + this.thick, this.thick, Pos, x);
+                walls[x] = new Wall(this.lenght + this.thick, this.height + this.thick, this.thick, Pos, x, this.pos);
                 num *= -1;
             }
             else
             {
                 Pos = new Vector3(this.pos.x + (num * lenght) / 2, this.pos.y + (this.height / 2), this.pos.z);             //左右墙壁的位置
-                walls[x] = new Wall(this.thick, this.height + this.thick, this.weight + this.thick, Pos, x);
+                walls[x] = new Wall(this.thick, this.height + this.thick, this.weight + this.thick, Pos, x, this.pos);
             }
         }
     }
@@ -72,7 +72,7 @@ public class Building
         theTop.transform.localScale = scale;
         theTop.transform.position = pos;
         theTop.transform.parent = Parent.transform;
-        BuildingInfo.Instance.Walls.Add(theTop.transform);
+        BuildingInfo.Instance.Top.Add(theTop.transform);
     }
 
     public void CreatFloor(GameObject Parent)
@@ -83,7 +83,7 @@ public class Building
         theFloor.transform.localScale = scale;
         theFloor.transform.position = pos;
         theFloor.name = "Floor";
-        BuildingInfo.Instance.Walls.Add(theFloor.transform);
+        BuildingInfo.Instance.Floor.Add(theFloor.transform);
         theFloor.transform.parent = Parent.transform;
         
     }
