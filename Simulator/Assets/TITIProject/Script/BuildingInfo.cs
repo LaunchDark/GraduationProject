@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BuildingInfo : MonoBehaviour
 {
@@ -19,7 +20,19 @@ public class BuildingInfo : MonoBehaviour
         }
     }
 
-    public List<Transform> Doors = new List<Transform>();
-    public List<Transform> Walls = new List<Transform>();
     public List<Transform> Windows = new List<Transform>();
+    public List<Transform> Doors = new List<Transform>();
+
+    public List<Transform> Walls = new List<Transform>();
+    public List<Transform> Top = new List<Transform>();
+    public List<Transform> Floor = new List<Transform>();
+
+
+    //public void Init()
+    //{
+    //    Doors = new List<Transform>();
+    //    Walls = new List<Transform>();
+    //    Windows = new List<Transform>();
+        
+    //}
 }
