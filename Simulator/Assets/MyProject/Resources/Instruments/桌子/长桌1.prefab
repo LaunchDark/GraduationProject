@@ -67,8 +67,16 @@ MonoBehaviour:
   CanScaleInstrument: 0
   isFloot: 0
   ScaleHand: {fileID: 0}
-  CanChange: []
-  EachMaterials: []
+  CanChange:
+  - {fileID: 7314152719185644426}
+  - {fileID: 7313983043618111046}
+  EachMaterials:
+  - {fileID: 2100000, guid: 0b454b7967ca25e4184f1bef9e8ca122, type: 2}
+  - {fileID: 2100000, guid: 1dd7a40a1f9fd1145a621ea24241a0c9, type: 2}
+  - {fileID: 2100000, guid: db68b27ac95997f4e91066b525661c74, type: 2}
+  - {fileID: 2100000, guid: a2ab1d1a5b2209f4ea7b543ff880c22e, type: 2}
+  - {fileID: 2100000, guid: 96edd6411af8d294394f7e6a13223884, type: 2}
+  - {fileID: 2100000, guid: d5c591cce84ba8748b3a202f722b5708, type: 2}
   CurMaterial: 0
 --- !u!1 &2054870851244573292
 GameObject:
@@ -356,9 +364,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7337049230831628584}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &7314152719185644426 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23494654561434274, guid: 2ca10bfab0e6bbd47b1bea9a3d3c4314,
+    type: 3}
+  m_PrefabInstance: {fileID: 7337049230831628584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7336806798136726742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1123218838119934, guid: 2ca10bfab0e6bbd47b1bea9a3d3c4314,
+    type: 3}
+  m_PrefabInstance: {fileID: 7337049230831628584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7313983043618111046 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23102617665392494, guid: 2ca10bfab0e6bbd47b1bea9a3d3c4314,
     type: 3}
   m_PrefabInstance: {fileID: 7337049230831628584}
   m_PrefabAsset: {fileID: 0}

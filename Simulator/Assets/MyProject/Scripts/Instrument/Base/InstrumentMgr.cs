@@ -109,6 +109,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/×À×Ó/²£Á§×À1";
             case InstrumentEnum.Ô²×À1:
                 return "Instruments/×À×Ó/Ô²×À1";
+            case InstrumentEnum.Ô²×À2:
+                return "Instruments/×À×Ó/Ô²×À2";
             #endregion
 
             #region ÒÎ×Ó
@@ -133,6 +135,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/µçÆ÷/¿Õµ÷1";
             case InstrumentEnum.µçÄÔ1:
                 return "Instruments/µçÆ÷/µçÄÔ1";
+            case InstrumentEnum.±ùÏä1:
+                return "Instruments/µçÆ÷/±ùÏä1";
             #endregion
 
             #region µÆÊÎ
@@ -142,6 +146,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/µÆÊÎ/¶¥µÆ1";
             case InstrumentEnum.µõµÆ1:
                 return "Instruments/µÆÊÎ/µõµÆ1";
+            case InstrumentEnum.Ì¨µÆ1:
+                return "Instruments/µÆÊÎ/Ì¨µÆ1";
             #endregion
 
             #region ÊÎÆ·
@@ -192,6 +198,16 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/ÆäËû/À¬»øÍ°1";
             case InstrumentEnum.ÃÅ:
                 return "Instruments/ÆäËû/ÃÅ1";
+            case InstrumentEnum.ÃÅ¿ò:
+                return "Instruments/ÆäËû/ÃÅ¿ò";
+            case InstrumentEnum.´°:
+                return "Instruments/ÆäËû/´°1";
+            case InstrumentEnum.´°Ì¨:
+                return "Instruments/ÆäËû/´°Ì¨";
+            case InstrumentEnum.´°Á±:
+                return "Instruments/ÆäËû/´°Á±";
+            case InstrumentEnum.µõÉÈ1:
+                return "Instruments/ÆäËû/µõÉÈ1";
             #endregion
 
             default:
@@ -265,7 +281,7 @@ public class InstrumentMgr : MonoBehaviour
         Instrument[] temp = FindObjectsOfType<Instrument>();
         for (int i = 0; i < temp.Length; i++)
         {
-            if (temp[i].type != InstrumentEnum.Ç½)
+            if (temp[i].type != InstrumentEnum.ÃÅ¿ò)
             {
                 DeleteInstrument(temp[i]);
             }

@@ -12,7 +12,7 @@ public class CreatManager : MonoBehaviour
         
 
         Vector3 pos = new Vector3(0, 0, 0);
-        Building build = new Building(BuildingType.none,2.5f, 10.0f, 5.0f, 0.02f, pos);
+        Building build = new Building(BuildingType.none,2.5f, 10.0f, 5.0f, 0.1f, pos);
         int num = 1;
         GameObject building1 = new GameObject("building" + num);
         build.CreatFloor(building1);

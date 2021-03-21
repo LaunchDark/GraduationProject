@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 5923086201490389606}
   - component: {fileID: 1456274874293574994}
   m_Layer: 0
-  m_Name: "\u5783\u573E\u6876"
+  m_Name: "\u5783\u573E\u68761"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,8 +79,11 @@ MonoBehaviour:
   CanScaleInstrument: 0
   isFloot: 0
   ScaleHand: {fileID: 0}
-  CanChange: []
-  EachMaterials: []
+  CanChange:
+  - {fileID: 2676644727223225799}
+  EachMaterials:
+  - {fileID: 2100000, guid: 6fc409b38b66ab94c906ca9d0ab265ff, type: 2}
+  - {fileID: 2100000, guid: 829e53f72f7bd7e4994d8a139ee12b15, type: 2}
   CurMaterial: 0
 --- !u!1001 &2699576848882778381
 PrefabInstance:
@@ -148,6 +151,12 @@ Transform:
 --- !u!1 &2699143729623238605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1014010378733248, guid: 1ed3705bcb465ee4b9d877af8b32a06f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2699576848882778381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2676644727223225799 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23512944450391242, guid: 1ed3705bcb465ee4b9d877af8b32a06f,
     type: 3}
   m_PrefabInstance: {fileID: 2699576848882778381}
   m_PrefabAsset: {fileID: 0}

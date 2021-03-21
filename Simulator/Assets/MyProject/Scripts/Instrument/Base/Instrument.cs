@@ -34,6 +34,9 @@ public class Instrument : MonoBehaviour
     }
 
     [HideInInspector] public InstrumentEnum type = InstrumentEnum.None;
+    /// <summary>
+    /// 是否可以被拿起
+    /// </summary>
     [HideInInspector] public bool isHasR = true;
 
 
@@ -59,22 +62,17 @@ public class Instrument : MonoBehaviour
 
     private List<Collider> colliders;
 
-    //private Player player;
-
     private bool isHeldCollision = false;
 
     [SerializeField] public Collider adsorbCollider;//吸附范围碰撞体
     [SerializeField] protected List<InstrumentEnum> adsorbTypeList;//可吸附仪器类型列表
-    [SerializeField] public Instrument curAdsorbInstrument;//按下左键时,将要吸附的仪器
+    [SerializeField] public Instrument curAdsorbInstrument;//按下扳机键时,将要吸附的仪器
     [SerializeField] public Instrument subInstrument;//吸附到的子仪器
 
     [HideInInspector] public List<Instrument> groupInstrumentList;//组合仪器列表
     [HideInInspector] public InstrumentEnum groupInstrumentType;//组合仪器类型
 
     //protected InstrumentLineRender lineRender;
-
-    [HideInInspector] public int selfSortIndex;//背包定位排序值
-    [HideInInspector] static int sortMaxIndex;//背包定位排序值
 
     protected GameObject HeldingHand;
     /// <summary>
@@ -135,7 +133,8 @@ public class Instrument : MonoBehaviour
         //改变层级
         foreach (var item in transform.GetComponentsInChildren<Transform>())
         {
-            item.gameObject.layer = LayerMask.NameToLayer("Instrument");
+            if (!item.GetComponentInParent<Canvas>())
+                item.gameObject.layer = LayerMask.NameToLayer("Instrument");
         }
 
         mState = State.normal;
@@ -145,7 +144,6 @@ public class Instrument : MonoBehaviour
         outLineTargetComponent = gameObject.GetComponent<OutLineTargetComponent>();
         if (outLineTargetComponent == null)
             outLineTargetComponent = gameObject.AddComponent<OutLineTargetComponent>();
-        //player = Player.Instance;
         offsetZ = MinOffsetZ;
 
         renderers = transform.GetComponentsInChildren<Renderer>(true);
@@ -154,11 +152,12 @@ public class Instrument : MonoBehaviour
             materials.Add(renderers[i].materials);
         }
         colliders = transform.GetComponentsInChildren<Collider>(true).ToList();
-        //for (int i = colliders.Count - 1; i >= 0; i--)
-        //{
-        //    if (colliders[i].GetComponent<MeshCollider>() != null)
-        //        colliders.Remove(colliders[i]);
-        //}
+        //如果是按键的碰撞盒，移除
+        for (int i = colliders.Count - 1; i >= 0; i--)
+        {
+            if (colliders[i].GetComponentInParent<mButton>() != null)
+                colliders.Remove(colliders[i]);
+        }
         if (adsorbCollider)
         {
             adsorbCollider.enabled = false;
@@ -292,8 +291,6 @@ public class Instrument : MonoBehaviour
                 colliders[i].isTrigger = false;
             SetRenderer(HeldState.normal);
             LifeCallBack();
-            sortMaxIndex++;
-            selfSortIndex = sortMaxIndex;
         }
         if(mState == State.free)
         {
@@ -353,7 +350,7 @@ public class Instrument : MonoBehaviour
         //Debug.Log("选中: " + transform.name);
         if (Hand == "Right")
         {
-            if (LeftHand.Instance.selectedInstrument != null && LeftHand.Instance.selectedInstrument == gameObject)
+            if (LeftHand.Instance.selectedInstrument != null && LeftHand.Instance.selectedInstrument.GetComponentInParent<Instrument>() == this)
             {
                 //Debug.Log(111);
                 return;
@@ -361,13 +358,13 @@ public class Instrument : MonoBehaviour
         }
         if (Hand == "Left")
         {
-            if (RightHand.Instance.selectedInstrument != null && RightHand.Instance.selectedInstrument == gameObject)
+            if (RightHand.Instance.selectedInstrument != null && RightHand.Instance.selectedInstrument.GetComponentInParent<Instrument>() == this)
             {
                 //Debug.Log(222);
                 return;
             }
         }
-        if (mState == State.life)
+        if (mState == State.life || mState == State.free)
         {
             if (collider == null)
             {
@@ -432,12 +429,6 @@ public class Instrument : MonoBehaviour
             offsetZ = MinOffsetZ;
     }
 
-    //判断是否是组合仪器
-    public bool IsGroupInstrument()
-    {
-        return groupInstrumentList != null && groupInstrumentList.Count > 0;
-    }
-
     /// <summary>
     /// 仪器颜色
     /// </summary>
@@ -473,7 +464,7 @@ public class Instrument : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (mState == State.held /*&& player*/)
+        if (mState == State.held)
         {
             if (other.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
@@ -496,6 +487,11 @@ public class Instrument : MonoBehaviour
                                 ScaleHand = LeftHand.Instance.GetComponent<HandBase>();
                                 ScaleHand.ScaleInstrument = this;
                             }
+                            //else if (other.GetComponentInParent<Valve.VR.InteractionSystem.HandCollider>().transform.name == "HandColliderRight(Clone)")
+                            //{
+                            //    ScaleHand = RightHand.Instance.GetComponent<HandBase>();
+                            //    ScaleHand.ScaleInstrument = this;
+                            //}
                         }
                         return;
                     }
@@ -538,7 +534,7 @@ public class Instrument : MonoBehaviour
     protected virtual void OnTriggerExit(Collider other)
     {
         isInWall = null;
-        if (mState == State.held /*&& player*/)
+        if (mState == State.held)
         {
             isHeldCollision = false;
             curAdsorbInstrument = null;
@@ -550,7 +546,7 @@ public class Instrument : MonoBehaviour
     {
         if (collision.transform.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.transform.gameObject.layer == LayerMask.NameToLayer("Instrument"))
         {
-            if (mState == State.drop /*&& player*/)
+            if (mState == State.drop)
             {
                 SetState(State.life);
             }
