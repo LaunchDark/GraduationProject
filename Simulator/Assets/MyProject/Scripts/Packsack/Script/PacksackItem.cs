@@ -42,6 +42,7 @@ public class PacksackItem : MonoBehaviour
         mData = data;
         if (data == null) return;
         mask.SetActive(data.num == 0);
+        btn.SetIsTween(!(data.num == 0));
         icon.sprite = atlas.GetSprite(data.icon);
         
         num.text = data.num >= 0 ? data.num.ToString() : "";

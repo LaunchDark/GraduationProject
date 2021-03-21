@@ -72,8 +72,6 @@ public class Instrument : MonoBehaviour
     [HideInInspector] public List<Instrument> groupInstrumentList;//组合仪器列表
     [HideInInspector] public InstrumentEnum groupInstrumentType;//组合仪器类型
 
-    //protected InstrumentLineRender lineRender;
-
     protected GameObject HeldingHand;
     /// <summary>
     /// 被选中
@@ -167,7 +165,6 @@ public class Instrument : MonoBehaviour
         }
         SetState(State.normal);
         Messenger.AddListener<Collider,string>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
-        //lineRender = UITool.Instantiate("Instruments/LineRender", gameObject).GetComponent<InstrumentLineRender>();
         SetRenderer(HeldState.normal);
         AwakeLater();
     }
@@ -189,12 +186,9 @@ public class Instrument : MonoBehaviour
         }
         else if (mState == State.held && HeldingHand.GetComponent<HandBase>().GetState() == HandBase.State.Instrument)
         {
-            //持有仪器时往地面画线
-            //lineRender.gameObject.SetActive(true);
             //吸附模式
             if (curAdsorbInstrument)
             {
-                //lineRender.gameObject.SetActive(false);
                 return;
             }
             //放下模式
@@ -220,7 +214,6 @@ public class Instrument : MonoBehaviour
         else
         {
             LastPos = Vector3.zero;
-            //lineRender.gameObject.SetActive(false);
         }
     }
 

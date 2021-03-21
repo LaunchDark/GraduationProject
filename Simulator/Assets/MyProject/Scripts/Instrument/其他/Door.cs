@@ -52,7 +52,7 @@ public class Door : Instrument
         }
         else
         {
-            RotaCenter.DOLocalRotate(new Vector3(0,90,0), 0.5f);
+            RotaCenter.DOLocalRotate(new Vector3(0,-90,0), 0.5f);
         }
     }
 

@@ -173,4 +173,13 @@ public class mButton : UIElement
     {
         transform.Find("Name").GetComponent<Text>().text = str;
     }
+
+    public virtual void SetIsTween(bool b)
+    {
+        isTween = b;
+        if (!isTween)
+        {
+            tw.Append(transform.DOScale(originScale, 0.2f).SetEase(ease));
+        }
+    }
 }
