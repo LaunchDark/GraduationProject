@@ -104,7 +104,11 @@ public class mToggle : UIElement
     protected override void OnButtonClick()
     {
         //onHandClick.Invoke(currentHand);
-        ButtonClick();
+        if (currentHand)
+        {
+            currentHand.gameObject.GetComponent<HandBase>().SetTriggerDown(true);
+            ButtonClick();
+        }
     }
 
 

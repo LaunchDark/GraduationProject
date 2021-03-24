@@ -57,7 +57,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5
@@ -80,8 +79,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03469501, y: 0.03469503, z: 1.3893894}
-  m_Center: {x: -0.047938515, y: 0.8933435, z: -0.003472508}
+  m_Size: {x: 0.034695014, y: 1.8069847, z: 1.3269172}
+  m_Center: {x: -0.047938515, y: 0.0071986914, z: 0.003943622}
 --- !u!1001 &7580284825749985707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4757929091792610, guid: 92034691152dad6469dbab9dcf87eefa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.824
       objectReference: {fileID: 0}
     - target: {fileID: 4757929091792610, guid: 92034691152dad6469dbab9dcf87eefa, type: 3}
       propertyPath: m_LocalPosition.z

@@ -611,11 +611,42 @@ public class Instrument : MonoBehaviour
     /// <param name="n">第n套材质</param>
     public virtual void ChangeMaterial(int n)
     {
-        for (int i = 0; i < CanChange.Count; i++)
+        if (CanChange != null)
         {
-            renderers[i].material = EachMaterials[n * CanChange.Count + i];
+            for (int i = 0; i < CanChange.Count; i++)
+            {
+                renderers[i].material = EachMaterials[n * CanChange.Count + i];
+            }
+            CurMaterial = n;
         }
-        CurMaterial = n;
+        else if (type == InstrumentEnum.墙)
+        {
+            foreach (var item in renderers)
+            {
+                item.material = ChangeCanvas.Instance.WallMaterials[n];
+            }
+            CurMaterial = n;
+        }
+        else if (type == InstrumentEnum.地板)
+        {
+            foreach (var item in renderers)
+            {
+                item.material = ChangeCanvas.Instance.FloorMaterials[n];
+            }
+            CurMaterial = n;
+        }
+        else if (type == InstrumentEnum.天花板)
+        {
+            foreach (var item in renderers)
+            {
+                item.material = ChangeCanvas.Instance.TopMaterials[n];
+            }
+            CurMaterial = n;
+        }
+        else
+        {
+            //Debug.LogError("没有设置材质");
+        }
     }
 
 }

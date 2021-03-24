@@ -205,7 +205,7 @@ public class InstrumentMgr : MonoBehaviour
             case InstrumentEnum.窗台:
                 return "Instruments/其他/窗台";
             case InstrumentEnum.窗帘:
-                return "Instruments/其他/窗帘";
+                return "Instruments/其他/窗帘1";
             case InstrumentEnum.吊扇1:
                 return "Instruments/其他/吊扇1";
             #endregion
@@ -281,7 +281,11 @@ public class InstrumentMgr : MonoBehaviour
         Instrument[] temp = FindObjectsOfType<Instrument>();
         for (int i = 0; i < temp.Length; i++)
         {
-            if (temp[i].type != InstrumentEnum.门框)
+            if (temp[i].type != InstrumentEnum.门框 
+                && temp[i].type != InstrumentEnum.窗台
+                && temp[i].type != InstrumentEnum.墙
+                && temp[i].type != InstrumentEnum.天花板
+                && temp[i].type != InstrumentEnum.地板)
             {
                 DeleteInstrument(temp[i]);
             }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeCanvas : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class ChangeCanvas : MonoBehaviour
     protected MaterialGroup MaterialsContent;
     public Instrument instrument;
 
+    public Text Name;
+
+    public List<Material> WallMaterials;
+    public List<Material> TopMaterials;
+    public List<Material> FloorMaterials;
 
     public void Init()
     {
@@ -57,11 +63,44 @@ public class ChangeCanvas : MonoBehaviour
 
     public void ShowUI(Vector3 pos, Instrument select)
     {
-        if (select.CanChange.Count == 0) return;
-        instrument = select;
-        MaterialsContent.Init(instrument.EachMaterials.Count / instrument.CanChange.Count);
-        transform.position = pos + (pos - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
-        gameObject.SetActive(true);
+        if (!UIRoot.Instance.isPlaying) return;
+        if (select.type == InstrumentEnum.墙)
+        {
+            if (WallMaterials.Count == 0) return;
+            instrument = select;
+            MaterialsContent.Init(WallMaterials.Count);
+            transform.position = pos + (pos - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
+            gameObject.SetActive(true);
+        }
+        else if (select.type == InstrumentEnum.地板)
+        {
+            if (FloorMaterials.Count == 0) return;
+            instrument = select;
+            MaterialsContent.Init(FloorMaterials.Count);
+            transform.position = pos + (pos - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
+            gameObject.SetActive(true);
+        }
+        else if (select.type == InstrumentEnum.天花板)
+        {
+            if (FloorMaterials.Count == 0) return;
+            instrument = select;
+            MaterialsContent.Init(TopMaterials.Count);
+            transform.position = pos + (pos - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
+            gameObject.SetActive(true);
+        }
+        //else if (select.type != InstrumentEnum.墙 && select.type != InstrumentEnum.地板 && select.type != InstrumentEnum.天花板)
+        else
+        {
+            if (select.CanChange.Count == 0) return;
+            instrument = select;
+            MaterialsContent.Init(instrument.EachMaterials.Count / instrument.CanChange.Count);
+            transform.position = pos + (pos - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * distance;
+            gameObject.SetActive(true);
+        }
+        if (instrument != null)
+        {
+            Name.text = instrument.type.ToString();
+        }
     }
 
     public void HideUI()

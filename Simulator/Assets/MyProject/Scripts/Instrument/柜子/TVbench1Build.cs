@@ -7,6 +7,7 @@ public class TVbench1Build : Instrument
     void Start()
     {
         type = InstrumentEnum.电视柜1;
+        CanScaleInstrument = true;
 
         MaxOffsetZ = 3f;
         MinOffsetZ = 0.5f;

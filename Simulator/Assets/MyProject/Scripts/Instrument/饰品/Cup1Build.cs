@@ -8,6 +8,7 @@ public class Cup1Build : Instrument
     {
         type = InstrumentEnum.杯子1;
         isFreeInstrument = true;
+        CanScaleInstrument = true;
 
         MaxOffsetZ = 1.0f;
         MinOffsetZ = 0.1f;

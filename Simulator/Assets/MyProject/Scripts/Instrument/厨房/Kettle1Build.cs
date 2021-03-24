@@ -13,7 +13,7 @@ public class Kettle1Build : Instrument
         isFreeInstrument = true;
 
         MaxOffsetZ = 1.5f;
-        MinOffsetZ = 0.5f;
+        MinOffsetZ = 0.2f;
         canDropDis = 2f;
 
         width = 0.08f;

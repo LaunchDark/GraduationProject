@@ -4,6 +4,7 @@ using UnityEditor;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// 镜头UI，跟随头部移动
@@ -32,7 +33,7 @@ public class TipsCanvas : MonoBehaviour
     private void Awake()
     {
         transform.GetComponent<Canvas>().worldCamera = GameObject.Find("VRCamera").GetComponent<Camera>();
-        transform.GetComponent<Canvas>().planeDistance = 0.5f;
+        transform.GetComponent<Canvas>().planeDistance = 0.4f;
 
         Tips = transform.Find("Tips").GetComponent<Text>();
         Tips.gameObject.SetActive(false);
@@ -42,41 +43,27 @@ public class TipsCanvas : MonoBehaviour
     /// <summary>
     /// 截图倒计时
     /// </summary>
-    public void CountDown()
+    public void CountDown(int i = 5)
     {
         if(coroutine != null)
         {
             StopCoroutine(coroutine);
-        }      
-        coroutine = StartCoroutine(CountDownTime(5));
-    }
-
-    /// <summary>
-    /// 截屏倒计时
-    /// </summary>
-    /// <param name="i">倒计时间</param>
-    /// <returns></returns>
-    public IEnumerator CountDownTime(int i = 5)
-    {
-        Tips.text = 5.ToString();
-        Tips.gameObject.SetActive(true);
-        i++;
-        while (i >= 0)
-        {
-            i--;
-            Tips.text = i.ToString();
-            if(i == 0)
-            {
-                Tips.gameObject.SetActive(false);
-            }
-            yield return new WaitForSeconds(1);
         }
+        coroutine = StartCoroutine(DelayToDo(() => { MyTools.ScreenShot(); }, 5, () => { ShowTips("截屏成功"); }));
+    }
         
-        ScreenShot();
-
-        yield return 0;
-
-        coroutine = StartCoroutine(ShowTips("截图成功"));
+    /// <summary>
+    /// 显示提示
+    /// </summary>
+    /// <param name="str">提示内容</param>
+    /// <param name="i">提示存在时间</param>
+    public void ShowTips(string str,int i = 1)
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(StartShowTips(str,i));
     }
 
     /// <summary>
@@ -84,7 +71,7 @@ public class TipsCanvas : MonoBehaviour
     /// </summary>
     /// <param name="tip">提示显示时长</param>
     /// <returns></returns>
-    public IEnumerator ShowTips(string tip,int time = 1)
+    protected IEnumerator StartShowTips(string tip,int time = 1)
     {
         Tips.text = tip;
         Tips.gameObject.SetActive(true);
@@ -93,48 +80,36 @@ public class TipsCanvas : MonoBehaviour
     }
 
     /// <summary>
-    /// 屏幕截图
+    /// 倒计时执行
     /// </summary>
-    /// <param name="IsEnableAlpha">是否开启透明通道</param>
-    private void ScreenShot(bool IsEnableAlpha = false)
+    /// <param name="callback1">倒计时结束执行的程序</param>
+    /// <param name="callback2">程序结束后执行的程序</param>
+    /// <param name="i">倒计时间</param>
+    /// <returns></returns>
+    protected IEnumerator DelayToDo(Callback callback1,int i = 5, Callback callback2 = null)
     {
-        Camera m_Camera = GameObject.Find("VRCamera").GetComponent<Camera>();
-        if (m_Camera == null)
+        Tips.text = i.ToString();
+        Tips.gameObject.SetActive(true);
+        i++;
+        while (i >= 0)
         {
-            Debug.LogError("<color=red>" + "没有摄像机" + "</color>");
-            return;
+            i--;
+            Tips.text = i.ToString();
+            if (i == 0)
+            {
+                Tips.gameObject.SetActive(false);
+            }
+            yield return new WaitForSeconds(1);
         }
+        
+        callback1.Invoke();        
 
-        string filePath = Application.persistentDataPath;
-        if (string.IsNullOrEmpty(filePath))
+        yield return 0;
+
+        if (callback2 != null)
         {
-            Debug.LogError("<color=red>" + "没有截图保存位置" + "</color>");
-            return;
+            callback2.Invoke();
         }
-
-        CameraClearFlags m_CameraClearFlags;
-        m_CameraClearFlags = m_Camera.clearFlags;
-        if (IsEnableAlpha)
-        {
-            m_Camera.clearFlags = CameraClearFlags.Depth;
-        }
-
-        int resolutionX = (int)Handles.GetMainGameViewSize().x;
-        int resolutionY = (int)Handles.GetMainGameViewSize().y;
-        RenderTexture rt = new RenderTexture(resolutionX, resolutionY, 24);
-        m_Camera.targetTexture = rt;
-        Texture2D screenShot = new Texture2D(resolutionX, resolutionY, TextureFormat.ARGB32, false);
-        m_Camera.Render();
-        RenderTexture.active = rt;
-        screenShot.ReadPixels(new Rect(0, 0, resolutionX, resolutionY), 0, 0);
-        m_Camera.targetTexture = null;
-        RenderTexture.active = null;
-        m_Camera.clearFlags = m_CameraClearFlags;
-        //Destroy(rt);
-        byte[] bytes = screenShot.EncodeToPNG();
-        string fileName = filePath + "/" + $"{System.DateTime.Now:yyyy-MM-dd_HH-mm-ss}" + ".png";
-        File.WriteAllBytes(fileName, bytes);
-        Debug.Log("截图成功：\n" + filePath);
     }
 
 }

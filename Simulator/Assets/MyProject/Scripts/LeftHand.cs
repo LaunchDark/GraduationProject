@@ -126,7 +126,10 @@ public class LeftHand : HandBase
             if (Physics.SphereCast(HandDirection.position, 0.1f, HandDirection.forward, out hitInfo, 3f, layerMask))
             {
                 //Debug.Log(hitInfo.collider.name);
-                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Instrument"))
+                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Instrument")
+                    || hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Wall")
+                    || hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("TopWall")
+                    || hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     Debug.DrawLine(HandDirection.position, hitInfo.point, Color.red);
                     collider = hitInfo.collider;

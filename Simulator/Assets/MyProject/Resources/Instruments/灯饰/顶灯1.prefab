@@ -38,7 +38,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4488871636305536873}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000000029802322, y: 0.000000029802322, z: 0.00090744346}
+  m_LocalPosition: {x: -0.000000029802322, y: -0.022, z: 0.00090744346}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8438558284542001858}
@@ -163,7 +163,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.55

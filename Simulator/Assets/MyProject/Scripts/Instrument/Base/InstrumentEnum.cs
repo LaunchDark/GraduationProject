@@ -165,6 +165,12 @@ public enum InstrumentEnum
     /// </summary>
     [Description("冰箱1")]
     冰箱1,
+
+    /// <summary>
+    /// 吊扇1
+    /// </summary>
+    [Description("吊扇1")]
+    吊扇1,
     #endregion
 
     #region 灯饰
@@ -340,12 +346,26 @@ public enum InstrumentEnum
     /// </summary>
     [Description("垃圾桶1")]
     垃圾桶1,
+    #endregion
+
+    #region 建筑
+    /// <summary>
+    /// 墙
+    /// </summary>
+    [Description("墙")]
+    墙,
 
     /// <summary>
-    /// 吊扇1
+    /// 地板
     /// </summary>
-    [Description("吊扇1")]
-    吊扇1,
+    [Description("地板")]
+    地板,
+
+    /// <summary>
+    /// 天花板
+    /// </summary>
+    [Description("天花板")]
+    天花板,
 
     #endregion
 

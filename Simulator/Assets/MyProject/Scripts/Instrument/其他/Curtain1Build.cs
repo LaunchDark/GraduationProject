@@ -16,7 +16,7 @@ public class Curtain1Build : Instrument
         MinOffsetZ = 0.5f;
         canDropDis = 5f;
 
-        width = 0.2f;
+        width = 0.25f;
         height = 1.9f;
     }
 }

@@ -28,7 +28,7 @@ public class UIRoot : MonoBehaviour
 
     [SerializeField] protected mButton PlayBtn;
     [SerializeField] protected mButton ExitBtn;
-    bool isPlaying = false;
+    [HideInInspector] public bool isPlaying = false;
     public void Init()
     {
         //HideUIRoot();

@@ -10,6 +10,7 @@ public class HangingFan1Build : Instrument
     void Start()
     {
         type = InstrumentEnum.吊扇1;
+        CanScaleInstrument = true;
         isHangInsturment = true;
 
         MaxOffsetZ = 3f;
