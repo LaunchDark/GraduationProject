@@ -50,7 +50,7 @@ public class Building
             else
             {
                 Pos = new Vector3(this.pos.x + (num * lenght) / 2, this.pos.y + (this.height / 2), this.pos.z);             //左右墙壁的位置
-                walls[x] = new Wall(this.thick, this.height + this.thick, this.weight + this.thick, Pos, x, this.pos);
+                walls[x] = new Wall(this.weight + this.thick, this.height + this.thick, this.thick, Pos, x, this.pos);
             }
         }
     }
@@ -66,24 +66,29 @@ public class Building
     public void CreatTop(GameObject Parent)
     {
         Vector3 pos = new Vector3(this.pos.x, this.pos.y + height, this.pos.z);
-        Vector3 scale = new Vector3(lenght, thick, weight);
+        Vector3 scale = new Vector3(lenght, weight, thick);
         GameObject theTop = GameObject.CreatePrimitive(PrimitiveType.Cube);
         theTop.name = "Top";
         theTop.transform.localScale = scale;
         theTop.transform.position = pos;
+        theTop.transform.localEulerAngles = new Vector3(90, 0, 0);
+
+
         theTop.transform.parent = Parent.transform;
-        BuildingInfo.Instance.Top.Add(theTop.transform);
+        BuildingInfo.Instance.Tops.Add(theTop.transform);
+
+
     }
 
     public void CreatFloor(GameObject Parent)
     {
         Vector3 pos = new Vector3(this.pos.x, this.pos.y, this.pos.z);
-        Vector3 scale = new Vector3(this.lenght, this.thick, this.weight);
+        Vector3 scale = new Vector3(this.lenght + thick, this.thick, this.weight + thick);
         GameObject theFloor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         theFloor.transform.localScale = scale;
         theFloor.transform.position = pos;
         theFloor.name = "Floor";
-        BuildingInfo.Instance.Floor.Add(theFloor.transform);
+        BuildingInfo.Instance.Floors.Add(theFloor.transform);
         theFloor.transform.parent = Parent.transform;
         
     }

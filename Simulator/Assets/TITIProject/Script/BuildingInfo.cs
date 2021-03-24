@@ -20,19 +20,20 @@ public class BuildingInfo : MonoBehaviour
         }
     }
 
-    public List<Transform> Windows = new List<Transform>();
-    public List<Transform> Doors = new List<Transform>();
+    public List<Transform> Windows;
+    public List<Transform> Doors;
 
-    public List<Transform> Walls = new List<Transform>();
-    public List<Transform> Top = new List<Transform>();
-    public List<Transform> Floor = new List<Transform>();
+    public List<Transform> Walls;
+    public List<Transform> Tops;
+    public List<Transform> Floors;
 
 
-    //public void Init()
-    //{
-    //    Doors = new List<Transform>();
-    //    Walls = new List<Transform>();
-    //    Windows = new List<Transform>();
-        
-    //}
+    public void Init()
+    {
+        Doors = new List<Transform>();
+        Walls = new List<Transform>();
+        Windows = new List<Transform>();
+        Tops = new List<Transform>();
+        Floors = new List<Transform>();
+    }
 }

@@ -7,8 +7,8 @@ public class CreatManager : MonoBehaviour
     public Building building;
     void Start()
     {
-        gameObject.AddComponent<BuildingInfo>();
-
+        //gameObject.AddComponent<BuildingInfo>();
+        BuildingInfo.Instance.Init();
         
 
         Vector3 pos = new Vector3(0, 0, 0);
@@ -21,9 +21,9 @@ public class CreatManager : MonoBehaviour
         Vector2 winPos = new Vector2(0.5f, 1);
         Vector2 DoorPos = new Vector2(-0.5f, 0);
         build.walls[0].SetHole(HoleType.Door, DoorPos);
-        build.walls[1].SetHole(HoleType.Windows, winPos);
-        build.walls[3].SetHole(HoleType.Door, DoorPos);
+        build.walls[1].SetHole(HoleType.Door, DoorPos);
         build.walls[2].SetHole(HoleType.Windows, winPos);
+        build.walls[3].SetHole(HoleType.Windows, winPos);
         build.CreatWall(building1);
     }
 

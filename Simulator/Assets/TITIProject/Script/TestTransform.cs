@@ -12,6 +12,6 @@ public class TestTransform : MonoBehaviour
 
     void Update()
     {
-       
+        Debug.Log(BuildingInfo.Instance.Walls[0].position.ToString());
     }
 }
