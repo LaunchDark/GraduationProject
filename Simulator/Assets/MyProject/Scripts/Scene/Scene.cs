@@ -72,9 +72,9 @@ public class Scene : MonoBehaviour
                 }
             }
         }
-        if (BuildingInfo.Instance.Floor.Count > 0)
+        if (BuildingInfo.Instance.Floors.Count > 0)
         {
-            foreach (var floor in BuildingInfo.Instance.Floor)
+            foreach (var floor in BuildingInfo.Instance.Floors)
             {
                 foreach (var item in floor.GetComponentsInChildren<Transform>())
                 {
@@ -87,9 +87,9 @@ public class Scene : MonoBehaviour
                 }
             }
         }
-        if (BuildingInfo.Instance.Top.Count > 0)
+        if (BuildingInfo.Instance.Tops.Count > 0)
         {
-            foreach (var top in BuildingInfo.Instance.Top)
+            foreach (var top in BuildingInfo.Instance.Tops)
             {
                 foreach (var item in top.GetComponentsInChildren<Transform>())
                 {

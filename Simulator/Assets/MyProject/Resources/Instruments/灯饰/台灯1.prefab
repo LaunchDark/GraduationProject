@@ -103,7 +103,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5

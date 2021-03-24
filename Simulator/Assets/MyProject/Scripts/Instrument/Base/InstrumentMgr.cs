@@ -137,6 +137,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/µçÆ÷/µçÄÔ1";
             case InstrumentEnum.±ùÏä1:
                 return "Instruments/µçÆ÷/±ùÏä1";
+            case InstrumentEnum.µõÉÈ1:
+                return "Instruments/µçÆ÷/µõÉÈ1";
             #endregion
 
             #region µÆÊÎ
@@ -206,8 +208,6 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/ÆäËû/´°Ì¨";
             case InstrumentEnum.´°Á±:
                 return "Instruments/ÆäËû/´°Á±1";
-            case InstrumentEnum.µõÉÈ1:
-                return "Instruments/ÆäËû/µõÉÈ1";
             #endregion
 
             default:

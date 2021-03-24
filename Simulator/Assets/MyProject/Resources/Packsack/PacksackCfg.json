@@ -221,7 +221,7 @@
   {
     "InstrumentEnum": "吊扇1",
     "InstrumentTypeEnum": "电器",
-    "Name": "吊扇",
+    "Name": "电风扇",
     "Icon": "dianfengshan",
     "Amount": 99,
     "IsAtPacksack": 1
