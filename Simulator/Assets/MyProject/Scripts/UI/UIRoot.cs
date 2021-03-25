@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class UIRoot : MonoBehaviour
@@ -18,9 +19,11 @@ public class UIRoot : MonoBehaviour
     }
 
     public float distance = 0.1f;
-    [HideInInspector] public Transform Left;
-    [HideInInspector] public Transform Right;
-    [HideInInspector] public Transform Top;
+    public Transform Left;
+    public Transform Right;
+    public Transform Top;
+    public Transform Save;
+
 
     [HideInInspector] public Dictionary<int, Packsack> AllPacksack;
 
@@ -28,12 +31,18 @@ public class UIRoot : MonoBehaviour
 
     [SerializeField] protected mButton PlayBtn;
     [SerializeField] protected mButton ExitBtn;
+    [SerializeField] protected mButton SaveBtn;
+    [SerializeField] protected mButton LoadBtn;
+    [SerializeField] protected mButton LoadReturnBtn;
+
+    protected mButton[] AllSave;
     public void Init()
     {
         //HideUIRoot();
-        Left = transform.Find("Left");
-        Right = transform.Find("Right");
-        Top = transform.Find("Top");
+        //Left = transform.Find("Left");
+        //Right = transform.Find("Right");
+        //Top = transform.Find("Top");
+        //Save = transform.Find("Save");
 
         AllPacksack = new Dictionary<int, Packsack>();
         foreach (InstrumentTypeEnum value in InstrumentTypeEnum.GetValues(typeof(InstrumentTypeEnum)))
@@ -47,13 +56,20 @@ public class UIRoot : MonoBehaviour
 
         AddFunctionalButton();
 
-        Left.gameObject.SetActive(false);
-        Right.gameObject.SetActive(false);
-
         PlayBtn.clickCallBack = Play;
         ExitBtn.clickCallBack = Exit;
+        SaveBtn.clickCallBack = SaveMgr.Instance.SaveGame;
+        LoadBtn.clickCallBack = SavePanel;
+        LoadReturnBtn.clickCallBack = LoadReturn;
+
         Vector3 pos = Valve.VR.InteractionSystem.Player.instance.transform.position;
         ShowUIRoot(new Vector3(pos.x, pos.y + 1, pos.z + 0.5f));
+
+        AllSave = Save.Find("Viewport/Content").GetComponentsInChildren<mButton>(true);
+
+        Left.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+        Save.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -115,6 +131,7 @@ public class UIRoot : MonoBehaviour
         Left.gameObject.SetActive(true);
         Right.gameObject.SetActive(true);
         Top.gameObject.SetActive(false);
+        Save.gameObject.SetActive(false);
     }
 
     protected void Back()
@@ -123,6 +140,59 @@ public class UIRoot : MonoBehaviour
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
         Top.gameObject.SetActive(true);
+        Save.gameObject.SetActive(false);
+    }
+
+    protected void SavePanel()
+    {
+        Left.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+        Top.gameObject.SetActive(false);
+        Save.gameObject.SetActive(true);
+
+        CreateSaveButton();
+    }
+
+    protected void LoadReturn()
+    {
+        Left.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+        Top.gameObject.SetActive(true);
+        Save.gameObject.SetActive(false);
+    }
+
+
+    public void CreateSaveButton()
+    {
+        DirectoryInfo root = new DirectoryInfo(SaveMgr.Instance.SavePath);
+
+        int need = root.GetFiles().Length - AllSave.Length;
+
+        for (int i = 0; i < need; i++)
+        {
+            Instantiate(AllSave[0].gameObject, Save.transform.Find("Viewport/Content"));
+        }
+
+        AllSave = Save.transform.Find("Viewport/Content").GetComponentsInChildren<mButton>(true);
+        for (int i = 0; i < AllSave.Length; i++)
+        {
+            AllSave[i].clickCallBack = null;
+        }
+
+        for (int i = 0; i < AllSave.Length; i++)
+        {
+            if (i < root.GetFiles().Length)
+            {
+                string name = root.GetFiles()[i].Name;
+                AllSave[i].Init(root.GetFiles()[i].Name, () => {
+                    //Debug.Log(root.GetFiles()[i].Name);
+                    SaveMgr.Instance.LoadGame(name);
+                        });
+            }
+            AllSave[i].gameObject.SetActive(i < root.GetFiles().Length);
+        }
+
+        
     }
 
     protected void Exit()

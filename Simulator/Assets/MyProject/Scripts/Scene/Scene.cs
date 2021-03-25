@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -112,13 +113,11 @@ public class Scene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
-            Debug.Log("存档");
             SaveMgr.Instance.SaveGame();
         }
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            Debug.Log("读档");
-            SaveMgr.Instance.LoadGame();
+            //SaveMgr.Instance.LoadGame();
         }
     }
 

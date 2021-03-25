@@ -182,4 +182,9 @@ public class mButton : UIElement
             tw.Append(transform.DOScale(originScale, 0.2f).SetEase(ease));
         }
     }
+
+    public virtual string GetButtonName()
+    {
+        return transform.Find("Name").GetComponent<Text>().text;
+    }
 }

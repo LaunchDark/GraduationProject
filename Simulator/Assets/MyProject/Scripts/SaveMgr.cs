@@ -23,7 +23,30 @@ public class SaveMgr : MonoBehaviour
             return instance;
         }
     }
+    public string UserPath;
+    public string ImagePath;
+    public string SavePath;
 
+    private void Awake()
+    {
+        //Debug.Log(Environment.CurrentDirectory);
+        UserPath = Environment.CurrentDirectory + $"/UserData";
+        ImagePath = UserPath + $"/Image";
+        SavePath = UserPath + $"/SaveData";
+        if (!Directory.Exists(UserPath))
+        {
+            Directory.CreateDirectory(UserPath);
+        }
+        if(!Directory.Exists(ImagePath))
+        {
+            Directory.CreateDirectory(ImagePath);
+        }
+        if(!Directory.Exists(SavePath))
+        {
+            Directory.CreateDirectory(SavePath);
+        }
+
+    }
 
     /// <summary>
     /// 存档
@@ -35,9 +58,12 @@ public class SaveMgr : MonoBehaviour
 
         // 2 写入文件
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        //FileStream file = File.Create(SavePath + "/gamesave.save");
+        FileStream file = File.Create(SavePath + "/" + $"{System.DateTime.Now:yyyy-MM-dd_HH-mm-ss}" + ".save");
         bf.Serialize(file, save);
         file.Close();
+        TipsCanvas.Instance.ShowTips("保存成功");
+        Debug.Log("存档");
     }
 
     /// <summary>
@@ -77,26 +103,23 @@ public class SaveMgr : MonoBehaviour
     /// <summary>
     /// 加载存档
     /// </summary>
-    public void LoadGame()
+    /// <param name="name">存档名称</param>
+    public void LoadGame(string name)
     {
+        Debug.Log(SavePath + "/" + name);
         // 1 查找存档文件
-        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        //if (File.Exists(SavePath + "/gamesave.save"))
+        //if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        if (File.Exists(SavePath + "/" + name))
         {
             // 2 打开文件
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+            //FileStream file = File.Open(SavePath + "/gamesave.save", FileMode.Open);
+            FileStream file = File.Open(SavePath + "/" + name, FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
             // 3 将存档数据写到场景中
-            //foreach (var item in save.testSave)
-            //{
-            //    Debug.Log(item.Value);
-            //}
-            //Debug.Log(string.Format("pos: {0},{1},{2}",save.vector9.posX,save.vector9.posY,save.vector9.posZ));
-            //Debug.Log(string.Format("rot: {0},{1},{2}",save.vector9.rotX,save.vector9.rotY,save.vector9.rotZ));
-            //Debug.Log(string.Format("sca: {0},{1},{2}",save.vector9.scaX,save.vector9.scaY,save.vector9.scaZ));
-
             InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
 
             List<Instrument> hasSubInstrument = new List<Instrument>();
@@ -104,11 +127,6 @@ public class SaveMgr : MonoBehaviour
 
             foreach (var item in save.GetAllInstrument())
             {
-                //Debug.Log(item.instrumentEnum);
-                //Debug.Log(string.Format("pos: {0},{1},{2}", item.vector9.posX, item.vector9.posY, item.vector9.posZ));
-                //Debug.Log(string.Format("rot: {0},{1},{2}", item.vector9.rotX, item.vector9.rotY, item.vector9.rotZ));
-                //Debug.Log(string.Format("sca: {0},{1},{2}", item.vector9.scaX, item.vector9.scaY, item.vector9.scaZ));
-                //Debug.Log("**********************************");
                 if (item.active)
                 {
                     GameObject obj = InstrumentMgr.Instance.CreateInstrument(item.instrumentEnum);
@@ -197,6 +215,8 @@ public class SaveMgr : MonoBehaviour
                 building[i].ChangeMaterial(save.GetWallMaterial()[i]);
             }
             //Debug.Log(InstrumentMgr.Instance.GetInstrumentGameObjectDic().Count);
+            TipsCanvas.Instance.ShowTips("读取完成");
+            Debug.Log("读档");
         }
         else
         {

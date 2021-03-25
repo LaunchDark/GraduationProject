@@ -19,7 +19,7 @@ public class MyTools
             return;
         }
 
-        string filePath = Application.persistentDataPath;
+        string filePath = SaveMgr.Instance.ImagePath;
         if (string.IsNullOrEmpty(filePath))
         {
             Debug.LogError("<color=red>" + "没有截图保存位置" + "</color>");
