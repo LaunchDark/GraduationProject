@@ -28,7 +28,6 @@ public class UIRoot : MonoBehaviour
 
     [SerializeField] protected mButton PlayBtn;
     [SerializeField] protected mButton ExitBtn;
-    [HideInInspector] public bool isPlaying = false;
     public void Init()
     {
         //HideUIRoot();
@@ -80,8 +79,7 @@ public class UIRoot : MonoBehaviour
 
     public void HideUIRoot()
     {
-        if (isPlaying == true)
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -114,7 +112,6 @@ public class UIRoot : MonoBehaviour
     /// </summary>
     protected void Play()
     {
-        isPlaying = true;
         Left.gameObject.SetActive(true);
         Right.gameObject.SetActive(true);
         Top.gameObject.SetActive(false);

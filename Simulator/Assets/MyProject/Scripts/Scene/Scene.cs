@@ -14,6 +14,7 @@ public class Scene : MonoBehaviour
     {
         var packsackMgr = PacksackMgr.Instance;//初始化背包管理器
         var instrumentMgr = InstrumentMgr.Instance;//初始化家具管理器   
+        var saveMgr = SaveMgr.Instance;
 
         UITool.Instantiate("MyPlayer/Player");
 
@@ -101,6 +102,23 @@ public class Scene : MonoBehaviour
                     item.gameObject.layer = LayerMask.NameToLayer("TopWall");
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// 测试
+    /// </summary>
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            Debug.Log("存档");
+            SaveMgr.Instance.SaveGame();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Debug.Log("读档");
+            SaveMgr.Instance.LoadGame();
         }
     }
 

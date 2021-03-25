@@ -125,10 +125,10 @@ public class test : MonoBehaviour
         //}
         #endregion
 
-        //if (Input.GetKeyDown(KeyCode.Keypad0))
-        //{
-        //    Color();
-        //}
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+
+        }
 
     }
 

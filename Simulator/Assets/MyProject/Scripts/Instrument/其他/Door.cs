@@ -9,6 +9,12 @@ using DG.Tweening;
 public class Door : Instrument
 {
     protected Transform RotaCenter;
+
+    public override void AwakeLater()
+    {
+        Start();
+    }
+
     void Start()
     {
         type = InstrumentEnum.门;

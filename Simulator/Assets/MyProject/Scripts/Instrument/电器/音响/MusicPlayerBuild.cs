@@ -9,6 +9,14 @@ public class MusicPlayerBuild : Instrument
     public mButton nextBtn;
     public mButton lastBtn;
 
+    /// <summary>
+    /// 由于音频过大，加载卡顿，开始运行程序立刻加载，避免使用中拿出导致卡顿
+    /// </summary>
+    public override void AwakeLater()
+    {
+        Start();
+    }
+
     void Start()
     {
         type = InstrumentEnum.音响;

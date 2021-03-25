@@ -63,7 +63,6 @@ public class ChangeCanvas : MonoBehaviour
 
     public void ShowUI(Vector3 pos, Instrument select)
     {
-        if (!UIRoot.Instance.isPlaying) return;
         if (select.type == InstrumentEnum.墙)
         {
             if (WallMaterials.Count == 0) return;

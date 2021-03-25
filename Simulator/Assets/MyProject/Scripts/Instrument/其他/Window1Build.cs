@@ -7,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public class Window1Build : Instrument
 {
+    public override void AwakeLater()
+    {
+        Start();
+    }
 
     void Start()
     {

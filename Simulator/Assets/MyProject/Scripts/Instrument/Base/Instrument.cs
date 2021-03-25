@@ -649,4 +649,9 @@ public class Instrument : MonoBehaviour
         }
     }
 
+    public List<InstrumentEnum> GetAdsorbTypeList()
+    {
+        return adsorbTypeList;
+    }
+
 }

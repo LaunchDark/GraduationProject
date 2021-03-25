@@ -67,6 +67,11 @@ public class InstrumentMgr : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// 获取预制体路径
+    /// </summary>
+    /// <param name="instrumentEnum"></param>
+    /// <returns></returns>
     private string GetInstrumentResPath(InstrumentEnum instrumentEnum)
     {
         switch (instrumentEnum)
@@ -274,22 +279,45 @@ public class InstrumentMgr : MonoBehaviour
     }
 
     /// <summary>
-    /// 删除全部家具
+    /// 删除所有家具
     /// </summary>
-    public void DeleteSceneAllInstrument()
+    /// <param name="b">是否在读档</param>
+    public void DeleteSceneAllInstrument(bool b = true)
     {
         Instrument[] temp = FindObjectsOfType<Instrument>();
-        for (int i = 0; i < temp.Length; i++)
+        //场景中
+        if (b)
         {
-            if (temp[i].type != InstrumentEnum.门框 
-                && temp[i].type != InstrumentEnum.窗台
-                && temp[i].type != InstrumentEnum.墙
-                && temp[i].type != InstrumentEnum.天花板
-                && temp[i].type != InstrumentEnum.地板)
+            for (int i = 0; i < temp.Length; i++)
             {
-                DeleteInstrument(temp[i]);
+                if (temp[i].type != InstrumentEnum.门框
+                    && temp[i].type != InstrumentEnum.窗台
+                    && temp[i].type != InstrumentEnum.墙
+                    && temp[i].type != InstrumentEnum.天花板
+                    && temp[i].type != InstrumentEnum.地板)
+                {
+                    DeleteInstrument(temp[i]);
+                }
             }
         }
+        //读取存档
+        else
+        {
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (temp[i].type != InstrumentEnum.墙
+                    && temp[i].type != InstrumentEnum.天花板
+                    && temp[i].type != InstrumentEnum.地板)
+                {
+                    DeleteInstrument(temp[i]);
+                }
+            }
+        }
+    }
+
+    public Dictionary<InstrumentEnum, List<GameObject>> GetInstrumentGameObjectDic()
+    {
+        return instrumentGameObjectDic;
     }
 
 }
