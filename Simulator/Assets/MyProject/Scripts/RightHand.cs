@@ -48,7 +48,7 @@ public class RightHand : HandBase
         if (hand.GetGrabEnding() == GrabTypes.Grip)
         {
             //如果没有调用过其他UI
-            if (GripDown)
+            if (GripDown && ScaleInstrument == null)
             {
                 if (!ChangeCanvas.Instance.gameObject.activeSelf)
                 {

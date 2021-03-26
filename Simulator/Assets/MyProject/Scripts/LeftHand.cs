@@ -45,10 +45,10 @@ public class LeftHand : HandBase
             InputTouchPad();
         }
 
-        if(hand.GetGrabEnding() == GrabTypes.Grip)
+        if (hand.GetGrabEnding() == GrabTypes.Grip)
         {
             //如果没有调用过其他UI
-            if (GripDown)
+            if (GripDown && ScaleInstrument == null)
             {
                 if (!ChangeCanvas.Instance.gameObject.activeSelf)
                 {
@@ -56,7 +56,7 @@ public class LeftHand : HandBase
                     {
                         if (selectedInstrument.GetComponentInParent<Instrument>())
                         {
-                            ChangeCanvas.Instance.ShowUI(transform.position,selectedInstrument.GetComponentInParent<Instrument>());
+                            ChangeCanvas.Instance.ShowUI(transform.position, selectedInstrument.GetComponentInParent<Instrument>());
                         }
                     }
                 }

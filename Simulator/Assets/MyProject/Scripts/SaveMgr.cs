@@ -151,14 +151,14 @@ public class SaveMgr : MonoBehaviour
             bool find = false;
             for (int i = 0; i < SubInstruments.Count; i++)
             {
+                //Debug.Log(find);
                 if (find)
                 {
                     i = 0;
                     find = false;
                 }
-                for(int j = 0; j < hasSubInstrument.Count; j++)
+                for (int j = 0; j < hasSubInstrument.Count; j++)
                 {
-                    //Debug.Log(SubInstruments[i].GetAdsorbTypeList().Contains(hasSubInstrument[j].type));
                     if (SubInstruments[i].GetAdsorbTypeList().Contains(hasSubInstrument[j].type))
                     {
                         SubInstruments[i].curAdsorbInstrument = hasSubInstrument[j];
@@ -167,7 +167,11 @@ public class SaveMgr : MonoBehaviour
                         hasSubInstrument[j].subInstrument = SubInstruments[i];
                         hasSubInstrument.Remove(hasSubInstrument[j]);
                         SubInstruments.Remove(SubInstruments[i]);
+
+                        find = true;
+                        //Debug.Log(string.Format("匹配{0},{1}",i,j));
                         i--;
+                        break;
                     }
                 }
             }

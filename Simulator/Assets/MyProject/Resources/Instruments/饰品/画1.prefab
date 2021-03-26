@@ -70,7 +70,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5
@@ -83,8 +82,8 @@ MonoBehaviour:
   - {fileID: 3473126154959687593}
   - {fileID: 3473645987512839087}
   EachMaterials:
-  - {fileID: 2100000, guid: d3679de3938a42b4097251bf5733ebb2, type: 2}
-  - {fileID: 2100000, guid: 544f34be19aeede48b41bf0b58182b77, type: 2}
+  - {fileID: 2100000, guid: 8792f4f4c4b6f204eb28a7a8de55306a, type: 2}
+  - {fileID: 2100000, guid: 814d3b6d4f97efb4cbff24a0f588dbe2, type: 2}
   - {fileID: 2100000, guid: 553ee4d5f934ee0498042b9dc180aeca, type: 2}
   - {fileID: 2100000, guid: 005260d0291184b4bb1cb62f9afd21a8, type: 2}
   CurMaterial: 0

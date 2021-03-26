@@ -85,6 +85,10 @@ public class InstrumentMgr : MonoBehaviour
             //    return "Instruments/²âÊÔµõµÆ";
             //case InstrumentEnum.Double:
             //    return "Instruments/²âÊÔ¸´ºÏÌå";
+            case InstrumentEnum.WallDecorate:
+                return "Instruments/²âÊÔÇ½ÑØ";
+            case InstrumentEnum.WallDecorate2:
+                return "Instruments/²âÊÔÇ½ÑØ2";
             #endregion
 
             #region ´²
@@ -94,8 +98,12 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/´²/±§Õí2";
             case InstrumentEnum.ÕíÍ·1:
                 return "Instruments/´²/ÕíÍ·1";
+            case InstrumentEnum.ÕíÍ·2:
+                return "Instruments/´²/ÕíÍ·2";
             case InstrumentEnum.´²1:
                 return "Instruments/´²/´²1";
+            case InstrumentEnum.´²2:
+                return "Instruments/´²/´²2";
             #endregion
 
             #region ¹ñ×Ó
@@ -112,6 +120,8 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/×À×Ó/³¤×À1";
             case InstrumentEnum.³¤×À2:
                 return "Instruments/×À×Ó/²£Á§×À1";
+            case InstrumentEnum.²Í×À1:
+                return "Instruments/×À×Ó/²Í×À1";
             case InstrumentEnum.Ô²×À1:
                 return "Instruments/×À×Ó/Ô²×À1";
             case InstrumentEnum.Ô²×À2:
@@ -125,10 +135,14 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/ÒÎ×Ó/ÒÎ×Ó2";
             case InstrumentEnum.ÒÎ×Ó3:
                 return "Instruments/ÒÎ×Ó/ÒÎ×Ó3";
+            case InstrumentEnum.²ÍÒÎ1:
+                return "Instruments/ÒÎ×Ó/²ÍÒÎ1";
             case InstrumentEnum.É³·¢1:
                 return "Instruments/ÒÎ×Ó/É³·¢1";
             case InstrumentEnum.É³·¢2:
                 return "Instruments/ÒÎ×Ó/É³·¢2";
+            case InstrumentEnum.É³·¢3:
+                return "Instruments/ÒÎ×Ó/É³·¢3";
             #endregion
 
             #region µçÆ÷

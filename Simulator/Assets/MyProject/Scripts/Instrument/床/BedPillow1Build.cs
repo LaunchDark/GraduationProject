@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 枕头1
+/// </summary>
 public class BedPillow1Build : Instrument
 {
     void Start()

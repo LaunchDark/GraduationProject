@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 51f976772550ff044bb9a30055e750a4, type: 3}
-    totalSpriteSurfaceArea: 861888
+    totalSpriteSurfaceArea: 951668
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -51,7 +51,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8faed75089126a54b8f74e6cb7d7770c, type: 3}
   - {fileID: 21300000, guid: a1689bf05b20a634cbe42b039bda26ea, type: 3}
   - {fileID: 21300000, guid: 03f69c0111f36b84ca13dec6c13fbf15, type: 3}
+  - {fileID: 21300000, guid: 94519f31fc519ee4b998805ee5938437, type: 3}
   - {fileID: 21300000, guid: f93d0991fe9954f48bf2b01297baaa9f, type: 3}
+  - {fileID: 21300000, guid: 04456a224c09b0744a4e035e92a988e3, type: 3}
   - {fileID: 21300000, guid: cb841062d08c5e443a859e9382337979, type: 3}
   - {fileID: 21300000, guid: ddc32213d48fba340a0118e845af8f07, type: 3}
   - {fileID: 21300000, guid: d823f323f2832904f813b38ce2c5d4ea, type: 3}
@@ -66,6 +68,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: df677a7568c86284e9335100ee0fc47c, type: 3}
   - {fileID: 21300000, guid: 76944dc5fc21d814c8cb7b600649fa97, type: 3}
   - {fileID: 21300000, guid: eb2abc76320ad514382f70865bb756f8, type: 3}
+  - {fileID: 21300000, guid: 41630b8622a05504384def3d5db8636e, type: 3}
   - {fileID: 21300000, guid: 1258e1b6e20bdb942943f55560a92349, type: 3}
   - {fileID: 21300000, guid: 235943b6c148d89459a52170b0724a95, type: 3}
   - {fileID: 21300000, guid: e9cdf958c93af9944a2ef070426069a1, type: 3}
@@ -79,6 +82,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ded2a84a1dbe3f94e8756a19a15b2a9c, type: 3}
   - {fileID: 21300000, guid: 4537a09afec0b17499cceb26c83f29c5, type: 3}
   - {fileID: 21300000, guid: faca2f9a39acfa1459ac3e0b5c0e6fc0, type: 3}
+  - {fileID: 21300000, guid: 5e23facaf9c4416498f9e678c7fb1b9f, type: 3}
   - {fileID: 21300000, guid: d7bdfaea6bd4f6b47ac1094ec3e76eaf, type: 3}
   - {fileID: 21300000, guid: 4685ea2b4c5e2de49a010dba171f1cf3, type: 3}
   - {fileID: 21300000, guid: 5e00935b5c9219540a2ab4ebad98e170, type: 3}
@@ -89,6 +93,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aed81c9c79395014c8a8e7cdd1c83cad, type: 3}
   - {fileID: 21300000, guid: 03220dbc88b5a6c4281246ec775a89d5, type: 3}
   - {fileID: 21300000, guid: aea6e9ec963cf0a44bae96b984f02e61, type: 3}
+  - {fileID: 21300000, guid: 72b9131d43c580043a608d0e05b6a896, type: 3}
   - {fileID: 21300000, guid: 89fdec1e266697d42ae7421e60d14ec2, type: 3}
   - {fileID: 21300000, guid: 8ad5714e426af2b4987ffb502b401af9, type: 3}
   - {fileID: 21300000, guid: 64f9b4eeb7723f245a0918398eb5019c, type: 3}
@@ -100,7 +105,9 @@ SpriteAtlas:
   - bingxiang
   - ditan
   - pingzi4
+  - canzhuo
   - shuihu
+  - shafa2
   - huasa
   - taideng
   - baozhen2
@@ -115,6 +122,7 @@ SpriteAtlas:
   - xishoupan
   - chuangtougui
   - chufangxiaobujian
+  - canyi
   - yigui
   - beizi
   - chuanghu
@@ -128,6 +136,7 @@ SpriteAtlas:
   - diaodeng
   - lajitong
   - guo
+  - zhentuo1
   - deng
   - matong
   - yinxiang
@@ -138,6 +147,7 @@ SpriteAtlas:
   - dianshi
   - bolizhuo
   - huakuang
+  - chuang2
   - chufang
   - yizi1 1
   - chuanglian

@@ -135,7 +135,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5
@@ -147,7 +146,7 @@ MonoBehaviour:
   CanChange:
   - {fileID: 1443019831866715953}
   EachMaterials:
-  - {fileID: 2100000, guid: 554689080f053944c9fd2d4e371d24fb, type: 2}
+  - {fileID: 2100000, guid: 889bad5c3058fd2459ee15d0ae2f42ce, type: 2}
   - {fileID: 2100000, guid: 24516e1c9604a7848b2f480bbe0cdfdb, type: 2}
   - {fileID: 2100000, guid: 814bdb8b3a7ee1a4f8aa20e3de5b0ec6, type: 2}
   CurMaterial: 0

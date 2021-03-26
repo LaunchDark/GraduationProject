@@ -1837,14 +1837,15 @@ MonoBehaviour:
   instrument: {fileID: 0}
   Name: {fileID: 6188841050965622715}
   WallMaterials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 5819818566ec6ab4b9bcb6c065942c72, type: 2}
+  - {fileID: 2100000, guid: b3a1784c6afe153488a8c4dd9bc0eb2c, type: 2}
+  - {fileID: 2100000, guid: b4016b3af435f184b8a2e1b0746b884d, type: 2}
   TopMaterials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 5819818566ec6ab4b9bcb6c065942c72, type: 2}
+  - {fileID: 2100000, guid: 6d43c7ee6a017c445a1d8fbff430a610, type: 2}
   FloorMaterials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 5819818566ec6ab4b9bcb6c065942c72, type: 2}
+  - {fileID: 2100000, guid: 812ec07cd99e2ef4ab4106b689e3e6ac, type: 2}
+  - {fileID: 2100000, guid: c2a9f4ac0e3332240b1b39285f6534e4, type: 2}
+  - {fileID: 2100000, guid: a364b5be805fc2e42b43c58f63636152, type: 2}
+  - {fileID: 2100000, guid: 5173c3dcc9bc9354bae97ef87d15ce78, type: 2}
 --- !u!65 &1760786127119427758
 BoxCollider:
   m_ObjectHideFlags: 0

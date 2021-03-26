@@ -25,7 +25,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5
@@ -37,7 +36,7 @@ MonoBehaviour:
   CanChange:
   - {fileID: 6612393024498655556}
   EachMaterials:
-  - {fileID: 2100000, guid: 2d88d251fd5134b4cb6d1aab2e6b537a, type: 2}
+  - {fileID: 2100000, guid: 28cf66bf38ce28a4da0ec9fc43eb1457, type: 2}
   - {fileID: 2100000, guid: 90254546c0f019640a11e09b86d4e513, type: 2}
   CurMaterial: 0
 --- !u!64 &6996008512698888115
@@ -109,6 +108,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23819160593660920, guid: 34220b47d9584074996bf662118606f7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28cf66bf38ce28a4da0ec9fc43eb1457, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34220b47d9584074996bf662118606f7, type: 3}
 --- !u!1 &6598364824413895856 stripped

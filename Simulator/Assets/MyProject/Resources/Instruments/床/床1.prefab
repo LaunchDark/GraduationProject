@@ -25,7 +25,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 2.6
   height: 1.3
@@ -40,9 +39,9 @@ MonoBehaviour:
   - {fileID: 4834791910970153095}
   - {fileID: 4836567936368698705}
   EachMaterials:
-  - {fileID: 2100000, guid: 5dfe7a899282451419fef0fef1423714, type: 2}
-  - {fileID: 2100000, guid: 3892d9b927e719548ac70800c1877932, type: 2}
-  - {fileID: 2100000, guid: 68967acf3dad1f84ea5ba81e9f948963, type: 2}
+  - {fileID: 2100000, guid: 45787994ba64348429ae718f3973fea4, type: 2}
+  - {fileID: 2100000, guid: 457d12422b2b5904f947df0039974b64, type: 2}
+  - {fileID: 2100000, guid: 0b360d77dd25b6a429114ce2e18ae8ca, type: 2}
   - {fileID: 2100000, guid: 6084c99915ecee64493bca98e64afe14, type: 2}
   - {fileID: 2100000, guid: 9d70451a1c9b4384cb8425ad5e5365ab, type: 2}
   - {fileID: 2100000, guid: 8d3cbe3e789d01d46915bbdf38fa005f, type: 2}
@@ -88,19 +87,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 245.09702, y: 117.95241, z: 15.585672}
   m_Center: {x: 25.291967, y: 73.20294, z: -57.51941}
---- !u!65 &7943247571416209866
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4849919222739992297}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 179.99998, y: 9.999998, z: 10.000028}
-  m_Center: {x: 24.149824, y: 14.498005, z: -23.815916}
 --- !u!65 &8970168248775631689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -114,6 +100,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 179.99998, y: 9.999998, z: 10.000028}
   m_Center: {x: 24.149824, y: 14.498005, z: -23.815931}
+--- !u!65 &7943247571416209866
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4849919222739992297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 179.99998, y: 9.999998, z: 10.000028}
+  m_Center: {x: 24.149824, y: 14.498005, z: -23.815916}
 --- !u!1001 &4849732585724419991
 PrefabInstance:
   m_ObjectHideFlags: 0

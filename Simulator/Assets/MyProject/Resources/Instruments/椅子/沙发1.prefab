@@ -69,7 +69,6 @@ MonoBehaviour:
   subInstrument: {fileID: 0}
   groupInstrumentList: []
   groupInstrumentType: 0
-  selfSortIndex: 0
   isInWall: {fileID: 0}
   width: 0.5
   height: 0.5
@@ -81,7 +80,7 @@ MonoBehaviour:
   CanChange:
   - {fileID: 1925527893399185987}
   EachMaterials:
-  - {fileID: 2100000, guid: b70e4e087129ede4b92cd0ad013b53c7, type: 2}
+  - {fileID: 2100000, guid: 062aaea282561094db405c14a2c36141, type: 2}
   - {fileID: 2100000, guid: 4e532e714ea3dc54ea6f02264f1cb348, type: 2}
   - {fileID: 2100000, guid: 7f6ad43986d0cee45bd8d117ece2c5fe, type: 2}
   CurMaterial: 0
@@ -371,7 +370,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b70e4e087129ede4b92cd0ad013b53c7, type: 2}
+      objectReference: {fileID: 2100000, guid: 062aaea282561094db405c14a2c36141, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aeb43f6d9e1c354f8965d78de67de98, type: 3}
 --- !u!1 &1940594492713576105 stripped

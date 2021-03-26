@@ -40,6 +40,22 @@
   //  "Amount": 2,
   //  "IsAtPacksack": 1
   //},
+  {
+    "InstrumentEnum": "WallDecorate",
+    "InstrumentTypeEnum": "其他",
+    "Name": "测试墙沿",
+    "Icon": "baozhen",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "WallDecorate2",
+    "InstrumentTypeEnum": "其他",
+    "Name": "测试墙沿2",
+    "Icon": "baozhen",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
 
   //床
   {
@@ -67,10 +83,26 @@
     "IsAtPacksack": 1
   },
   {
+    "InstrumentEnum": "枕头2",
+    "InstrumentTypeEnum": "床",
+    "Name": "枕头2",
+    "Icon": "zhentuo1",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
     "InstrumentEnum": "床1",
     "InstrumentTypeEnum": "床",
     "Name": "床1",
     "Icon": "chuang 1",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "床2",
+    "InstrumentTypeEnum": "床",
+    "Name": "床2",
+    "Icon": "chuang2",
     "Amount": 99,
     "IsAtPacksack": 1
   },
@@ -119,6 +151,14 @@
     "IsAtPacksack": 1
   },
   {
+    "InstrumentEnum": "餐桌1",
+    "InstrumentTypeEnum": "桌子",
+    "Name": "餐桌",
+    "Icon": "canzhuo",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
     "InstrumentEnum": "圆桌1",
     "InstrumentTypeEnum": "桌子",
     "Name": "圆桌1",
@@ -161,6 +201,14 @@
     "IsAtPacksack": 1
   },
   {
+    "InstrumentEnum": "餐椅1",
+    "InstrumentTypeEnum": "椅子",
+    "Name": "餐椅",
+    "Icon": "canyi",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
     "InstrumentEnum": "沙发1",
     "InstrumentTypeEnum": "椅子",
     "Name": "沙发1",
@@ -173,6 +221,14 @@
     "InstrumentTypeEnum": "椅子",
     "Name": "单人沙发",
     "Icon": "shafa1",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "沙发3",
+    "InstrumentTypeEnum": "椅子",
+    "Name": "沙发2",
+    "Icon": "shafa2",
     "Amount": 99,
     "IsAtPacksack": 1
   },

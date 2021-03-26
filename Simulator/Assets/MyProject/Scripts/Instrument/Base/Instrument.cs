@@ -106,6 +106,14 @@ public class Instrument : MonoBehaviour
     /// </summary>
     public bool isFloot = false;
     /// <summary>
+    /// 横轴装饰墙
+    /// </summary>
+    public bool isCrossWall = false;
+    /// <summary>
+    /// 竖轴装饰墙
+    /// </summary>
+    public bool isUprightWall = false;
+    /// <summary>
     /// 当前进入的手
     /// </summary>
     public HandBase ScaleHand;
@@ -552,7 +560,7 @@ public class Instrument : MonoBehaviour
     /// <summary>
     /// 控制物体缩放
     /// </summary>
-    protected virtual void ControlScale() 
+    protected virtual void ControlScale()
     {
         if (LastPos == Vector3.zero)
         {
@@ -562,7 +570,18 @@ public class Instrument : MonoBehaviour
         CurPos = ScaleHand.transform.position;
         //缩放比例 = 当前长度/上一个长度
         float ratio = Mathf.Abs(Vector3.Distance(CurPos, transform.position)) / Mathf.Abs(Vector3.Distance(LastPos, transform.position));
-        transform.localScale *= ratio;
+        if (isCrossWall)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * ratio, 1, 1);
+        }
+        else if (isUprightWall)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y * ratio, 1);
+        }
+        else
+        {
+            transform.localScale *= ratio;
+        }
         LastPos = CurPos;
     }
 

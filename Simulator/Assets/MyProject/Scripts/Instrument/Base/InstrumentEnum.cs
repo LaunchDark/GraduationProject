@@ -30,6 +30,18 @@ public enum InstrumentEnum
     [Description("测试吊灯")]
     HangLight = 4,
 
+    /// <summary>
+    /// 测试墙沿
+    /// </summary>
+    [Description("测试墙沿")]
+    WallDecorate,
+
+    /// <summary>
+    /// 测试墙沿2
+    /// </summary>
+    [Description("测试墙沿2")]
+    WallDecorate2,
+
     #endregion
 
     #region 床
@@ -52,10 +64,22 @@ public enum InstrumentEnum
     枕头1,
 
     /// <summary>
+    /// 枕头2
+    /// </summary>
+    [Description("枕头2")]
+    枕头2,
+
+    /// <summary>
     /// 床1
     /// </summary>
     [Description("床1")]
     床1,
+
+    /// <summary>
+    /// 床2
+    /// </summary>
+    [Description("床2")]
+    床2,
     #endregion
 
     #region 柜子
@@ -84,11 +108,18 @@ public enum InstrumentEnum
     /// </summary>
     [Description("长桌1")]
     长桌1,
+
     /// <summary>
     /// 长桌2
     /// </summary>
     [Description("长桌2")]
     长桌2,
+
+    /// <summary>
+    /// 餐桌1
+    /// </summary>
+    [Description("餐桌1")]
+    餐桌1,
 
     /// <summary>
     /// 圆桌1
@@ -123,6 +154,12 @@ public enum InstrumentEnum
     椅子3,
 
     /// <summary>
+    /// 餐椅1
+    /// </summary>
+    [Description("餐椅1")]
+    餐椅1,
+
+    /// <summary>
     /// 沙发1
     /// </summary>
     [Description("沙发1")]
@@ -133,6 +170,12 @@ public enum InstrumentEnum
     /// </summary>
     [Description("沙发2")]
     沙发2,
+
+    /// <summary>
+    /// 沙发3
+    /// </summary>
+    [Description("沙发3")]
+    沙发3,
     #endregion
 
     #region 电器
