@@ -76,11 +76,13 @@ MonoBehaviour:
   isFreeInstrument: 0
   CanScaleInstrument: 0
   isFloot: 0
+  isCrossWall: 0
+  isUprightWall: 0
   ScaleHand: {fileID: 0}
   CanChange:
   - {fileID: 1925527893399185987}
   EachMaterials:
-  - {fileID: 2100000, guid: 062aaea282561094db405c14a2c36141, type: 2}
+  - {fileID: 2100000, guid: 76cd94e44e35daa4f9be7a001eb363c4, type: 2}
   - {fileID: 2100000, guid: 4e532e714ea3dc54ea6f02264f1cb348, type: 2}
   - {fileID: 2100000, guid: 7f6ad43986d0cee45bd8d117ece2c5fe, type: 2}
   CurMaterial: 0
@@ -370,7 +372,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 062aaea282561094db405c14a2c36141, type: 2}
+      objectReference: {fileID: 2100000, guid: 76cd94e44e35daa4f9be7a001eb363c4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aeb43f6d9e1c354f8965d78de67de98, type: 3}
 --- !u!1 &1940594492713576105 stripped

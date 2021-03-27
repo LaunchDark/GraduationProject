@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 51f976772550ff044bb9a30055e750a4, type: 3}
-    totalSpriteSurfaceArea: 951668
+    totalSpriteSurfaceArea: 987580
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -51,6 +51,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8faed75089126a54b8f74e6cb7d7770c, type: 3}
   - {fileID: 21300000, guid: a1689bf05b20a634cbe42b039bda26ea, type: 3}
   - {fileID: 21300000, guid: 03f69c0111f36b84ca13dec6c13fbf15, type: 3}
+  - {fileID: 21300000, guid: 6dbf2631fc1b1b140aa081110210835b, type: 3}
   - {fileID: 21300000, guid: 94519f31fc519ee4b998805ee5938437, type: 3}
   - {fileID: 21300000, guid: f93d0991fe9954f48bf2b01297baaa9f, type: 3}
   - {fileID: 21300000, guid: 04456a224c09b0744a4e035e92a988e3, type: 3}
@@ -97,6 +98,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 89fdec1e266697d42ae7421e60d14ec2, type: 3}
   - {fileID: 21300000, guid: 8ad5714e426af2b4987ffb502b401af9, type: 3}
   - {fileID: 21300000, guid: 64f9b4eeb7723f245a0918398eb5019c, type: 3}
+  - {fileID: 21300000, guid: 658c4c3f8ff8ac54c9e7c0cf91658956, type: 3}
   - {fileID: 21300000, guid: bd09486fccefa9743aefbfcfa7e8ee92, type: 3}
   - {fileID: 21300000, guid: ba5a6abf3ee589144bd6cc6bbaf3dc31, type: 3}
   - {fileID: 21300000, guid: e5ec3ccf578053c4ea427aa7f91b554e, type: 3}
@@ -105,6 +107,7 @@ SpriteAtlas:
   - bingxiang
   - ditan
   - pingzi4
+  - zhuanghuang
   - canzhuo
   - shuihu
   - shafa2
@@ -151,6 +154,7 @@ SpriteAtlas:
   - chufang
   - yizi1 1
   - chuanglian
+  - zhuzi
   - meiqizao
   - shafa
   - chuang 1

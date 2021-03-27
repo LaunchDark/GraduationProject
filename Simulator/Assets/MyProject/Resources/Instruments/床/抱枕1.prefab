@@ -32,12 +32,14 @@ MonoBehaviour:
   isFreeInstrument: 0
   CanScaleInstrument: 0
   isFloot: 0
+  isCrossWall: 0
+  isUprightWall: 0
   ScaleHand: {fileID: 0}
   CanChange:
   - {fileID: 4038124703675814664}
   EachMaterials:
-  - {fileID: 2100000, guid: 3b3b8bedeafa06c49a038950b9b3bc75, type: 2}
-  - {fileID: 2100000, guid: 4555006d8ed01894fb5a31b942e6ad43, type: 2}
+  - {fileID: 2100000, guid: d38133177280f604293a9ccf2616da0e, type: 2}
+  - {fileID: 2100000, guid: c63f909f9b2118746832a846dcd7abff, type: 2}
   CurMaterial: 0
 --- !u!64 &5821652753774084514
 MeshCollider:
@@ -112,7 +114,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3b3b8bedeafa06c49a038950b9b3bc75, type: 2}
+      objectReference: {fileID: 2100000, guid: a4ed559711c578748a3768e9f8f76714, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bed8b713ee10824d9d035b76cc72dde, type: 3}
 --- !u!1 &4061324534507039546 stripped

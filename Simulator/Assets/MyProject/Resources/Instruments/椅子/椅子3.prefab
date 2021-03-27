@@ -332,13 +332,15 @@ MonoBehaviour:
   isFreeInstrument: 0
   CanScaleInstrument: 0
   isFloot: 0
+  isCrossWall: 0
+  isUprightWall: 0
   ScaleHand: {fileID: 0}
   CanChange:
   - {fileID: 1137529895114462791}
   - {fileID: 1137574206877167823}
   EachMaterials:
-  - {fileID: 2100000, guid: e219f568776d1224f8b523c7335bde39, type: 2}
-  - {fileID: 2100000, guid: f9f295f917503bf4fb2c1ed6edb68a3b, type: 2}
+  - {fileID: 2100000, guid: 0d39c87383b4f8c4fa195b47f498e5df, type: 2}
+  - {fileID: 2100000, guid: 5fc0bb0490db68d47aff26ed0842227b, type: 2}
   - {fileID: 2100000, guid: 6ed7281f8bde4064897ff6f46f49d6dd, type: 2}
   - {fileID: 2100000, guid: 205538778fcb92248962a7dee112187b, type: 2}
   CurMaterial: 0

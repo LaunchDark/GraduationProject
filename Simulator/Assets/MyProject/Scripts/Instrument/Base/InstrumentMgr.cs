@@ -85,10 +85,6 @@ public class InstrumentMgr : MonoBehaviour
             //    return "Instruments/²âÊÔµõµÆ";
             //case InstrumentEnum.Double:
             //    return "Instruments/²âÊÔ¸´ºÏÌå";
-            case InstrumentEnum.WallDecorate:
-                return "Instruments/²âÊÔÇ½ÑØ";
-            case InstrumentEnum.WallDecorate2:
-                return "Instruments/²âÊÔÇ½ÑØ2";
             #endregion
 
             #region ´²
@@ -227,6 +223,10 @@ public class InstrumentMgr : MonoBehaviour
                 return "Instruments/ÆäËû/´°Ì¨";
             case InstrumentEnum.´°Á±:
                 return "Instruments/ÆäËû/´°Á±1";
+            case InstrumentEnum.WallDecorate1:
+                return "Instruments/ÆäËû/Ç½ÑØ1";
+            case InstrumentEnum.WallDecorate2:
+                return "Instruments/ÆäËû/Ç½ÑØ2";
             #endregion
 
             default:

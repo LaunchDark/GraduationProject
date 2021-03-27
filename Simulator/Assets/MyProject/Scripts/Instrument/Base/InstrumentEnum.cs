@@ -34,7 +34,7 @@ public enum InstrumentEnum
     /// 测试墙沿
     /// </summary>
     [Description("测试墙沿")]
-    WallDecorate,
+    WallDecorate1,
 
     /// <summary>
     /// 测试墙沿2

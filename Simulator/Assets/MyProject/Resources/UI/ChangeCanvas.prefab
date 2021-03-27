@@ -1839,8 +1839,10 @@ MonoBehaviour:
   WallMaterials:
   - {fileID: 2100000, guid: b3a1784c6afe153488a8c4dd9bc0eb2c, type: 2}
   - {fileID: 2100000, guid: b4016b3af435f184b8a2e1b0746b884d, type: 2}
+  - {fileID: 2100000, guid: e3ecff18cde48b24495486bd3e6577d9, type: 2}
   TopMaterials:
   - {fileID: 2100000, guid: 6d43c7ee6a017c445a1d8fbff430a610, type: 2}
+  - {fileID: 2100000, guid: a44bebc477819da49963f2bc78ee3340, type: 2}
   FloorMaterials:
   - {fileID: 2100000, guid: 812ec07cd99e2ef4ab4106b689e3e6ac, type: 2}
   - {fileID: 2100000, guid: c2a9f4ac0e3332240b1b39285f6534e4, type: 2}

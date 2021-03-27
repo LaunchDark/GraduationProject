@@ -40,22 +40,6 @@
   //  "Amount": 2,
   //  "IsAtPacksack": 1
   //},
-  {
-    "InstrumentEnum": "WallDecorate",
-    "InstrumentTypeEnum": "其他",
-    "Name": "测试墙沿",
-    "Icon": "baozhen",
-    "Amount": 99,
-    "IsAtPacksack": 1
-  },
-  {
-    "InstrumentEnum": "WallDecorate2",
-    "InstrumentTypeEnum": "其他",
-    "Name": "测试墙沿2",
-    "Icon": "baozhen",
-    "Amount": 99,
-    "IsAtPacksack": 1
-  },
 
   //床
   {
@@ -505,6 +489,22 @@
     "InstrumentTypeEnum": "其他",
     "Name": "垃圾桶",
     "Icon": "lajitong",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "WallDecorate1",
+    "InstrumentTypeEnum": "其他",
+    "Name": "装潢",
+    "Icon": "zhuanghuang",
+    "Amount": 99,
+    "IsAtPacksack": 1
+  },
+  {
+    "InstrumentEnum": "WallDecorate2",
+    "InstrumentTypeEnum": "其他",
+    "Name": "柱子",
+    "Icon": "zhuzi",
     "Amount": 99,
     "IsAtPacksack": 1
   }
