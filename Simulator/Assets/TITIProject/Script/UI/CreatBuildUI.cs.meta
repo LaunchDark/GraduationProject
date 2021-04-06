@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: fed533093ce917e4f985be247911b6d9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mbutton: {fileID: 4401089708357387196, guid: 368a64cae36e14b4daf5d1bbbc3a7b27,
+      type: 3}
+  - Red: {fileID: 2100000, guid: 52e06b8fa47b914468c84a3a5a04dbad, type: 2}
+  - Yellow: {fileID: 2100000, guid: a8bce3142fffea441b249e8fddcc9d11, type: 2}
+  - Green: {fileID: 2100000, guid: 8d3d9c5c7dfdd2843bf9b612c4d34aeb, type: 2}
+  - Blue: {fileID: 2100000, guid: f26d36b6576329e4d802f5b82ee9d692, type: 2}
+  - Purple: {fileID: 2100000, guid: 779c471725f8975469d29a415d273a2e, type: 2}
+  - CreatBuildingBtn: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

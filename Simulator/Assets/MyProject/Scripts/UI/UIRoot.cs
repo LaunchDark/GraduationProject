@@ -24,6 +24,8 @@ public class UIRoot : MonoBehaviour
     public Transform Top;
     public Transform Save;
 
+    public Transform Creat;
+
 
     [HideInInspector] public Dictionary<int, Packsack> AllPacksack;
 
@@ -70,6 +72,7 @@ public class UIRoot : MonoBehaviour
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
         Save.gameObject.SetActive(false);
+        Creat.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -128,6 +131,16 @@ public class UIRoot : MonoBehaviour
     /// </summary>
     protected void Play()
     {
+        Creat.gameObject.SetActive(true);
+        Left.gameObject.SetActive(false);
+        Right.gameObject.SetActive(false);
+        Top.gameObject.SetActive(false);
+        Save.gameObject.SetActive(false);
+    }
+
+    public void CreatDown()
+    {
+        Creat.gameObject.SetActive(false);
         Left.gameObject.SetActive(true);
         Right.gameObject.SetActive(true);
         Top.gameObject.SetActive(false);

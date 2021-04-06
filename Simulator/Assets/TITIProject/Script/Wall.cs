@@ -6,20 +6,46 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum HoleType
+public enum HoleType:int
 {
-    Windows,
-    Door
+    None = 0,
+    Windows = 2,
+    Door = 1
 }
+//public enum WallType:int
+//{
+//    AllWall = 0,
+//    HalfWall = 1,
+//    None = 2
+//}
 
+[System.Serializable]
 public class hole
 {
-    public HoleType Type;
-    public Vector2 pos;
+    public HoleType Type = HoleType.None;
+    public Vector2Serializer pos;
     public int wallNum;
-    public Vector2 shape;
-}
+    public Vector2Serializer shape;
 
+    public hole()
+    {
+        Type = HoleType.None;
+        pos.init(new Vector2(0, 0));
+    }
+
+    public void SetWindow()
+    {
+        this.Type = HoleType.Windows;
+        this.shape.init(new Vector2(1, 0.8f));
+    }
+
+    public void SetDoor()
+    {
+        this.Type = HoleType.Door;
+        this.shape.init(new Vector2(0.9f, 2.0f));
+    }
+}
+[System.Serializable]
 public class windows :  hole
 {
     public windows(int WallNum, Vector2 Shape, Vector2 Pos)
@@ -27,19 +53,21 @@ public class windows :  hole
         this.Type = HoleType.Windows;
         this.wallNum = WallNum;
         //this.shape = Shape;
-        this.pos = Pos;
+        this.pos.init(Pos);
     }
 
     public windows(int WallNum, Vector2 Pos)
     {
         this.Type = HoleType.Windows;
         this.wallNum = WallNum;
-        this.shape = new Vector2(1, 0.8f);
-        this.pos = Pos;
+        this.shape.init(new Vector2(1, 0.8f));
+        this.pos.init(Pos);
     }
 
+    
 }
 
+[System.Serializable]
 public class door : hole
 {
     //new public Vector2 shape = new Vector2(0.9f, 2.0f);
@@ -47,40 +75,47 @@ public class door : hole
     {
         this.Type = HoleType.Door;
         this.wallNum = WallNum;
-        this.shape = Shape;
-        this.pos = new Vector2(posX, Shape.y / 2);
+        this.shape.init(Shape);
+        this.pos.init(new Vector2(posX, Shape.y / 2));
     }
 
     public door(int WallNum, float posX)
     {
         this.Type = HoleType.Door;
         this.wallNum = WallNum;
-        this.shape = new Vector2(0.9f, 2.0f);
-        this.pos = new Vector2(posX, this.shape.y / 2);
+        this.shape.init(new Vector2(0.9f, 2.0f));
+        this.pos.init(new Vector2(posX, this.shape.y / 2));
     }
 }
 
+[System.Serializable]
 public class Wall
 {
+    public HoleType Type = 0;
     public int wallNum = 0;
     public hole Hole = null;
-    public Vector3 shape;
-    public Vector3 pos;
-    public Vector3 RoomPos;
+    public Vector3Serializer shape;
+    public Vector3Serializer pos;
+    public Vector3Serializer RoomPos;
 
-    public Wall(float lenght, float weight, float thick, Vector3 pos, int wallNum, Vector3 RoomPos)
+    public void wall()
     {
+        Hole = new hole();
+    }
+    public void setWall(float lenght, float weight, float thick, Vector3 pos, int wallNum, Vector3 RoomPos, HoleType type = 0)
+    {
+        this.Type = type;
         this.wallNum = wallNum;
-        shape = new Vector3(lenght, weight, thick);
-        this.pos = pos;
-        this.RoomPos = RoomPos;
+        this.shape.init(new Vector3(lenght, weight, thick));
+        this.pos.init(pos);
+        this.RoomPos.init(RoomPos);
     }
 
     public void CreatWall(string wallName, GameObject Parent)
     {
-        Vector3 dir = this.pos - this.RoomPos;
-
-        if (this.Hole == null)
+        Vector3 dir = this.pos.V3 - this.RoomPos.V3;
+        
+        if (this.Hole.Type == HoleType.None)
         {
             GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
             GameObject _wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -95,7 +130,7 @@ public class Wall
                 if (dir.x < 0)
                 {
                     wall.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, -90, 0);
 
                     wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
                     _wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
@@ -103,7 +138,7 @@ public class Wall
                 else if (dir.x > 0)
                 {
                     wall.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, 90, 0);
 
                     _wall.transform.position = new Vector3(this.pos.x + shape.z / 4, this.pos.y, this.pos.z);
                     wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
@@ -114,14 +149,15 @@ public class Wall
             {
                 if (dir.z < 0)
                 {
+                    _wall.transform.localEulerAngles = new Vector3(0, 180, 0);
+
                     wall.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z + shape.z / 4);
                     _wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
                 }
                 else if (dir.z > 0)
                 {
                     wall.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, 180, 0);
-
+                    
                     _wall.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z + shape.z / 4);
                     wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
                 }
@@ -133,10 +169,12 @@ public class Wall
             wall.transform.parent = Parent.transform;
             _wall.transform.parent = Parent.transform;
             BuildingInfo.Instance.Walls.Add(wall.transform);
+            BuildingInfo.Instance._Walls.Add(_wall.transform);
 
         }
         else if (this.Hole.Type == HoleType.Door)
         {
+            this.Hole.shape.init(new Vector2(0.9f, 2.0f));
             GameObject wall = new GameObject(wallName);
             
             GameObject _wall = new GameObject("_" + wallName);
@@ -194,14 +232,14 @@ public class Wall
                 if (dir.x < 0)
                 {
                     wall.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, -90, 0);
 
                     door0.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _door0.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _door0.transform.localEulerAngles = new Vector3(0, -90, 0);
                     door1.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _door1.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _door1.transform.localEulerAngles = new Vector3(0, -90, 0);
                     door2.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _door2.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _door2.transform.localEulerAngles = new Vector3(0, -90, 0);
                     thedoor.transform.localEulerAngles = new Vector3(0, 90, 0);
 
                     wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
@@ -227,15 +265,15 @@ public class Wall
                 else if (dir.x > 0)
                 {
                     wall.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, 90, 0);
 
                     thedoor.transform.localEulerAngles = new Vector3(0, -90, 0);
                     door0.transform.localEulerAngles = new Vector3(0, -90, 0);
                     door1.transform.localEulerAngles = new Vector3(0, -90, 0);
                     door2.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _door0.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _door1.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _door2.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _door0.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _door1.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _door2.transform.localEulerAngles = new Vector3(0, 90, 0);
 
                     wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
                     _wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
@@ -285,6 +323,12 @@ public class Wall
 
                 if (dir.z < 0)
                 {
+                    _wall.transform.localEulerAngles = new Vector3(0, 180, 0);
+
+                    _door0.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    _door1.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    _door2.transform.localEulerAngles = new Vector3(0, 180, 0);
+
                     wall.transform.position = new Vector3(pos.x, pos.y, pos.z + shape.z / 4);
                     _wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
 
@@ -309,7 +353,7 @@ public class Wall
                 else if (dir.z > 0)
                 {
                     wall.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    
 
                     thedoor.transform.localEulerAngles = new Vector3(0, 180, 0);
                     door0.transform.localEulerAngles = new Vector3(0, 180, 0);
@@ -349,9 +393,12 @@ public class Wall
             wall.transform.parent = Parent.transform;
             _wall.transform.parent = Parent.transform;
             BuildingInfo.Instance.Walls.Add(wall.transform);
+            BuildingInfo.Instance._Walls.Add(_wall.transform);
         }
         else if(this.Hole.Type == HoleType.Windows)
         {
+            this.Hole.shape.init(new Vector2(1.0f, 0.8f));
+
             GameObject wall = new GameObject(wallName);
             GameObject _wall = new GameObject("_" + wallName);
 
@@ -407,7 +454,7 @@ public class Wall
                 if (dir.x < 0)
                 {
                     theWindow.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, -90, 0);
                     wall.transform.localEulerAngles = new Vector3(0, 90, 0);
 
                     window0.transform.localEulerAngles = new Vector3(0, 90, 0);
@@ -415,10 +462,10 @@ public class Wall
                     window1.transform.localEulerAngles = new Vector3(0, 90, 0);
                     window2.transform.localEulerAngles = new Vector3(0, 90, 0);
                     window3.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _window0.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _window1.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _window2.transform.localEulerAngles = new Vector3(0, 90, 0);
-                    _window3.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _window0.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _window1.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _window2.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _window3.transform.localEulerAngles = new Vector3(0, -90, 0);
 
                     wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
                     _wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
@@ -451,15 +498,15 @@ public class Wall
                 {
                     theWindow.transform.localEulerAngles = new Vector3(0, -90, 0);
                     wall.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, 90, 0);
                     window0.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _window0.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _window0.transform.localEulerAngles = new Vector3(0, 90, 0);
                     window1.transform.localEulerAngles = new Vector3(0, -90, 0);
                     window2.transform.localEulerAngles = new Vector3(0, -90, 0);
                     window3.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _window1.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _window2.transform.localEulerAngles = new Vector3(0, -90, 0);
-                    _window3.transform.localEulerAngles = new Vector3(0, -90, 0);
+                    _window1.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _window2.transform.localEulerAngles = new Vector3(0, 90, 0);
+                    _window3.transform.localEulerAngles = new Vector3(0, 90, 0);
 
                     wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
                     _wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
@@ -523,6 +570,12 @@ public class Wall
 
                 if (dir.z < 0)
                 {
+                    _window0.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    _window1.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    _window2.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    _window3.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    _wall.transform.localEulerAngles = new Vector3(0, 180, 0);
+
                     wall.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z + shape.z / 4);
                     _wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
 
@@ -557,13 +610,10 @@ public class Wall
                     window1.transform.localEulerAngles = new Vector3(0, 180, 0);
                     window2.transform.localEulerAngles = new Vector3(0, 180, 0);
                     window3.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _window0.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _window1.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _window2.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _window3.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    
 
                     wall.transform.localEulerAngles = new Vector3(0, 180, 0);
-                    _wall.transform.localEulerAngles = new Vector3(0, 180, 0);
+                    
 
                     _wall.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z + shape.z / 4);
                     wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
@@ -610,29 +660,30 @@ public class Wall
             _wall.transform.parent = Parent.transform;
             wall.transform.parent = Parent.transform;
             BuildingInfo.Instance.Walls.Add(wall.transform);
+            BuildingInfo.Instance._Walls.Add(_wall.transform);
         }
 
     }
 
     public void SetHole(HoleType type, Vector2 shape, Vector2 pos)
     {
-        if (type == HoleType.Door)
+        if ((HoleType)type == HoleType.Door)
         {
             this.Hole = new door(wallNum, shape, pos.x);
         }
-        else if (type == HoleType.Windows)
-        {
+        else if ((HoleType)type == HoleType.Windows)
+        { 
             this.Hole = new windows(wallNum, shape, pos);
         }
     }
 
     public void SetHole(HoleType type, Vector2 pos)
     {
-        if (type == HoleType.Door)
+        if ((HoleType)type == HoleType.Door)
         {
             this.Hole = new door(wallNum, pos.x);
         }
-        else if (type == HoleType.Windows)
+        else if ((HoleType)type == HoleType.Windows)
         {
             this.Hole = new windows(wallNum, pos);
         }
