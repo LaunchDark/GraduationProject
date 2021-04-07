@@ -323,7 +323,7 @@ public class InstrumentMgr : MonoBehaviour
                 //    && temp[i].type != InstrumentEnum.Ìì»¨°å
                 //    && temp[i].type != InstrumentEnum.µØ°å)
                 //{
-                    DeleteInstrument(temp[i]);
+                DeleteInstrument(temp[i]);
                 //}
             }
         }

@@ -52,6 +52,9 @@ public class CreatManager : MonoBehaviour
         Scene.instance.Init();
     }
 
+    /// <summary>
+    /// 删除所有建筑
+    /// </summary>
     public void DestroyAllBuilding()
     {
         foreach(var wall in BuildingInfo.Instance.Walls)
@@ -77,10 +80,6 @@ public class CreatManager : MonoBehaviour
         foreach (var door in BuildingInfo.Instance.Tops)
         {
             GameObject.Destroy(door.gameObject);
-        }
-        foreach (var bulid in BuildingInfo.Instance.Buildings)
-        {
-            GameObject.Destroy(bulid.transform);
         }
 
 

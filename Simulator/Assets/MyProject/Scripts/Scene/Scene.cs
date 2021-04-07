@@ -6,9 +6,10 @@ using UnityEngine;
 public class Scene : MonoBehaviour
 {
     public static Scene instance;
-    protected GameObject mDoors;
+
+    public GameObject mDoors;
     protected List<GameObject> AllDoor;
-    protected GameObject mWindows; 
+    public GameObject mWindows; 
     protected List<GameObject> AllWindow;
 
 
@@ -31,6 +32,7 @@ public class Scene : MonoBehaviour
     public void Init()
     {
 
+        Valve.VR.InteractionSystem.Player.instance.transform.position = Vector3.zero;
         if (mDoors == null)
         {
             mDoors = new GameObject("门框");

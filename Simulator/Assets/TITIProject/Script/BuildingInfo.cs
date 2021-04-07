@@ -22,7 +22,6 @@ public class BuildingInfo : MonoBehaviour
 
     public List<Building> buildinfo = new List<Building>();
 
-    public List<Transform> Buildings = new List<Transform>();
     public List<Transform> Windows = new List<Transform>();
     public List<Transform> Doors = new List<Transform>();
 
@@ -50,7 +49,6 @@ public class BuildingInfo : MonoBehaviour
     {
         buildinfo.Clear();
 
-        Buildings.Clear();
         Doors.Clear();
         Windows.Clear();
         _Walls.Clear();

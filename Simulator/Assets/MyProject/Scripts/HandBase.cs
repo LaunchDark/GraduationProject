@@ -269,8 +269,11 @@ public class HandBase : MonoBehaviour
 		if (mState == State.normal && selectedInstrument)
 		{
 			Instrument instrument = selectedInstrument.GetComponentInParent<Instrument>();
-			if (instrument.isHasR && instrument.mState != Instrument.State.held)
-			{ SetHoldInstrument(instrument); }
+			if (instrument)
+			{
+				if (instrument.isHasR && instrument.mState != Instrument.State.held)
+				{ SetHoldInstrument(instrument); }
+			}
 		}
 	}
 

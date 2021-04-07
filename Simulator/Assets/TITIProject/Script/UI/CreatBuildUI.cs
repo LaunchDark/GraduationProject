@@ -101,7 +101,9 @@ public class CreatBuildUI : MonoBehaviour
 
     public void CreatBuilding()
     {
-        foreach(var building in mButtons)
+        InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
+        CreatManager.Instance.DestroyAllBuilding();
+        foreach (var building in mButtons)
         {
             BuildingInfo.Instance.buildinfo.Add(building.gameObject.GetComponent<Building>());
             CreatManager.Instance.CreatAllBuilding();
