@@ -319,12 +319,12 @@ public class InstrumentMgr : MonoBehaviour
         {
             for (int i = 0; i < temp.Length; i++)
             {
-                if (temp[i].type != InstrumentEnum.墙
-                    && temp[i].type != InstrumentEnum.天花板
-                    && temp[i].type != InstrumentEnum.地板)
-                {
+                //if (temp[i].type != InstrumentEnum.墙
+                //    && temp[i].type != InstrumentEnum.天花板
+                //    && temp[i].type != InstrumentEnum.地板)
+                //{
                     DeleteInstrument(temp[i]);
-                }
+                //}
             }
         }
     }

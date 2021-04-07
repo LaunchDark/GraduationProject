@@ -13,5 +13,7 @@ public class WallMaterial : Instrument
         type = InstrumentEnum.墙;
 
         SetState(State.life);
+
+        Destroy(gameObject.GetComponent<OutLineTargetComponent>());
     }
 }

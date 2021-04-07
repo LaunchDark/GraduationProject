@@ -14,5 +14,6 @@ public class FloorMaterial : Instrument
         type = InstrumentEnum.地板;
 
         SetState(State.life);
+        Destroy(gameObject.GetComponent<OutLineTargetComponent>());
     }
 }

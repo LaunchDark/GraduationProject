@@ -13,5 +13,6 @@ public class TopMaterial : Instrument
         type = InstrumentEnum.天花板;
 
         SetState(State.life);
+        Destroy(gameObject.GetComponent<OutLineTargetComponent>());
     }
 }

@@ -112,6 +112,8 @@ public class CreatBuildUI : MonoBehaviour
 
     public void CreatBuild1()
     {
+        InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
+        CreatManager.Instance.DestroyAllBuilding();
         BuildingInfo.Instance.Building1Info();
         CreatManager.Instance.CreatAllBuilding();
         UIRoot.Instance.CreatDown();
@@ -119,6 +121,8 @@ public class CreatBuildUI : MonoBehaviour
 
     public void CreatBuild2()
     {
+        InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
+        CreatManager.Instance.DestroyAllBuilding();
         BuildingInfo.Instance.Building2Info();
         CreatManager.Instance.CreatAllBuilding();
         UIRoot.Instance.CreatDown();

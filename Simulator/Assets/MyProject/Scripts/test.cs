@@ -36,7 +36,7 @@ public class test : MonoBehaviour
         //print("左手类型：" + left.handType);
         //print("右手类型：" + right.handType);
         //PathTest();     
-        BuildingInfo.Instance.Init();
+        //BuildingInfo.Instance.Init();
         transform.GetComponent<Scene>().Init();
     }
 

@@ -23,13 +23,11 @@ public class CreatManager : MonoBehaviour
     void Start()
     {
         //gameObject.AddComponent<BuildingInfo>();
-        BuildingInfo.Instance.Init();
+        //BuildingInfo.Instance.Init();
 
         //BuildingInfo.Instance.Building1Info();
         //CreatAllBuilding();
 
-        if (transform.GetComponent<Scene>())
-            transform.GetComponent<Scene>().Init();
     }
 
         //if(Input.GetKeyDown(KeyCode.H))
@@ -51,6 +49,7 @@ public class CreatManager : MonoBehaviour
             build.CreatBuilding(num);
             num++;
         }
+        Scene.instance.Init();
     }
 
     public void DestroyAllBuilding()

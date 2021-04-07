@@ -394,6 +394,7 @@ public class Instrument : MonoBehaviour
     /// <param name="b"></param>
     private void SetOutLine(bool b)
     {
+        if (outLineTargetComponent == null) return;
         if (curOutLine == b)
             return;
         curOutLine = b;

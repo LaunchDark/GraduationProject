@@ -180,7 +180,9 @@ public class HandBase : MonoBehaviour
 		if (mState == State.normal && holdInstrument == null)
 		{
 			RaycastHit hitInfo;
-			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 5f))
+			int layer = ~LayerMask.GetMask("Door");
+			//忽略门
+			if (Physics.Raycast(HandDirection.position, HandDirection.forward, out hitInfo, 5f,layer))
 			{
 				bool isFloot = false;
 				//如果是地毯

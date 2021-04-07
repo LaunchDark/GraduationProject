@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Scene : MonoBehaviour
 {
+    public static Scene instance;
     protected GameObject mDoors;
     protected List<GameObject> AllDoor;
     protected GameObject mWindows; 
@@ -13,6 +14,7 @@ public class Scene : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         var packsackMgr = PacksackMgr.Instance;//初始化背包管理器
         var instrumentMgr = InstrumentMgr.Instance;//初始化家具管理器   
         var saveMgr = SaveMgr.Instance;
@@ -29,8 +31,14 @@ public class Scene : MonoBehaviour
     public void Init()
     {
 
-        mDoors = new GameObject("门框");
-        mWindows = new GameObject("窗台");
+        if (mDoors == null)
+        {
+            mDoors = new GameObject("门框");
+        }
+        if (mWindows == null)
+        {
+            mWindows = new GameObject("窗台");
+        }
 
         //生成门框
         AllDoor = new List<GameObject>();
@@ -42,6 +50,10 @@ public class Scene : MonoBehaviour
                 AllDoor[i].transform.parent = mDoors.transform;
                 AllDoor[i].transform.position = BuildingInfo.Instance.Doors[i].position;
                 AllDoor[i].transform.eulerAngles = BuildingInfo.Instance.Doors[i].eulerAngles;
+                foreach (var item in AllDoor[i].GetComponentsInChildren<Transform>())
+                {
+                    item.gameObject.layer = LayerMask.NameToLayer("Door");
+                }
             }
         }
 
@@ -62,6 +74,21 @@ public class Scene : MonoBehaviour
         if (BuildingInfo.Instance.Walls.Count > 0)
         {
             foreach (var wall in BuildingInfo.Instance.Walls)
+            {
+                foreach (var item in wall.GetComponentsInChildren<Transform>())
+                {
+                    //如果是空物体，不添加脚本
+                    if (item.GetComponent<BoxCollider>())
+                    {
+                        item.gameObject.AddComponent<WallMaterial>();
+                    }
+                    item.gameObject.layer = LayerMask.NameToLayer("Wall");
+                }
+            }
+        }
+        if (BuildingInfo.Instance._Walls.Count > 0)
+        {
+            foreach (var wall in BuildingInfo.Instance._Walls)
             {
                 foreach (var item in wall.GetComponentsInChildren<Transform>())
                 {

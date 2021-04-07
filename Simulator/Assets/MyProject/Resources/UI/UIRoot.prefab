@@ -6130,6 +6130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7674936669923890735, guid: bdc4c104e99552f468de7ea22d9b1121,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7674936670005818533, guid: bdc4c104e99552f468de7ea22d9b1121,
         type: 3}
       propertyPath: m_SizeDelta.x
