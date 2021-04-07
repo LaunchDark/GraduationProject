@@ -159,6 +159,7 @@ public class SaveMgr : MonoBehaviour
 
                     if(item.instrumentEnum == InstrumentEnum.门框)
                     {
+                        BuildingInfo.Instance.Doors.Add(obj.transform);
                         if (Scene.instance.mDoors == null)
                         {
                             Scene.instance.mDoors = new GameObject("门框");
@@ -171,6 +172,7 @@ public class SaveMgr : MonoBehaviour
                     }
                     else if(item.instrumentEnum == InstrumentEnum.窗台)
                     {
+                        BuildingInfo.Instance.Windows.Add(obj.transform);
                         if (Scene.instance.mWindows == null)
                         {
                             Scene.instance.mWindows = new GameObject("窗台");
@@ -214,7 +216,7 @@ public class SaveMgr : MonoBehaviour
                 obj.transform.position = item.GetTrans().GetPos();
                 obj.transform.rotation = Quaternion .Euler(item.GetTrans().GetRot());
                 obj.transform.localScale = item.GetTrans().GetSca();
-                BuildingInfo.Instance.Walls.Add(obj.transform);
+                BuildingInfo.Instance.Tops.Add(obj.transform);
                 obj.transform.SetParent(Top.transform);
                 obj.AddComponent<TopMaterial>();
                 obj.GetComponent<TopMaterial>().type = InstrumentEnum.天花板;
@@ -228,7 +230,7 @@ public class SaveMgr : MonoBehaviour
                 obj.transform.position = item.GetTrans().GetPos();
                 obj.transform.rotation = Quaternion .Euler(item.GetTrans().GetRot());
                 obj.transform.localScale = item.GetTrans().GetSca();
-                BuildingInfo.Instance.Walls.Add(obj.transform);
+                BuildingInfo.Instance.Floors.Add(obj.transform);
                 obj.transform.SetParent(flood.transform);
                 obj.AddComponent<FloorMaterial>();
                 obj.GetComponent<FloorMaterial>().type = InstrumentEnum.地板;
