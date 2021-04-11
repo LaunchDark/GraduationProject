@@ -26,6 +26,7 @@ public class SaveMgr : MonoBehaviour
     public string UserPath;
     public string ImagePath;
     public string SavePath;
+    public string DefaultPath;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class SaveMgr : MonoBehaviour
         UserPath = Environment.CurrentDirectory + $"/UserData";
         ImagePath = UserPath + $"/Image";
         SavePath = UserPath + $"/SaveData";
+        DefaultPath = SavePath + $"/Default";
         if (!Directory.Exists(UserPath))
         {
             Directory.CreateDirectory(UserPath);
@@ -44,6 +46,10 @@ public class SaveMgr : MonoBehaviour
         if(!Directory.Exists(SavePath))
         {
             Directory.CreateDirectory(SavePath);
+        }
+        if(!Directory.Exists(DefaultPath))
+        {
+            Directory.CreateDirectory(DefaultPath);
         }
 
     }
@@ -122,13 +128,21 @@ public class SaveMgr : MonoBehaviour
     /// 加载存档
     /// </summary>
     /// <param name="name">存档名称</param>
-    public void LoadGame(string name)
+    /// <param name="Default">是否为预设</param>
+    public void LoadGame(string name, bool Default = false)
     {
         Debug.Log(SavePath + "/" + name);
+        string path = SavePath + "/" + name;
+        if (Default)
+        {
+            path = DefaultPath + "/" + name;
+        }
+
         // 1 查找存档文件
         //if (File.Exists(SavePath + "/gamesave.save"))
         //if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
-        if (File.Exists(SavePath + "/" + name))
+        //if (File.Exists(SavePath + "/" + name))
+        if (File.Exists(path))
         {
             Valve.VR.InteractionSystem.Player.instance.transform.position = Vector3.zero;
             CreatManager.Instance.DestroyAllBuilding();
@@ -136,7 +150,7 @@ public class SaveMgr : MonoBehaviour
             // 2 打开文件
             BinaryFormatter bf = new BinaryFormatter();
             //FileStream file = File.Open(SavePath + "/gamesave.save", FileMode.Open);
-            FileStream file = File.Open(SavePath + "/" + name, FileMode.Open);
+            FileStream file = File.Open(path, FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 

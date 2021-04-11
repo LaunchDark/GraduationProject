@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 9219489054928482570}
   - component: {fileID: 6107222171323264831}
   m_Layer: 5
-  m_Name: bg (1)
+  m_Name: kuang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

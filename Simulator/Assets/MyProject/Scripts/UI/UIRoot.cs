@@ -40,6 +40,9 @@ public class UIRoot : MonoBehaviour
     [SerializeField] protected mButton LoadReturnBtn;
     [SerializeField] protected mButton CreatReturnBtn;
 
+    [SerializeField] protected mButton SaveDefaultBtn1;
+    [SerializeField] protected mButton SaveDefaultBtn2;
+
     protected mButton[] AllSave;
     public void Init()
     {
@@ -74,6 +77,8 @@ public class UIRoot : MonoBehaviour
         LoadReturnBtn.clickCallBack = LoadReturn;
         CreatReturnBtn.clickCallBack = LoadReturn;
 
+        SaveDefaultBtn1.clickCallBack = CilckDefault1;
+
         Vector3 pos = Valve.VR.InteractionSystem.Player.instance.transform.position;
         ShowUIRoot(new Vector3(pos.x, pos.y + 1, pos.z + 0.5f));
 
@@ -87,19 +92,19 @@ public class UIRoot : MonoBehaviour
 
     private void Update()
     {
-        if (!Creat.gameObject.activeSelf) 
-        {
-            transform.LookAt(transform.position + (transform.position - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * 1.0f);
-            //Debug.Log(transform.localEulerAngles.x);
-            if (transform.localEulerAngles.x > 15 && transform.localEulerAngles.x < 180)
-            {
-                transform.localEulerAngles = new Vector3(15, transform.localEulerAngles.y, 0);
-            }
-            else if (transform.localRotation.x > 180 && transform.localEulerAngles.x < 345)
-            {
-                transform.localEulerAngles = new Vector3(345, transform.localEulerAngles.y, 0);
-            }
-        }
+        //if (!Creat.gameObject.activeSelf) 
+        //{
+        //    transform.LookAt(transform.position + (transform.position - Valve.VR.InteractionSystem.Player.instance.transform.GetComponentInChildren<Camera>().transform.position).normalized * 1.0f);
+        //    //Debug.Log(transform.localEulerAngles.x);
+        //    if (transform.localEulerAngles.x > 15 && transform.localEulerAngles.x < 180)
+        //    {
+        //        transform.localEulerAngles = new Vector3(15, transform.localEulerAngles.y, 0);
+        //    }
+        //    else if (transform.localRotation.x > 180 && transform.localEulerAngles.x < 345)
+        //    {
+        //        transform.localEulerAngles = new Vector3(345, transform.localEulerAngles.y, 0);
+        //    }
+        //}
     }
 
     public void ShowUIRoot(Vector3 pos)
@@ -173,8 +178,9 @@ public class UIRoot : MonoBehaviour
         bg.gameObject.SetActive(true);
     }
 
-    public void Build()
+    protected void Build()
     {
+        bg.gameObject.SetActive(false);
         Creat.gameObject.SetActive(true);
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
@@ -184,7 +190,6 @@ public class UIRoot : MonoBehaviour
 
     protected void Back()
     {
-        PlayBtn.SetText("继续");
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
         Top.gameObject.SetActive(true);
@@ -208,12 +213,13 @@ public class UIRoot : MonoBehaviour
         Right.gameObject.SetActive(false);
         Creat.gameObject.SetActive(false);
         Top.gameObject.SetActive(true);
+        bg.gameObject.SetActive(true);
         Save.gameObject.SetActive(false);
         bg.gameObject.SetActive(true);
     }
 
 
-    public void CreateSaveButton()
+    protected void CreateSaveButton()
     {
         DirectoryInfo root = new DirectoryInfo(SaveMgr.Instance.SavePath);
 
@@ -245,6 +251,16 @@ public class UIRoot : MonoBehaviour
 
         
     }
+
+    protected void CilckDefault1()
+    {
+        SaveMgr.Instance.LoadGame("预设1.save", true);
+    }
+    protected void CilckDefault2()
+    {
+        SaveMgr.Instance.LoadGame("预设2.save", true);
+    }
+
 
     protected void Exit()
     {

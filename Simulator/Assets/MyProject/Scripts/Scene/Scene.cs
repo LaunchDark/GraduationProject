@@ -138,16 +138,16 @@ public class Scene : MonoBehaviour
     /// <summary>
     /// 测试
     /// </summary>
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            SaveMgr.Instance.SaveGame();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            //SaveMgr.Instance.LoadGame();
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Keypad0))
+    //    {
+    //        SaveMgr.Instance.SaveGame();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Keypad1))
+    //    {
+    //        //SaveMgr.Instance.LoadGame();
+    //    }
+    //}
 
 }
