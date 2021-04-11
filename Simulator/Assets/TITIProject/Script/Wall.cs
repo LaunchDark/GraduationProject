@@ -428,16 +428,16 @@ public class Wall
                 //Vector3 dir = theWindow.transform.position - this.RoomPos;
               
                 _window0.transform.localScale = new Vector3(this.Hole.shape.x,
-                     Math.Abs(((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)), shape.z / 2);
+                     Math.Abs(this.Hole.pos.y), shape.z / 2);
 
                 window0.transform.localScale = new Vector3(this.Hole.shape.x,
-                     Math.Abs(((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) - shape.z, shape.z / 2);
+                     Math.Abs(this.Hole.pos.y) - shape.z, shape.z / 2);
 
                 _window1.transform.localScale = new Vector3(this.Hole.shape.x,
-                    Math.Abs((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)), shape.z / 2);
+                    Math.Abs(shape.y - this.Hole.pos.y - this.Hole.shape.y), shape.z / 2);
 
                 window1.transform.localScale = new Vector3(this.Hole.shape.x,
-                    Math.Abs((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) - shape.z, shape.z / 2);
+                    Math.Abs(shape.y - this.Hole.pos.y - this.Hole.shape.y) - shape.z, shape.z / 2);
 
                 _window2.transform.localScale = new Vector3(Math.Abs(((pos.x - (shape.x / 2))
                     - ((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)))), shape.y, shape.z / 2);
@@ -470,17 +470,15 @@ public class Wall
                     wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
                     _wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
 
-                    _window0.transform.position = new Vector3(pos.x - shape.z / 4, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
+                    _window0.transform.position = new Vector3(pos.x - shape.z / 4, this.Hole.pos.y / 2 - shape.z / 2, pos.z + this.Hole.pos.x);
 
-                    window0.transform.position = new Vector3(pos.x + shape.z / 4, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2 + shape.z / 2, pos.z + this.Hole.pos.x);
+                    window0.transform.position = new Vector3(pos.x + shape.z / 4, this.Hole.pos.y / 2, pos.z + this.Hole.pos.x);
 
-                    _window1.transform.position = new Vector3(pos.x - shape.z / 4, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
+                    _window1.transform.position = new Vector3(pos.x - shape.z / 4, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 4, pos.z + this.Hole.pos.x);
 
-                    window1.transform.position = new Vector3(pos.x + shape.z / 4, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2 - shape.z / 2, pos.z + this.Hole.pos.x);
+                    window1.transform.position = new Vector3(pos.x + shape.z / 4, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 2 - shape.z / 4, pos.z + this.Hole.pos.x);
 
                     _window2.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, (pos.z - (shape.x / 2))
                     + (((this.pos.z + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.z - (shape.x / 2))) / 2);
@@ -511,17 +509,15 @@ public class Wall
                     wall.transform.position = new Vector3(pos.x - shape.z / 4, pos.y, pos.z);
                     _wall.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, pos.z);
 
-                    _window0.transform.position = new Vector3(pos.x + shape.z / 4, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
+                    _window0.transform.position = new Vector3(pos.x + shape.z / 4, this.Hole.pos.y / 2 - shape.z / 2, pos.z + this.Hole.pos.x);
 
-                    window0.transform.position = new Vector3(pos.x - shape.z / 4, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2 + shape.z / 2, pos.z + this.Hole.pos.x);
+                    window0.transform.position = new Vector3(pos.x - shape.z / 4, this.Hole.pos.y / 2, pos.z + this.Hole.pos.x);
 
-                    _window1.transform.position = new Vector3(pos.x + shape.z / 4, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2, pos.z + this.Hole.pos.x);
+                    _window1.transform.position = new Vector3(pos.x + shape.z / 4, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 4, pos.z + this.Hole.pos.x);
 
-                    window1.transform.position = new Vector3(pos.x - shape.z / 4, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2 - shape.z / 2, pos.z + this.Hole.pos.x);
+                    window1.transform.position = new Vector3(pos.x - shape.z / 4, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 2 - shape.z / 4, pos.z + this.Hole.pos.x);
 
                     _window2.transform.position = new Vector3(pos.x + shape.z / 4, pos.y, (pos.z - (shape.x / 2))
                     + (((this.pos.z + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.z - (shape.x / 2))) / 2);
@@ -545,16 +541,16 @@ public class Wall
               
 
                 window0.transform.localScale = new Vector3(this.Hole.shape.x,
-                    Math.Abs(((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) - shape.z, shape.z / 2);
+                    Math.Abs(this.Hole.pos.y) - shape.z, shape.z / 2);
 
                 _window0.transform.localScale = new Vector3(this.Hole.shape.x,
-                    Math.Abs(((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)), shape.z / 2);
+                    Math.Abs(this.Hole.pos.y), shape.z / 2);
 
                 window1.transform.localScale = new Vector3(this.Hole.shape.x, 
-                    Math.Abs((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) - shape.z, shape.z / 2);
+                    Math.Abs(shape.y - this.Hole.pos.y - this.Hole.shape.y) - shape.z, shape.z / 2);
 
                 _window1.transform.localScale = new Vector3(this.Hole.shape.x,
-                    Math.Abs((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)), shape.z / 2);
+                    Math.Abs(shape.y - this.Hole.pos.y - this.Hole.shape.y), shape.z / 2);
 
                 window2.transform.localScale = new Vector3(Math.Abs(((pos.x - (shape.x / 2))
                     - ((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)))) - shape.z, shape.y - shape.z * 2, shape.z / 2);
@@ -579,11 +575,10 @@ public class Wall
                     wall.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z + shape.z / 4);
                     _wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
 
-                    window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2 + shape.z / 2, pos.z + shape.z / 4);
+                    window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, this.Hole.pos.y / 2, pos.z + shape.z / 4);
 
-                    window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2 - shape.z / 2, pos.z + shape.z / 4);
+                    window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 2 - shape.z / 4, pos.z + shape.z / 4);
 
                     window2.transform.position = new Vector3((pos.x - (shape.x / 2)) +
                    (((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.x - (shape.x / 2))) / 2 + shape.z / 2, pos.y, pos.z + shape.z / 4);
@@ -591,11 +586,10 @@ public class Wall
                     window3.transform.position = new Vector3((pos.x + (shape.x / 2)) -
                     ((pos.x + (shape.x / 2)) - ((this.pos.x + this.Hole.pos.x) + (this.Hole.shape.x / 2))) / 2 - shape.z / 2, pos.y, pos.z + shape.z / 4);
 
-                    _window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z - shape.z / 4);
+                    _window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, this.Hole.pos.y / 2 - shape.z / 2, pos.z - shape.z / 4);
 
-                    _window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2, pos.z - shape.z / 4);
+                    _window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 4, pos.z - shape.z / 4);
 
                     _window2.transform.position = new Vector3((pos.x - (shape.x / 2)) +
                    (((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.x - (shape.x / 2))) / 2, pos.y, pos.z - shape.z / 4);
@@ -618,17 +612,15 @@ public class Wall
                     _wall.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z + shape.z / 4);
                     wall.transform.position = new Vector3(pos.x, pos.y, pos.z - shape.z / 4);
 
-                    window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2 + shape.z / 2, pos.z - shape.z / 4);
+                    window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, this.Hole.pos.y / 2, pos.z - shape.z / 4);
 
-                    _window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) +
-                    (((this.pos.y - this.shape.y / 2) + this.Hole.pos.y - this.Hole.shape.y / 2) - (pos.y - shape.y / 2)) / 2, pos.z + shape.z / 4);
+                    _window0.transform.position = new Vector3(pos.x + this.Hole.pos.x, this.Hole.pos.y / 2 - shape.z / 2, pos.z + shape.z / 4);
 
-                    window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2 - shape.z / 2, pos.z - shape.z / 4);
+                    window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 2 - shape.z / 4, pos.z - shape.z / 4);
 
-                    _window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) -
-                    ((pos.y + shape.y / 2) - ((this.pos.y - this.shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2)) / 2, pos.z + shape.z / 4);
+                    _window1.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y + shape.y / 2) / 2 +
+                    (this.Hole.pos.y + this.Hole.shape.y) / 2 - shape.z / 4, pos.z + shape.z / 4);
 
                     window2.transform.position = new Vector3((pos.x - (shape.x / 2)) +
                    (((this.pos.x + this.Hole.pos.x) - (this.Hole.shape.x / 2)) - (pos.x - (shape.x / 2))) / 2 + shape.z / 2, pos.y, pos.z - shape.z / 4);
