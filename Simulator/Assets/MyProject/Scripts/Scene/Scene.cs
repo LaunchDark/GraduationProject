@@ -44,14 +44,17 @@ public class Scene : MonoBehaviour
 
         //生成门框
         AllDoor = new List<GameObject>();
+
         if (BuildingInfo.Instance.Doors.Count > 0)
         {
             for (int i = 0; i < BuildingInfo.Instance.Doors.Count; i++)
             {
                 AllDoor.Add(InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.门框));
+                AllDoor[i].gameObject.SetActive(true);
                 AllDoor[i].transform.parent = mDoors.transform;
                 AllDoor[i].transform.position = BuildingInfo.Instance.Doors[i].position;
                 AllDoor[i].transform.eulerAngles = BuildingInfo.Instance.Doors[i].eulerAngles;
+
                 foreach (var item in AllDoor[i].GetComponentsInChildren<Transform>())
                 {
                     item.gameObject.layer = LayerMask.NameToLayer("Door");
@@ -66,6 +69,7 @@ public class Scene : MonoBehaviour
             for (int i = 0; i < BuildingInfo.Instance.Windows.Count; i++)
             {
                 AllWindow.Add(InstrumentMgr.Instance.CreateInstrument(InstrumentEnum.窗台));
+                AllWindow[i].gameObject.SetActive(true);
                 AllWindow[i].transform.parent = mWindows.transform;
                 AllWindow[i].transform.position = BuildingInfo.Instance.Windows[i].position;
                 AllWindow[i].transform.eulerAngles = BuildingInfo.Instance.Windows[i].eulerAngles;

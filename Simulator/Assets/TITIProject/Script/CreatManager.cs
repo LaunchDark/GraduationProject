@@ -77,7 +77,7 @@ public class CreatManager : MonoBehaviour
         {
             GameObject.Destroy(Window.gameObject);
         }
-        foreach (var door in BuildingInfo.Instance.Tops)
+        foreach (var door in BuildingInfo.Instance.Doors)
         {
             GameObject.Destroy(door.gameObject);
         }

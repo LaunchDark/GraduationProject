@@ -173,7 +173,7 @@ public class SaveMgr : MonoBehaviour
 
                     if(item.instrumentEnum == InstrumentEnum.门框)
                     {
-                        BuildingInfo.Instance.Doors.Add(obj.transform);
+                        //BuildingInfo.Instance.Doors.Add(obj.transform);
                         if (Scene.instance.mDoors == null)
                         {
                             Scene.instance.mDoors = new GameObject("门框");
@@ -186,7 +186,7 @@ public class SaveMgr : MonoBehaviour
                     }
                     else if(item.instrumentEnum == InstrumentEnum.窗台)
                     {
-                        BuildingInfo.Instance.Windows.Add(obj.transform);
+                        //BuildingInfo.Instance.Windows.Add(obj.transform);
                         if (Scene.instance.mWindows == null)
                         {
                             Scene.instance.mWindows = new GameObject("窗台");
@@ -333,6 +333,7 @@ public class SaveMgr : MonoBehaviour
         }
         else
         {
+            TipsCanvas.Instance.ShowTips("存档丢失");
             Debug.Log("No game saved!");
         }
     }

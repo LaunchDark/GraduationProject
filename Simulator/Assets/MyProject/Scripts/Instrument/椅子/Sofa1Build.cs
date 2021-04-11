@@ -10,6 +10,7 @@ public class Sofa1Build : Instrument
     void Start()
     {
         type = InstrumentEnum.沙发1;
+        CanScaleInstrument = true;
 
         MaxOffsetZ = 3f;
         MinOffsetZ = 1f;

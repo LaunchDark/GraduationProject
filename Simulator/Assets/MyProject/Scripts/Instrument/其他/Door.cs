@@ -62,6 +62,12 @@ public class Door : Instrument
         }
     }
 
+    public override void HeldCallBack(GameObject hand)
+    {
+        base.HeldCallBack(hand);
+        RotaCenter.localRotation = Quaternion.Euler(Vector3.zero);
+    }
+
     //private void Update()
     //{
     //    if (Input.GetKeyDown(KeyCode.Keypad0))

@@ -231,7 +231,7 @@
     "InstrumentTypeEnum": "电器",
     "Name": "音响",
     "Icon": "yinxiang1",
-    "Amount": 1,
+    "Amount": 0,
     "IsAtPacksack": 1
   },
   {
