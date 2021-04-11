@@ -424,7 +424,7 @@ public class Wall
             if (wallNum % 2 != 0)
             {
                 
-                theWindow.transform.position = new Vector3(pos.x, (pos.y - shape.y / 2) + this.Hole.pos.y, pos.z + this.Hole.pos.x);
+                theWindow.transform.position = new Vector3(pos.x, (pos.y - shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2, pos.z + this.Hole.pos.x);
                 //Vector3 dir = theWindow.transform.position - this.RoomPos;
               
                 _window0.transform.localScale = new Vector3(this.Hole.shape.x,
@@ -537,7 +537,7 @@ public class Wall
 
 
                 
-                theWindow.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) + this.Hole.pos.y, pos.z);
+                theWindow.transform.position = new Vector3(pos.x + this.Hole.pos.x, (pos.y - shape.y / 2) + this.Hole.pos.y + this.Hole.shape.y / 2, pos.z);
               
 
                 window0.transform.localScale = new Vector3(this.Hole.shape.x,
