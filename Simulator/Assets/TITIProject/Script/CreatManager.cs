@@ -73,12 +73,22 @@ public class CreatManager : MonoBehaviour
         {
             GameObject.Destroy(floor.gameObject);
         }
+
         foreach (var Window in BuildingInfo.Instance.Windows)
         {
+            if (Window.GetComponentInChildren<Instrument>())
+            {
+                break;
+            }
             GameObject.Destroy(Window.gameObject);
         }
+
         foreach (var door in BuildingInfo.Instance.Doors)
         {
+            if (door.GetComponentInChildren<Instrument>())
+            {
+                break;
+            }
             GameObject.Destroy(door.gameObject);
         }
 

@@ -295,12 +295,12 @@ public class InstrumentMgr : MonoBehaviour
     /// <summary>
     /// 删除所有家具
     /// </summary>
-    /// <param name="b">是否在读档</param>
-    public void DeleteSceneAllInstrument(bool b = true)
+    /// <param name="dontDeleteBuilding">是否删除建筑</param>
+    public void DeleteSceneAllInstrument(bool dontDeleteBuilding = true)
     {
         Instrument[] temp = FindObjectsOfType<Instrument>();
         //场景中
-        if (b)
+        if (dontDeleteBuilding)
         {
             for (int i = 0; i < temp.Length; i++)
             {

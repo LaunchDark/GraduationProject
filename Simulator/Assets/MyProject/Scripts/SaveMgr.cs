@@ -57,10 +57,10 @@ public class SaveMgr : MonoBehaviour
     /// <summary>
     /// 存档
     /// </summary>
-    public void SaveGame()
+    public void SaveGame(bool SaveBuilding = true)
     {
         // 1 创建保存文件
-        Save save = CreateSaveGameObject();
+        Save save = CreateSaveGameObject(SaveBuilding);
 
         // 2 写入文件
         BinaryFormatter bf = new BinaryFormatter();
@@ -75,51 +75,56 @@ public class SaveMgr : MonoBehaviour
     /// <summary>
     /// 创建存档文件
     /// </summary>
+    /// <param name="only">是否只保存家具</param>
     /// <returns></returns>
-    private Save CreateSaveGameObject()
+    private Save CreateSaveGameObject(bool SaveBuilding)
     {
         Save save = new Save();
 
-        //读取场景数据
-        foreach (KeyValuePair<InstrumentEnum,List<GameObject>> item in InstrumentMgr.Instance.GetInstrumentGameObjectDic())
+        if (SaveBuilding)
         {
-            foreach (var obj in item.Value)
+            //读取场景数据
+            foreach (KeyValuePair<InstrumentEnum, List<GameObject>> item in InstrumentMgr.Instance.GetInstrumentGameObjectDic())
             {
-                save.AddInstrument(obj);
+                foreach (var obj in item.Value)
+                {
+                    save.AddInstrument(obj);
+                }
+            }
+
+            foreach (var wall in BuildingInfo.Instance.Walls)
+            {
+                save.AddWall(wall);
+            }
+            foreach (var wall in BuildingInfo.Instance._Walls)
+            {
+                save.AddWall(wall);
+            }
+            foreach (var top in BuildingInfo.Instance.Tops)
+            {
+                save.AddTops(top);
+            }
+            foreach (var flood in BuildingInfo.Instance.Floors)
+            {
+                save.AddFlood(flood);
+            }
+        }
+        else
+        {
+            foreach (KeyValuePair<InstrumentEnum, List<GameObject>> item in InstrumentMgr.Instance.GetInstrumentGameObjectDic())
+            {
+                foreach (var obj in item.Value)
+                {
+                    if (obj.GetComponent<WindowsillBuild>() || obj.GetComponent<Doorframe>() || obj.GetComponent<Window1Build>() || obj.GetComponent<Door>())
+                    {
+                        break;
+                    }
+                    save.AddInstrument(obj);
+                }
             }
         }
 
-        foreach (var wall in BuildingInfo.Instance.Walls)
-        {
-            save.AddWall(wall);
-        }
-        foreach (var wall in BuildingInfo.Instance._Walls)
-        {
-            save.AddWall(wall);
-        }
-        foreach (var top in BuildingInfo.Instance.Tops)
-        {
-            save.AddTops(top);
-        }
-        foreach (var flood in BuildingInfo.Instance.Floors)
-        {
-            save.AddFlood(flood);
-        }
 
-        //Debug.Log(save.GetAllInstrument().Count);
-        //保存建筑需要按顺序
-        //foreach (var wall in BuildingInfo.Instance.Walls)
-        //{
-        //    save.AddWall(wall);
-        //}
-        //foreach (var wall in BuildingInfo.Instance.Tops)
-        //{
-        //    save.AddWall(wall);
-        //}
-        //foreach (var wall in BuildingInfo.Instance.Floors)
-        //{
-        //    save.AddWall(wall);
-        //}
 
         return save;
     }
@@ -129,7 +134,7 @@ public class SaveMgr : MonoBehaviour
     /// </summary>
     /// <param name="name">存档名称</param>
     /// <param name="Default">是否为预设</param>
-    public void LoadGame(string name, bool Default = false)
+    public void LoadGame(string name, bool DestoryBuilding = true, bool Default = false)
     {
         Debug.Log(SavePath + "/" + name);
         string path = SavePath + "/" + name;
@@ -144,9 +149,17 @@ public class SaveMgr : MonoBehaviour
         //if (File.Exists(SavePath + "/" + name))
         if (File.Exists(path))
         {
+            //重置人物位置，删除原家具、建筑
             Valve.VR.InteractionSystem.Player.instance.transform.position = Vector3.zero;
-            CreatManager.Instance.DestroyAllBuilding();
-
+            if (DestoryBuilding)
+            {
+                CreatManager.Instance.DestroyAllBuilding();
+                InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
+            }
+            else
+            {
+                InstrumentMgr.Instance.DeleteSceneAllInstrument(true);
+            }
             // 2 打开文件
             BinaryFormatter bf = new BinaryFormatter();
             //FileStream file = File.Open(SavePath + "/gamesave.save", FileMode.Open);
@@ -155,8 +168,6 @@ public class SaveMgr : MonoBehaviour
             file.Close();
 
             // 3 将存档数据写到场景中
-            InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
-
             List<Instrument> hasSubInstrument = new List<Instrument>();
             List<Instrument> SubInstruments = new List<Instrument>();
 
@@ -171,9 +182,9 @@ public class SaveMgr : MonoBehaviour
                     obj.GetComponent<Instrument>().SetState((Instrument.State)Enum.ToObject(typeof(Instrument.State), item.state));
                     obj.GetComponent<Instrument>().ChangeMaterial(item.Mateial);
 
-                    if(item.instrumentEnum == InstrumentEnum.门框)
+                    if (item.instrumentEnum == InstrumentEnum.门框)
                     {
-                        //BuildingInfo.Instance.Doors.Add(obj.transform);
+                        BuildingInfo.Instance.Doors.Add(obj.transform);
                         if (Scene.instance.mDoors == null)
                         {
                             Scene.instance.mDoors = new GameObject("门框");
@@ -184,9 +195,9 @@ public class SaveMgr : MonoBehaviour
                             trans.gameObject.layer = LayerMask.NameToLayer("Door");
                         }
                     }
-                    else if(item.instrumentEnum == InstrumentEnum.窗台)
+                    else if (item.instrumentEnum == InstrumentEnum.窗台)
                     {
-                        //BuildingInfo.Instance.Windows.Add(obj.transform);
+                        BuildingInfo.Instance.Windows.Add(obj.transform);
                         if (Scene.instance.mWindows == null)
                         {
                             Scene.instance.mWindows = new GameObject("窗台");
@@ -214,7 +225,7 @@ public class SaveMgr : MonoBehaviour
             {
                 GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 obj.transform.position = item.GetTrans().GetPos();
-                obj.transform.rotation = Quaternion .Euler(item.GetTrans().GetRot());
+                obj.transform.rotation = Quaternion.Euler(item.GetTrans().GetRot());
                 obj.transform.localScale = item.GetTrans().GetSca();
                 BuildingInfo.Instance.Walls.Add(obj.transform);
                 obj.transform.SetParent(wall.transform);
@@ -228,7 +239,7 @@ public class SaveMgr : MonoBehaviour
             {
                 GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 obj.transform.position = item.GetTrans().GetPos();
-                obj.transform.rotation = Quaternion .Euler(item.GetTrans().GetRot());
+                obj.transform.rotation = Quaternion.Euler(item.GetTrans().GetRot());
                 obj.transform.localScale = item.GetTrans().GetSca();
                 BuildingInfo.Instance.Tops.Add(obj.transform);
                 obj.transform.SetParent(Top.transform);
@@ -242,7 +253,7 @@ public class SaveMgr : MonoBehaviour
             {
                 GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 obj.transform.position = item.GetTrans().GetPos();
-                obj.transform.rotation = Quaternion .Euler(item.GetTrans().GetRot());
+                obj.transform.rotation = Quaternion.Euler(item.GetTrans().GetRot());
                 obj.transform.localScale = item.GetTrans().GetSca();
                 BuildingInfo.Instance.Floors.Add(obj.transform);
                 obj.transform.SetParent(flood.transform);
@@ -251,81 +262,6 @@ public class SaveMgr : MonoBehaviour
                 obj.GetComponent<FloorMaterial>().ChangeMaterial(item.GetMat());
                 obj.layer = LayerMask.NameToLayer("Ground");
             }
-
-            #region 建筑材质存档 废弃
-            //窗台、门框等恢复
-            //bool find = false;
-            //for (int i = 0; i < SubInstruments.Count; i++)
-            //{
-            //    //Debug.Log(find);
-            //    if (find)
-            //    {
-            //        i = 0;
-            //        find = false;
-            //    }
-            //    for (int j = 0; j < hasSubInstrument.Count; j++)
-            //    {
-            //        if (SubInstruments[i].GetAdsorbTypeList().Contains(hasSubInstrument[j].type))
-            //        {
-            //            SubInstruments[i].curAdsorbInstrument = hasSubInstrument[j];
-            //            SubInstruments[i].AdsorbCallBack();
-            //            hasSubInstrument[j].adsorbCollider.enabled = false;
-            //            hasSubInstrument[j].subInstrument = SubInstruments[i];
-            //            hasSubInstrument.Remove(hasSubInstrument[j]);
-            //            SubInstruments.Remove(SubInstruments[i]);
-
-            //            find = true;
-            //            //Debug.Log(string.Format("匹配{0},{1}",i,j));
-            //            i--;
-            //            break;
-            //        }
-            //    }
-            //}
-
-            //读取建筑需要按顺序
-            //List<Instrument> building = new List<Instrument>();
-            //foreach (var wall in BuildingInfo.Instance.Walls)
-            //{
-            //    foreach (var item in wall.GetComponentsInChildren<Transform>())
-            //    {
-            //        //如果是空物体，不添加脚本
-            //        if (item.GetComponent<BoxCollider>())
-            //        {
-            //            building.Add(item.gameObject.GetComponent<Instrument>());                        
-            //        }
-            //    }
-            //}
-            //foreach (var top in BuildingInfo.Instance.Tops)
-            //{
-            //    foreach (var item in top.GetComponentsInChildren<Transform>())
-            //    {
-            //        //如果是空物体，不添加脚本
-            //        if (item.GetComponent<BoxCollider>())
-            //        {
-            //            building.Add(item.gameObject.GetComponent<Instrument>());
-            //        }
-            //    }
-            //}
-            //foreach (var floor in BuildingInfo.Instance.Floors)
-            //{
-            //    foreach (var item in floor.GetComponentsInChildren<Transform>())
-            //    {
-            //        //如果是空物体，不添加脚本
-            //        if (item.GetComponent<BoxCollider>())
-            //        {
-            //            building.Add(item.gameObject.GetComponent<Instrument>());
-            //        }
-            //    }
-            //}
-            ////Debug.Log(building.Count);
-            ////Debug.Log(save.GetWallMaterial().Count);
-            //for (int i = 0; i < building.Count; i++)
-            //{
-            //    //Debug.Log(save.GetWallMaterial()[i]);
-            //    building[i].ChangeMaterial(save.GetWallMaterial()[i]);
-            //}
-            //Debug.Log(InstrumentMgr.Instance.GetInstrumentGameObjectDic().Count);
-            #endregion
 
             TipsCanvas.Instance.ShowTips("读取完成");
             UIRoot.Instance.HideUIRoot();

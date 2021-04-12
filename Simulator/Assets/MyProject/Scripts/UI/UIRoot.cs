@@ -72,7 +72,7 @@ public class UIRoot : MonoBehaviour
         PlayBtn.clickCallBack = Play;
         BuildBtn.clickCallBack = Build;
         ExitBtn.clickCallBack = Exit;
-        SaveBtn.clickCallBack = SaveMgr.Instance.SaveGame;
+        SaveBtn.clickCallBack =()=> { SaveMgr.Instance.SaveGame(true); };
         LoadBtn.clickCallBack = SavePanel;
         LoadReturnBtn.clickCallBack = LoadReturn;
         CreatReturnBtn.clickCallBack = LoadReturn;
@@ -254,11 +254,11 @@ public class UIRoot : MonoBehaviour
 
     protected void CilckDefault1()
     {
-        SaveMgr.Instance.LoadGame("预设1.save", true);
+        SaveMgr.Instance.LoadGame("预设1.save", true, true);
     }
     protected void CilckDefault2()
     {
-        SaveMgr.Instance.LoadGame("预设2.save", true);
+        SaveMgr.Instance.LoadGame("预设2.save", true, true);
     }
 
 

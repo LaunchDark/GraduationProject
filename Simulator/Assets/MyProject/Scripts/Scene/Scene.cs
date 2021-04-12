@@ -142,16 +142,16 @@ public class Scene : MonoBehaviour
     /// <summary>
     /// 测试
     /// </summary>
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Keypad0))
-    //    {
-    //        SaveMgr.Instance.SaveGame();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Keypad1))
-    //    {
-    //        //SaveMgr.Instance.LoadGame();
-    //    }
-    //}
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            SaveMgr.Instance.SaveGame(false);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            SaveMgr.Instance.LoadGame("保存家具.save",false);
+        }
+    }
 
 }
