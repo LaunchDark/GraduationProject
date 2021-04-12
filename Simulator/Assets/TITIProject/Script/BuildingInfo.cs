@@ -153,9 +153,9 @@ public class BuildingInfo : MonoBehaviour
         Building Kitchen = new Building(BuildingType.both, 2.5f, 3.1f, 2.0f, 0.1f, KitchenPos);
         Kitchen.newWall();
         Kitchen.SetWall();
-        Kitchen.walls[0].SetHole(HoleType.Door, new Vector2(0.5f, 0.0f));
+        Kitchen.walls[0].SetHole(HoleType.Door, new Vector2(-0.5f, 0.0f));
         Kitchen.walls[1].SetHole(HoleType.Door, new Vector2(0.95f, 0.0f));
-        Kitchen.walls[2].SetHole(HoleType.Door, new Vector2(0.5f, 0.0f));
+        Kitchen.walls[2].SetHole(HoleType.Windows, new Vector2(0.4f, 1.1f));
         Kitchen.isWall[0] = true;
         Kitchen.isWall[1] = true;
         Kitchen.isWall[2] = true;
@@ -175,8 +175,9 @@ public class BuildingInfo : MonoBehaviour
         Building livingRoom = new Building(BuildingType.both, 2.5f, 6.0f, 3.2f, 0.1f, livingRoomPos);
         livingRoom.newWall();
         livingRoom.SetWall();
-        livingRoom.walls[0].SetHole(HoleType.Windows, new Vector2(0.0f, 0.9f));
+        livingRoom.walls[0].SetHole(HoleType.Windows, new Vector2(0.0f, 1.1f));
         livingRoom.walls[2].SetHole(HoleType.Door, new Vector2(1.1f, 0.0f));
+        livingRoom.walls[3].SetHole(HoleType.Door, new Vector2(-2.4f, 0.0f));
         livingRoom.isWall[0] = true;
         livingRoom.isWall[1] = true;
         livingRoom.isWall[2] = false;
