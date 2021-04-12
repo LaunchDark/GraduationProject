@@ -78,6 +78,7 @@ public class UIRoot : MonoBehaviour
         CreatReturnBtn.clickCallBack = LoadReturn;
 
         SaveDefaultBtn1.clickCallBack = CilckDefault1;
+        SaveDefaultBtn2.clickCallBack = CilckDefault2;
 
         Vector3 pos = Valve.VR.InteractionSystem.Player.instance.transform.position;
         ShowUIRoot(new Vector3(pos.x, pos.y + 1, pos.z + 0.5f));

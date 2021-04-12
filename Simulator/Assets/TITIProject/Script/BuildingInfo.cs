@@ -89,8 +89,8 @@ public class BuildingInfo : MonoBehaviour
         Building Kitchen = new Building(BuildingType.both, 2.5f, 3.2f, 3.4f, 0.1f, KitchenPos);
         Kitchen.newWall();
         Kitchen.SetWall();
-        Kitchen.walls[2].SetHole(HoleType.Windows, new Vector2(0.5f, 0.9f));
-        Kitchen.walls[1].SetHole(HoleType.Windows, new Vector2(0.0f, 0.9f));
+        Kitchen.walls[2].SetHole(HoleType.Windows, new Vector2(0.5f, 1.1f));
+        Kitchen.walls[1].SetHole(HoleType.Windows, new Vector2(0.0f, 1.1f));
         Kitchen.walls[0].SetHole(HoleType.Door, new Vector2(1.0f, 0.0f));
         Kitchen.isWall[0] = true;
         Kitchen.isWall[1] = true;

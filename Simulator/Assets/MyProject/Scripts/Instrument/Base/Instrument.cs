@@ -174,6 +174,7 @@ public class Instrument : MonoBehaviour
         SetState(State.normal);
         Messenger.AddListener<Collider,string>(GlobalEvent.Player_Selected_Instrument, SelectedInsturment);
         SetRenderer(HeldState.normal);
+        CanScaleInstrument = true;
         AwakeLater();
     }
 
