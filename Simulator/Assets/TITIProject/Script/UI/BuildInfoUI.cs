@@ -20,6 +20,8 @@ public class BuildInfoUI : MonoBehaviour
     public Text Exist;
     public Text Type;
 
+    public Text SelectWallName;
+
     public GameObject BuildInfo;
     public GameObject WallInfo;
 
@@ -125,6 +127,16 @@ public class BuildInfoUI : MonoBehaviour
         PosY.text = ((int)(buildpos.y * 10)).ToString();
         ScaleX.text = ((int)(buildScale.x * 10)).ToString();
         ScaleY.text = ((int)(buildScale.y * 10)).ToString();
+        
+    }
+
+    public void UpdateUIWalls()
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            wallExist[x] = UIBuild.isWall[x];
+            holes[x] = UIBuild.walls[x].Hole;
+        }
     }
 
     public void UpdateWallInfo()
@@ -162,6 +174,8 @@ public class BuildInfoUI : MonoBehaviour
             }
             else
             {
+                HolePosX.text = "0";
+                HolePosY.text = "0";
                 sPlusWallX.gameObject.GetComponent<Button>().interactable = false;
                 sMinusWallX.gameObject.GetComponent<Button>().interactable = false;
                 bPlusWallX.gameObject.GetComponent<Button>().interactable = false;
@@ -176,6 +190,8 @@ public class BuildInfoUI : MonoBehaviour
         else
         {
             Exist.text = "false";
+            HolePosY.text = "0";
+            HolePosY.text = "0";
             changeType.gameObject.GetComponent<Button>().interactable = false;
 
             sPlusWallX.gameObject.GetComponent<Button>().interactable = false;
@@ -326,6 +342,7 @@ public class BuildInfoUI : MonoBehaviour
     public void ChanegWall0()
     {
         wallNum = 0;
+        SelectWallName.text = "WallUp";
         UpdateInfo();
         UpdateWallInfo();
         ChangeWallInfo();
@@ -333,6 +350,7 @@ public class BuildInfoUI : MonoBehaviour
 
     public void ChanegWall1()
     {
+        SelectWallName.text = "WallLeft";
         wallNum = 1;
         UpdateInfo();
         UpdateWallInfo();
@@ -341,6 +359,7 @@ public class BuildInfoUI : MonoBehaviour
 
     public void ChanegWall2()
     {
+        SelectWallName.text = "WallDown";
         wallNum = 2;
         UpdateInfo();
         UpdateWallInfo();
@@ -349,10 +368,11 @@ public class BuildInfoUI : MonoBehaviour
 
     public void ChanegWall3()
     {
+        SelectWallName.text = "WallRight";
         wallNum = 3;
+        ChangeWallInfo();
         UpdateInfo();
         UpdateWallInfo();
-        ChangeWallInfo();
     }
 
     public void ChangeExist()

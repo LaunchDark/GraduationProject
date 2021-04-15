@@ -24,7 +24,7 @@ public class BuildUICtr : MonoBehaviour
         Vector2 Pos = new Vector2(buildinfo.pos.x * 50, buildinfo.pos.z * 50);
         this.gameObject.GetComponent<RectTransform>().anchoredPosition = Pos;
 
-        Vector2 size = new Vector2(buildinfo.weight * 50, buildinfo.lenght * 50);
+        Vector2 size = new Vector2(buildinfo.lenght * 50, buildinfo.weight * 50);
         bg.rectTransform.sizeDelta = size;
         col.size = new Vector3(size.x, size.y, 45);
         Title.text = gameObject.name;

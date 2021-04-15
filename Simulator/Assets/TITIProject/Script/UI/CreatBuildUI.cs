@@ -17,6 +17,8 @@ public class CreatBuildUI : MonoBehaviour
 
     public GameObject selectBuildUI;
 
+    public Text selectBuildName;
+
     private int BuildNum = 0;
     private int ColorNum = 0;
 
@@ -30,6 +32,7 @@ public class CreatBuildUI : MonoBehaviour
     [SerializeField] protected mButton CreatAllBulidingBtn;
     [SerializeField] protected mButton CreatBuild1Btn;
     [SerializeField] protected mButton CreatBuild2Btn;
+    [SerializeField] protected mButton DestroyAllBuildingBtn;
 
 
     private void Start()
@@ -39,11 +42,13 @@ public class CreatBuildUI : MonoBehaviour
         CreatAllBulidingBtn.clickCallBack = CreatBuilding;
         CreatBuild1Btn.clickCallBack = CreatBuild1;
         CreatBuild2Btn.clickCallBack = CreatBuild2;
+        DestroyAllBuildingBtn.clickCallBack = DestroyAllBuilding;
+        selectBuildName.text = "";
     }
 
     protected void NewBuild()
     {
-        Debug.Log("Run");
+        //Debug.Log("Run");
         
         GameObject NewBuilding = (GameObject)Instantiate(BuildUI, this.transform);
 
@@ -81,16 +86,20 @@ public class CreatBuildUI : MonoBehaviour
         {
             ColorNum = 0;
         }
-
         mButtons.Add(NewBuilding.GetComponent<mButton>());
+        UIBuilding = NewBuilding.GetComponent<BuildUICtr>().buildinfo;
+        selectBuildUI = NewBuilding;
+        OpenBuildInfoUI();
     }
 
    
     public void OpenBuildInfoUI()
     {
         BuildInfoUI.GetComponent<BuildInfoUI>().UIBuild = UIBuilding;
+        BuildInfoUI.GetComponent<BuildInfoUI>().UpdateUIWalls();
         BuildInfoUI.GetComponent<BuildInfoUI>().UpdateInfo();
         BuildInfoUI.GetComponent<BuildInfoUI>().UpdateWallInfo();
+        selectBuildName.text = selectBuildUI.name;
     }
 
     public void UpdateSelectBuilding()
@@ -105,28 +114,48 @@ public class CreatBuildUI : MonoBehaviour
         CreatManager.Instance.DestroyAllBuilding();
         foreach (var building in mButtons)
         {
+            //BuildingInfo.Instance.ClearLists();
             BuildingInfo.Instance.buildinfo.Add(building.gameObject.GetComponent<Building>());
-            CreatManager.Instance.CreatAllBuilding();
+            Destroy(building.gameObject);
         }
+        mButtons.Clear();
+        CreatManager.Instance.CreatAllBuilding();
         UIRoot.Instance.CreatDown();
-            
+        selectBuildName.text = "";
     }
 
     public void CreatBuild1()
     {
         InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
         CreatManager.Instance.DestroyAllBuilding();
+        //DestroyAllBuilding();
         BuildingInfo.Instance.Building1Info();
         CreatManager.Instance.CreatAllBuilding();
         UIRoot.Instance.CreatDown();
+        selectBuildName.text = "";
     }
 
     public void CreatBuild2()
     {
         InstrumentMgr.Instance.DeleteSceneAllInstrument(false);
         CreatManager.Instance.DestroyAllBuilding();
+        //DestroyAllBuilding();
         BuildingInfo.Instance.Building2Info();
         CreatManager.Instance.CreatAllBuilding();
         UIRoot.Instance.CreatDown();
+        selectBuildName.text = "";
+    }
+
+    public void DestroyAllBuilding()
+    {
+        CreatManager.Instance.DestroyAllBuilding();
+        foreach (var building in mButtons)
+        {
+            //BuildingInfo.Instance.ClearLists();
+            //BuildingInfo.Instance.buildinfo.Add(building.gameObject.GetComponent<Building>());
+            Destroy(building.gameObject);
+        }
+        mButtons.Clear();
+        selectBuildName.text = "";
     }
 }

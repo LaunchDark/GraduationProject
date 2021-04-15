@@ -16,7 +16,7 @@ public enum BuildingType
 [System.Serializable]
 public class Building:MonoBehaviour
 {
-    
+
     public BuildingType type = BuildingType.none;
     public bool[] isWall = new bool[4] { true, true, true, true };
     public Wall[] walls = new Wall[4];

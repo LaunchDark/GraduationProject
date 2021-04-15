@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.launchdark.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\132\\Desktop\\GraduationProject\\Simulator\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "D:\\git_prjs\\GraduationProject\\Simulator\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "LaunchDark [Testing]"
